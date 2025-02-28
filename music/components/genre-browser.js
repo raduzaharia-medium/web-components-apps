@@ -2,12 +2,12 @@ import "./genre-list-item.js";
 import "./album-list-item.js";
 import "./song-list-item.js";
 
-import "/shared/components/item-counter.js";
-import "/shared/components/action-input.js";
-import "/shared/components/custom-list.js";
-import "/shared/components/custom-list-skeleton.js";
+import "../../shared/components/item-counter.js";
+import "../../shared/components/action-input.js";
+import "../../shared/components/custom-list.js";
+import "../../shared/components/custom-list-skeleton.js";
 
-import { loadGenres, loadAlbumsForGenre, loadSongsForGenre } from "/music/scripts/lists.js";
+import { loadGenres, loadAlbumsForGenre, loadSongsForGenre } from "../scripts/lists.js";
 
 export class GenreBrowser extends HTMLDivElement {
   constructor() {

@@ -1,13 +1,13 @@
 import "./album-list-item.js";
 import "./song-list-item.js";
 
-import "/shared/components/item-counter.js";
-import "/shared/components/action-input.js";
-import "/shared/components/custom-list.js";
-import "/shared/components/custom-list-skeleton.js";
+import "../../shared/components/item-counter.js";
+import "../../shared/components/action-input.js";
+import "../../shared/components/custom-list.js";
+import "../../shared/components/custom-list-skeleton.js";
 
-import { loadAlbums, loadSongsForArtist } from "/music/scripts/lists.js";
-import { getFileUrl } from "/music/scripts/services.js";
+import { loadAlbums, loadSongsForArtist } from "../scripts/lists.js";
+import { getFileUrl } from "../scripts/services.js";
 
 export class AlbumBrowser extends HTMLDivElement {
   constructor() {

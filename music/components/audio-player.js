@@ -1,4 +1,4 @@
-import { loadData } from "/music/scripts/services.js";
+import { loadData } from "../scripts/services.js";
 
 export class AudioPlayer extends HTMLDivElement {
   static get observedAttributes() {

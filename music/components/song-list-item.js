@@ -1,4 +1,4 @@
-import { CustomListItem } from "/shared/components/custom-list-item.js";
+import { CustomListItem } from "../../shared/components/custom-list-item.js";
 
 export class SongListItem extends CustomListItem {
   get data() {
@@ -18,7 +18,7 @@ export class SongListItem extends CustomListItem {
     super();
 
     this.classList.add("song-list-item");
-    this.innerHTML = `<img loading="lazy" decoding="async" src="/music/images/play.svg" />
+    this.innerHTML = `<img loading="lazy" decoding="async" src="../images/play.svg" />
       <span class="title"></span>
       <span class="artist"></span>`;
   }

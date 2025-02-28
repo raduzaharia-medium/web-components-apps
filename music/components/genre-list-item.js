@@ -1,4 +1,4 @@
-import { CustomListItem } from "/shared/components/custom-list-item.js";
+import { CustomListItem } from "../../shared/components/custom-list-item.js";
 
 export class GenreListItem extends CustomListItem {
   get data() {

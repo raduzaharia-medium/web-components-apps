@@ -1,11 +1,11 @@
 import "./song-list-item.js";
 
-import "/shared/components/item-counter.js";
-import "/shared/components/action-input.js";
-import "/shared/components/custom-list.js";
-import "/shared/components/custom-list-skeleton.js";
+import "../../shared/components/item-counter.js";
+import "../../shared/components/action-input.js";
+import "../../shared/components/custom-list.js";
+import "../../shared/components/custom-list-skeleton.js";
 
-import { loadSongs } from "/music/scripts/lists.js";
+import { loadSongs } from "../scripts/lists.js";
 
 export class SongBrowser extends HTMLDivElement {
   constructor() {

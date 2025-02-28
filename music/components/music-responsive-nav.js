@@ -1,5 +1,5 @@
-import "/shared/components/responsive-nav.js";
-import "/shared/components/selected-item-nav.js";
+import "../../shared/components/responsive-nav.js";
+import "../../shared/components/selected-item-nav.js";
 
 export class MusicResponsiveNav extends HTMLElement {
   constructor() {
