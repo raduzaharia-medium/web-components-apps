@@ -1,12 +1,12 @@
-@import url(/shared/styles/base.css);
-@import url(/shared/styles/generic-ui.css);
+@import url(../shared/styles/base.css);
+@import url(../shared/styles/generic-ui.css);
 
-@import url(/music/components/music-responsive-nav.css);
-@import url(/music/components/audio-player.css);
+@import url(./components/music-responsive-nav.css);
+@import url(./components/audio-player.css);
 
-@import url(/music/components/artist-browser.css);
-@import url(/music/components/genre-browser.css);
-@import url(/music/components/album-browser.css);
-@import url(/music/components/song-browser.css);
+@import url(./components/artist-browser.css);
+@import url(./components/genre-browser.css);
+@import url(./components/album-browser.css);
+@import url(./components/song-browser.css);
 
 @import url(./styles/main.css);
