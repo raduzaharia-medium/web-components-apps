@@ -14,7 +14,7 @@ export class AlbumBrowser extends HTMLDivElement {
     super();
 
     this.classList.add("album-browser");
-    history.pushState({ page: "albums" }, "Music - browse by album", "/music");
+    history.pushState({ page: "albums" }, "Music - browse by album", "./music");
 
     this.innerHTML = `<section id="albums" class="full-screen has-title has-input">
       <header is="item-counter" class="section-title" id="albumCount" singular="album" plural="albums" order="date added"></header>

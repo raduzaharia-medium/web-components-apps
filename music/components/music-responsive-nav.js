@@ -88,7 +88,7 @@ export class MusicResponsiveNav extends HTMLElement {
   }
 
   showArtists(ignoreHistory) {
-    if (!ignoreHistory) history.pushState({ page: "artists" }, "Music - browse by artist", "/music");
+    if (!ignoreHistory) history.pushState({ page: "artists" }, "Music - browse by artist", "./music");
 
     document.querySelector("nav.responsive-nav").value = "artists";
     document.querySelector("nav.selected-item-nav").value = "";
@@ -106,7 +106,7 @@ export class MusicResponsiveNav extends HTMLElement {
     document.body.classList.add("artist-first");
   }
   showGenres(ignoreHistory) {
-    if (!ignoreHistory) history.pushState({ page: "genres" }, "Music - browse by genre", "/music");
+    if (!ignoreHistory) history.pushState({ page: "genres" }, "Music - browse by genre", "./music");
 
     document.querySelector("nav.responsive-nav").value = "genres";
     document.querySelector("nav.selected-item-nav").value = "";

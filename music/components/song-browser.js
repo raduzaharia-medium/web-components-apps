@@ -12,7 +12,7 @@ export class SongBrowser extends HTMLDivElement {
     super();
 
     this.classList.add("song-browser");
-    history.pushState({ page: "songs" }, "Music - browse by song", "/music");
+    history.pushState({ page: "songs" }, "Music - browse by song", "./music");
 
     this.innerHTML = `<section id="songs" class="full-screen has-title has-input">
       <header is="item-counter" class="section-title" id="songCount" singular="song" plural="songs" order="album">
