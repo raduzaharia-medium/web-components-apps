@@ -27,14 +27,14 @@ export class AudioPlayer extends HTMLDivElement {
       <div></div>
       <div></div>
       <div>
-        <img class="media-control secondary previous" id="previous" src="/shared/images/dark/button-previous.svg" />
-        <img class="media-control primary play" id="play" src="/shared/images/dark/button-play.svg" />
-        <img class="media-control primary pause hidden" id="pause" src="/shared/images/dark/button-pause.svg" />
-        <img class="media-control secondary next" id="next" src="/shared/images/dark/button-next.svg" />
+        <img class="media-control secondary previous" id="previous" src="../../shared/images/dark/button-previous.svg" />
+        <img class="media-control primary play" id="play" src="../../shared/images/dark/button-play.svg" />
+        <img class="media-control primary pause hidden" id="pause" src="../../shared/images/dark/button-pause.svg" />
+        <img class="media-control secondary next" id="next" src="../../shared/images/dark/button-next.svg" />
       </div>
       <div>
-        <img class="media-control secondary repeat" id="repeat" src="/shared/images/dark/button-repeat.svg" />
-        <img class="media-control secondary repeat" id="load" src="/shared/images/dark/button-load.svg" />
+        <img class="media-control secondary repeat" id="repeat" src="../../shared/images/dark/button-repeat.svg" />
+        <img class="media-control secondary repeat" id="load" src="../../shared/images/dark/button-load.svg" />
       </div>
 
       <audio id="player" autoplay></audio>

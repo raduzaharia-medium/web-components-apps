@@ -19,7 +19,7 @@ export class SelectedItemNav extends HTMLElement {
     this.classList.add("selected-item-nav");
 
     this.innerHTML = `
-        <img src="/shared/images/dark/left-arrow.svg">
+        <img src="../shared/images/dark/left-arrow.svg">
         <span>${this.value}</span>
     `;
 
