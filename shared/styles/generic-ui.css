@@ -108,7 +108,7 @@ section span.subtitle {
   }
 
   nav.top select {
-    background-image: url(/shared/images/dark/down-arrow.svg);
+    background-image: url(../images/dark/down-arrow.svg);
     background-repeat: no-repeat;
     background-position-x: 100%;
     background-color: transparent;
