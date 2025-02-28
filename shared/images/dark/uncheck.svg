@@ -1,0 +1,23 @@
+<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>
+            .cls-1,.cls-2{
+                fill:none;
+                stroke:#2a3434;
+                stroke-linecap:round;
+                stroke-width:1.5px;
+            }
+            .cls-1{
+                stroke-linejoin:round;
+                fill-rule:evenodd;
+            }
+            .cls-2{
+                stroke-linejoin:bevel;
+            }
+        </style>
+    </defs>
+    
+    <g id="ic-actions-check">
+        <circle class="cls-2" cx="12" cy="12" r="10"/>
+    </g>
+</svg>

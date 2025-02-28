@@ -1,0 +1,5 @@
+nav.selected-item-nav {
+  cursor: pointer;
+  width: max-content;
+  margin: 0 auto;
+}

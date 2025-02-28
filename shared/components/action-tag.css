@@ -1,0 +1,15 @@
+span.action-tag {
+  display: grid;
+  grid-template-columns: max-content 1.6em;
+  width: max-content;
+  border: 2px solid var(--text-color-light);
+  border-radius: 20px;
+  margin-right: 0.6em;
+}
+span.action-tag span {
+  padding: 0.2em 0.6em;
+}
+
+span.action-tag img {
+  cursor: pointer;
+}

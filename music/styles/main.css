@@ -1,0 +1,115 @@
+main {
+  display: grid;
+  grid-column-gap: 1em;
+  grid-template-columns: minmax(16em, 1fr) 1.6fr 1fr;
+}
+
+body.song-first main {
+  grid-template-columns: 1fr;
+}
+
+body.album-first main {
+  grid-template-columns: 2.6fr 1fr;
+}
+
+nav.selected-item-nav {
+  display: none;
+}
+
+body.artist-first #genreFilter,
+body.artist-first #albumFilter,
+body.artist-first #songFilter,
+body.genre-first #artistFilter,
+body.genre-first #albumFilter,
+body.genre-first #songFilter,
+body.album-first #artistFilter,
+body.album-first #genreFilter,
+body.album-first #songFilter,
+body.song-first #artistFilter,
+body.song-first #genreFilter,
+body.song-first #albumFilter {
+  display: none;
+}
+
+body.artist-first main #genres,
+body.genre-first main #artists,
+body.song-first main #artists,
+body.song-first main #genres,
+body.album-first main #artists,
+body.album-first main #genres,
+body.song-first main #albums {
+  display: none;
+}
+
+body.artist-selected main #songs,
+body.genre-selected main #songs,
+body.album-selected main #songs,
+body.song-first main #songs {
+  display: block;
+}
+
+custom-list-skeleton {
+  display: none;
+}
+
+#artists.loading ul,
+#genres.loading ul,
+#albums.loading ul,
+#songs.loading ul,
+#artists.loading action-input,
+#genres.loading action-input,
+#albums.loading action-input,
+#songs.loading action-input {
+  display: none;
+}
+
+#artists.loading custom-list-skeleton,
+#genres.loading custom-list-skeleton,
+#albums.loading custom-list-skeleton,
+#songs.loading custom-list-skeleton {
+  display: block;
+}
+
+ul#songList {
+  border-right: none;
+}
+
+body:not(.song-first) ul#songList .artist {
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  main {
+    grid-template-columns: 1.4fr 1fr;
+  }
+
+  body:not(.album-first) #albums {
+    display: none;
+  }
+}
+
+@media (max-width: 710px) {
+  main,
+  body.album-first main {
+    grid-template-columns: 1fr;
+  }
+
+  body.artist-first.artist-selected nav.responsive-nav,
+  body.genre-first.genre-selected nav.responsive-nav,
+  body.album-first.album-selected nav.responsive-nav {
+    display: none;
+  }
+
+  body.artist-selected main #artists,
+  body.genre-selected main #genres,
+  body.album-selected main #albums,
+  main #songs {
+    display: none;
+  }
+
+  body.artist-first.artist-selected nav.selected-item-nav,
+  body.genre-first.genre-selected nav.selected-item-nav,
+  body.album-first.album-selected nav.selected-item-nav {
+    display: block;
+  }
+}

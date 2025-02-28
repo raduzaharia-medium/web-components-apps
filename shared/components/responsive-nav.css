@@ -1,0 +1,15 @@
+nav.responsive-nav {
+  display: block;
+  width: 100%;
+}
+
+nav.responsive-nav li {
+  cursor: pointer;
+  display: inline;
+  margin: 0.2em;
+}
+
+nav.responsive-nav .selected {
+  color: var(--text-color);
+  text-shadow: var(--selection-shadow-light);
+}

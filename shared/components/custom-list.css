@@ -1,0 +1,14 @@
+ul.custom-list {
+  padding-right: 1em;
+  border-right: 1px solid var(--border-color);
+}
+
+ul.custom-list.alternate-odd li:nth-child(odd) {
+  background-color: #0001;
+}
+
+@media (max-width: 710px) {
+  ul.custom-list {
+    border-right: none;
+  }
+}
