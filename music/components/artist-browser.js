@@ -15,7 +15,7 @@ export class ArtistBrowser extends HTMLDivElement {
     super();
 
     this.classList.add("artist-browser");
-    history.pushState({ page: "artists" }, "Music - browse by artist", "./music");
+    history.pushState({ page: "artists" }, "Music - browse by artist", ".");
 
     this.innerHTML = `<section id="artists" class="full-screen has-title has-input">
       <header is="item-counter" class="section-title" id="artistCount" singular="artist" plural="artists" order="a-z">
