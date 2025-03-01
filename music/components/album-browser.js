@@ -2,23 +2,21 @@ import "./album-list-item.js";
 import "./song-list-item.js";
 
 import "../../shared/components/item-counter.js";
-import "../../shared/components/action-input.js";
 import "../../shared/components/custom-list.js";
 import "../../shared/components/custom-list-skeleton.js";
 
 import { loadAlbums, loadSongsForArtist } from "../scripts/lists.js";
 import { getFileUrl } from "../scripts/services.js";
 
-export class AlbumBrowser extends HTMLDivElement {
+export class AlbumBrowser extends HTMLElement {
   constructor() {
     super();
 
-    this.classList.add("album-browser");
     history.pushState({ page: "albums" }, "Music - browse by album", ".");
 
     this.innerHTML = `<section id="albums" class="full-screen has-title has-input">
       <item-counter id="albumCount" singular="album" plural="albums" order="date added"></item-counter>
-      <div is="action-input" id="albumFilter" placeholder="search..." trigger="any"></div>
+      <input id="albumFilter" type="text" placeholder="search..." />
       <ul is="custom-list" id="albumList" class="full-screen">
         <template slot="item">
           <li is="album-list-item"></li>
@@ -38,25 +36,25 @@ export class AlbumBrowser extends HTMLDivElement {
     </section>
     `;
 
-    document.getElementById("albumFilter").addEventListener("action", () => {
-      document.getElementById("albumList").filter(document.getElementById("albumFilter").value);
+    this.querySelector("#albumFilter").addEventListener("keyup", () => {
+      this.querySelector("#albumList").filter(this.querySelector("#albumFilter").value);
     });
-    document.getElementById("albumList").addEventListener("change", async () => {
-      const selection = document.getElementById("albumList").selectedData;
+    this.querySelector("#albumList").addEventListener("change", async () => {
+      const selection = this.querySelector("#albumList").selectedData;
 
       if (selection) {
         document.querySelector("body").classList.add("album-selected");
-        document.getElementById("albumName").innerText = selection.item;
+        this.querySelector("#albumName").innerText = selection.item;
         document.querySelector("selected-item-nav").value = selection.item;
 
         await loadSongsForArtist(selection.artist, selection.item);
       }
     });
-    document.getElementById("songList").addEventListener("change", async () => {
-      const selection = document.getElementById("songList").selectedData;
+    this.querySelector("#songList").addEventListener("change", async () => {
+      const selection = this.querySelector("#songList").selectedData;
 
       if (selection) {
-        const songs = document.getElementById("songList").allData;
+        const songs = this.querySelector("#songList").allData;
 
         document.querySelector("div.audio-player").setPlaylist(songs);
         document.querySelector("div.audio-player").src = await getFileUrl(selection.file);
@@ -70,4 +68,4 @@ export class AlbumBrowser extends HTMLDivElement {
   }
 }
 
-customElements.define("album-browser", AlbumBrowser, { extends: "div" });
+customElements.define("album-browser", AlbumBrowser);

@@ -2,10 +2,6 @@ body.song-first main {
   grid-template-columns: 1fr;
 }
 
-body.album-first main {
-  grid-template-columns: 2.6fr 1fr;
-}
-
 custom-list-skeleton {
   display: none;
 }
@@ -14,10 +10,10 @@ custom-list-skeleton {
 #genres.loading ul,
 #albums.loading ul,
 #songs.loading ul,
-#artists.loading action-input,
-#genres.loading action-input,
-#albums.loading action-input,
-#songs.loading action-input {
+#artists.loading input,
+#genres.loading input,
+#albums.loading input,
+#songs.loading input {
   display: none;
 }
 
@@ -37,9 +33,6 @@ body:not(.song-first) ul#songList .artist {
 }
 
 @media (max-width: 710px) {
-  body.album-first main {
-    grid-template-columns: 1fr;
-  }
 
   body.artist-first.artist-selected responsive-nav,
   body.genre-first.genre-selected responsive-nav,

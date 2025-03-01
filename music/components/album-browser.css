@@ -1,5 +1,4 @@
 @import url(../../shared/components/custom-list.css);
-@import url(../../shared/components/action-input.css);
 @import url(../../shared/components/custom-list-item.css);
 
 @import url(./album-list-item.css);
@@ -7,6 +6,17 @@
 
 @import url(../../shared/styles/loaders.css);
 
-.album-browser {
-    display: contents
+album-browser {
+    display: grid;
+    grid-column-gap: 1em;
+    grid-template-columns: 2.6fr 1fr;
+    height: 100%;
+
+    @media (max-width: 1000px) {
+        grid-template-columns: 1.4fr 1fr;
+    }
+
+    @media (max-width: 710px) {
+        grid-template-columns: 1fr;
+    }
 }

@@ -3,7 +3,6 @@ import "./album-list-item.js";
 import "./song-list-item.js";
 
 import "../../shared/components/item-counter.js";
-import "../../shared/components/action-input.js";
 import "../../shared/components/custom-list.js";
 import "../../shared/components/custom-list-skeleton.js";
 
@@ -18,7 +17,7 @@ export class ArtistBrowser extends HTMLElement {
 
     this.innerHTML = `<section id="artists" class="full-screen has-title has-input">
       <item-counter id="artistCount" singular="artist" plural="artists" order="a-z"></item-counter>
-      <div is="action-input" id="artistFilter" placeholder="search..." trigger="any"></div>
+      <input id="artistFilter" type="text" placeholder="search..." />
       <ul is="custom-list" id="artistList" class="full-screen">
         <template slot="item">
           <li is="artist-list-item"></li>
@@ -27,7 +26,7 @@ export class ArtistBrowser extends HTMLElement {
       <custom-list-skeleton></custom-list-skeleton>
     </section>
      <section id="albums" class="full-screen has-title">
-      <header is="item-counter" id="albumCount" singular="album" plural="albums" order="date added"></header>
+      <item-counter id="albumCount" singular="album" plural="albums" order="date added"></item-counter>
       <ul is="custom-list" id="albumList" class="full-screen">
         <template slot="item">
           <li is="album-list-item"></li>
@@ -36,8 +35,7 @@ export class ArtistBrowser extends HTMLElement {
       <custom-list-skeleton></custom-list-skeleton>
     </section>
     <section id="songs" class="full-screen has-title has-subtitle">
-      <header is="item-counter" id="songCount" singular="song" plural="songs" order="album">
-      </header>
+      <item-counter id="songCount" singular="song" plural="songs" order="album"></item-counter>
       <span id="albumName" class="subtitle"></span>
       <ul is="custom-list" id="songList" class="full-screen">
         <template slot="item">
@@ -48,36 +46,36 @@ export class ArtistBrowser extends HTMLElement {
     </section>
     `;
 
-    document.getElementById("artistFilter").addEventListener("action", () => {
-      document.getElementById("artistList").filter(document.getElementById("artistFilter").value);
+    this.querySelector("#artistList").addEventListener("keyup", (e) => {
+      this.querySelector("#artistList").filter(this.querySelector("#artistFilter").value);
     });
-    document.getElementById("artistList").addEventListener("change", async () => {
-      const selection = document.getElementById("artistList").value;
+    this.querySelector("#artistList").addEventListener("change", async () => {
+      const selection = this.querySelector("#artistList").value;
 
       if (selection) {
         document.querySelector("body").classList.add("artist-selected");
         document.querySelector("selected-item-nav").value = selection;
 
         await loadAlbumsForArtist(selection);
-        document.getElementById("albumList").selectFirst();
+        this.querySelector("#albumList").selectFirst();
       }
     });
-    document.getElementById("albumList").addEventListener("change", async () => {
-      const selection = document.getElementById("albumList").selectedData;
+    this.querySelector("#albumList").addEventListener("change", async () => {
+      const selection = this.querySelector("#albumList").selectedData;
 
       if (selection) {
         document.querySelector("body").classList.add("album-selected");
-        document.getElementById("albumName").innerText = selection.item;
+        this.querySelector("#albumName").innerText = selection.item;
         // if (updateNav) document.querySelector("selected-item-nav").value = selection.item;
 
         await loadSongsForArtist(selection.artist, selection.item);
       }
     });
-    document.getElementById("songList").addEventListener("change", async () => {
-      const selection = document.getElementById("songList").selectedData;
+    this.querySelector("#songList").addEventListener("change", async () => {
+      const selection = this.querySelector("#songList").selectedData;
 
       if (selection) {
-        const songs = document.getElementById("songList").allData;
+        const songs = this.querySelector("#songList").allData;
 
         document.querySelector("div.audio-player").setPlaylist(songs);
         document.querySelector("div.audio-player").src = await getFileUrl(selection.file);

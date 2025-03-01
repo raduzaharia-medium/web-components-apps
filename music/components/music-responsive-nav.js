@@ -32,21 +32,21 @@ export class MusicResponsiveNav extends HTMLElement {
         document.body.classList.remove("song-first");
         document.body.classList.add("album-first");
 
-        document.querySelector("main").innerHTML = `<div is="album-browser"></div>`;
+        document.querySelector("main").innerHTML = `<album-browser></album-browser>`;
       } else if (selection === "genres") {
         document.body.classList.remove("artist-first");
         document.body.classList.remove("album-first");
         document.body.classList.remove("song-first");
         document.body.classList.add("genre-first");
 
-        document.querySelector("main").innerHTML = `<div is="genre-browser"></div>`;
+        document.querySelector("main").innerHTML = `<genre-browser></genre-browser>`;
       } else if (selection === "songs") {
         document.body.classList.remove("artist-first");
         document.body.classList.remove("album-first");
         document.body.classList.remove("genre-first");
         document.body.classList.add("song-first");
 
-        document.querySelector("main").innerHTML = `<div is="song-browser"></div>`;
+        document.querySelector("main").innerHTML = `<song-browser></song-browser>`;
       }
     });
   }

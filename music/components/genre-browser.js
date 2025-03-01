@@ -3,7 +3,6 @@ import "./album-list-item.js";
 import "./song-list-item.js";
 
 import "../../shared/components/item-counter.js";
-import "../../shared/components/action-input.js";
 import "../../shared/components/custom-list.js";
 import "../../shared/components/custom-list-skeleton.js";
 
@@ -17,7 +16,7 @@ export class GenreBrowser extends HTMLDivElement {
 
     this.innerHTML = `<section id="genres" class="full-screen has-title has-input">
       <item-counter id="genreCount" singular="genre" plural="genres" order="a-z"></item-counter>
-      <div is="action-input" id="genreFilter" placeholder="search..." trigger="any"></div>
+      <input id="genreFilter" type="text" placeholder="search..." />
       <ul is="custom-list" id="genreList" class="full-screen">
         <template slot="item">
           <li is="genre-list-item"></li>
@@ -46,36 +45,36 @@ export class GenreBrowser extends HTMLDivElement {
     </section>
     `;
 
-    document.getElementById("genreFilter").addEventListener("action", () => {
-      document.getElementById("genreList").filter(document.getElementById("genreFilter").value);
+    this.querySelector("#genreFilter").addEventListener("keyup", () => {
+      this.querySelector("#genreList").filter(this.querySelector("#genreFilter").value);
     });
-    document.getElementById("genreList").addEventListener("change", async () => {
-      const selection = document.getElementById("genreList").value;
+    this.querySelector("#genreList").addEventListener("change", async () => {
+      const selection = this.querySelector("#genreList").value;
 
       if (selection) {
         document.querySelector("body").classList.add("genre-selected");
         document.querySelector("selected-item-nav").value = selection;
 
         await loadAlbumsForGenre(selection);
-        document.getElementById("albumList").selectFirst();
+        this.querySelector("#albumList").selectFirst();
       }
     });
-    document.getElementById("albumList").addEventListener("change", async () => {
-      const selection = document.getElementById("albumList").selectedData;
+    this.querySelector("#albumList").addEventListener("change", async () => {
+      const selection = this.querySelector("#albumList").selectedData;
 
       if (selection) {
         document.querySelector("body").classList.add("album-selected");
-        document.getElementById("albumName").innerText = selection.item;
+        this.querySelector("#albumName").innerText = selection.item;
         // if (updateNav) document.querySelector("selected-item-nav").value = selection.item;
 
-        await loadSongsForGenre(document.getElementById("genreList").value, selection.item);
+        await loadSongsForGenre(this.querySelector("#genreList").value, selection.item);
       }
     });
-    document.getElementById("songList").addEventListener("change", () => {
-      const selection = document.getElementById("songList").selectedData;
+    this.querySelector("#songList").addEventListener("change", () => {
+      const selection = this.querySelector("#songList").selectedData;
 
       if (selection) {
-        const songs = document.getElementById("songList").allData;
+        const songs = this.querySelector("#songList").allData;
 
         document.querySelector("div.audio-player").setPlaylist(songs);
         document.querySelector("div.audio-player").src = `/music/stream?location=${selection.location}`;
