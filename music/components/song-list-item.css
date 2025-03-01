@@ -1,4 +1,6 @@
 song-list-item {
+  display: block;
+
   .title {
     white-space: nowrap;
     overflow: hidden;
