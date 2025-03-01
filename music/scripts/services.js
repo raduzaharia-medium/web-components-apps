@@ -6,6 +6,10 @@ export async function loadData(directory) {
   data = await parseMusicFiles(directory);
 }
 
+export async function loadDataLegacy(files) {
+  data = await parseMusicFilesLegacy(files);
+}
+
 async function parseMusicFiles(directory) {
   const files = [];
 
@@ -18,6 +22,27 @@ async function parseMusicFiles(directory) {
         files.push({ title: tags.title, artist: tags.artist, album: tags.album, genre: tags.genre, location: "", file: entry });
       }
     } else if (entry.kind === "directory") files.push(...(await this.getAllFiles(entry)));
+  }
+
+  return files;
+}
+
+async function parseMusicFilesLegacy(fileList) {
+  const files = [];
+
+  for (const file of fileList) {
+    if (file.name.match(/\.(mp3)$/i)) {
+      const tags = await id3.fromFile(file);
+
+      files.push({
+        title: tags.title,
+        artist: tags.artist,
+        album: tags.album,
+        genre: tags.genre,
+        location: file.webkitRelativePath, // Path within the selected folder
+        file: file,
+      });
+    }
   }
 
   return files;

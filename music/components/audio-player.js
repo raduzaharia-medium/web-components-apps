@@ -1,6 +1,6 @@
-import { loadData } from "../scripts/services.js";
+import { loadData, loadDataLegacy } from "../scripts/services.js";
 
-export class AudioPlayer extends HTMLDivElement {
+export class AudioPlayer extends HTMLElement {
   static get observedAttributes() {
     return ["src"];
   }
@@ -19,8 +19,6 @@ export class AudioPlayer extends HTMLDivElement {
 
   constructor() {
     super();
-
-    this.classList.add("audio-player");
 
     this.innerHTML = `
       <progress id="progress" class="progress-indicator" min="0" max="1" value="0"></progress>
@@ -41,6 +39,20 @@ export class AudioPlayer extends HTMLDivElement {
     `;
 
     this.querySelector("#load").addEventListener("click", async () => {
+      if (!window.showDirectoryPicker) {
+        const directoryPicker = document.createElement("input");
+        directoryPicker.type = "file";
+        directoryPicker.setAttribute("webkitdirectory", "");
+        directoryPicker.click();
+
+        directoryPicker.addEventListener("change", async () => {
+          await loadDataLegacy(directoryPicker.files);
+          document.querySelector("main").innerHTML = `<artist-browser></artist-browser>`;
+        });
+
+        return;
+      }
+
       const selection = await window.showDirectoryPicker();
       await loadData(selection);
 
@@ -134,4 +146,4 @@ export class AudioPlayer extends HTMLDivElement {
   }
 }
 
-customElements.define("audio-player", AudioPlayer, { extends: "div" });
+customElements.define("audio-player", AudioPlayer);
