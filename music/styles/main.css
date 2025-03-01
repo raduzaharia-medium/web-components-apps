@@ -42,7 +42,8 @@ body:not(.song-first) ul#songList .artist {
 
   body.artist-first.artist-selected main #songs,
   body.genre-first.genre-selected main #songs,
-  body.album-first.album-selected main #songs {
+  body.album-first.album-selected main #songs,
+  body.song-first main #songs {
     display: block;
   }
 

@@ -8,11 +8,9 @@ import "../../shared/components/custom-list-skeleton.js";
 
 import { loadGenres, loadAlbumsForGenre, loadSongsForGenre } from "../scripts/lists.js";
 
-export class GenreBrowser extends HTMLDivElement {
+export class GenreBrowser extends HTMLElement {
   constructor() {
     super();
-
-    this.classList.add("genre-browser");
 
     this.innerHTML = `<section id="genres" class="full-screen has-title has-input">
       <item-counter id="genreCount" singular="genre" plural="genres" order="a-z"></item-counter>
@@ -88,4 +86,4 @@ export class GenreBrowser extends HTMLDivElement {
   }
 }
 
-customElements.define("genre-browser", GenreBrowser, { extends: "div" });
+customElements.define("genre-browser", GenreBrowser);

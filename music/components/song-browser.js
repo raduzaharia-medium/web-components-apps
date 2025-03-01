@@ -6,11 +6,10 @@ import "../../shared/components/custom-list-skeleton.js";
 
 import { loadSongs } from "../scripts/lists.js";
 
-export class SongBrowser extends HTMLDivElement {
+export class SongBrowser extends HTMLElement {
   constructor() {
     super();
 
-    this.classList.add("song-browser");
     history.pushState({ page: "songs" }, "Music - browse by song", ".");
 
     this.innerHTML = `<section id="songs" class="full-screen has-title has-input">
@@ -46,4 +45,4 @@ export class SongBrowser extends HTMLDivElement {
   }
 }
 
-customElements.define("song-browser", SongBrowser, { extends: "div" });
+customElements.define("song-browser", SongBrowser);
