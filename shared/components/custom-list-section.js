@@ -38,9 +38,9 @@ export class CustomListSection extends HTMLElement {
 
       <div is="item-counter" singular="${this.singular}" plural="${this.plural}" order="${this.order}"></item-counter>
       <action-input placeholder="search..." trigger="any"></action-input>
-      <ul is="custom-list">
+      <custom-list>
         <slot name="item"></slot>
-      </ul>
+      </custom-list>
       <custom-list-skeleton></custom-list-skeleton>
     `;
 

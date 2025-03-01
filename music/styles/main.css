@@ -40,6 +40,12 @@ body:not(.song-first) ul#songList .artist {
     display: none;
   }
 
+  body.artist-first.artist-selected main #songs,
+  body.genre-first.genre-selected main #songs,
+  body.album-first.album-selected main #songs {
+    display: block;
+  }
+
   body.artist-selected main #artists,
   body.genre-selected main #genres,
   body.album-selected main #albums,

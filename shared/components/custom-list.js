@@ -1,4 +1,4 @@
-export class CustomList extends HTMLUListElement {
+export class CustomList extends HTMLElement {
   multiselect = true;
 
   static get observedAttributes() {
@@ -36,7 +36,8 @@ export class CustomList extends HTMLUListElement {
   constructor() {
     super();
 
-    this.classList.add("custom-list");
+    this.appendChild(document.createElement("ul"));
+
     this.addEventListener("click", (e) => {
       const selection = e.target.closest("li.custom-list-item");
 
@@ -60,7 +61,7 @@ export class CustomList extends HTMLUListElement {
     const templateNode = template.content.firstElementChild;
     const node = templateNode.cloneNode(true);
 
-    this.appendChild(node);
+    this.querySelector("ul").appendChild(node);
     node.data = item;
   }
   clearItems() {
@@ -128,4 +129,4 @@ export class CustomList extends HTMLUListElement {
   }
 }
 
-customElements.define("custom-list", CustomList, { extends: "ul" });
+customElements.define("custom-list", CustomList);

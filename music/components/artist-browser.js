@@ -18,30 +18,30 @@ export class ArtistBrowser extends HTMLElement {
     this.innerHTML = `<section id="artists" class="full-screen has-title has-input">
       <item-counter id="artistCount" singular="artist" plural="artists" order="a-z"></item-counter>
       <input id="artistFilter" type="text" placeholder="search..." />
-      <ul is="custom-list" id="artistList" class="full-screen">
+      <custom-list id="artistList" class="full-screen">
         <template slot="item">
           <li is="artist-list-item"></li>
         </template>
-      </ul>
+      </custom-list>
       <custom-list-skeleton></custom-list-skeleton>
     </section>
      <section id="albums" class="full-screen has-title">
       <item-counter id="albumCount" singular="album" plural="albums" order="date added"></item-counter>
-      <ul is="custom-list" id="albumList" class="full-screen">
+      <custom-list id="albumList" class="full-screen">
         <template slot="item">
           <li is="album-list-item"></li>
         </template>
-      </ul>
+      </custom-list>
       <custom-list-skeleton></custom-list-skeleton>
     </section>
     <section id="songs" class="full-screen has-title has-subtitle">
       <item-counter id="songCount" singular="song" plural="songs" order="album"></item-counter>
       <span id="albumName" class="subtitle"></span>
-      <ul is="custom-list" id="songList" class="full-screen">
+      <custom-list id="songList" class="full-screen">
         <template slot="item">
           <li is="song-list-item"></li>
         </template>
-      </ul>
+      </custom-list>
       <custom-list-skeleton></custom-list-skeleton>
     </section>
     `;

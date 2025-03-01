@@ -1,8 +1,7 @@
-export class CustomListSkeleton extends HTMLDivElement {
+export class CustomListSkeleton extends HTMLElement {
   constructor() {
     super();
 
-    this.classList.add("custom-list-skeleton");
     this.innerHTML = `
       <div class="loading">
         <div class="loader-container">
@@ -36,4 +35,4 @@ export class CustomListSkeleton extends HTMLDivElement {
   }
 }
 
-customElements.define("custom-list-skeleton", CustomListSkeleton, { extends: "div" });
+customElements.define("custom-list-skeleton", CustomListSkeleton);

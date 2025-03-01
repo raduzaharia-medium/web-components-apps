@@ -17,21 +17,21 @@ export class AlbumBrowser extends HTMLElement {
     this.innerHTML = `<section id="albums" class="full-screen has-title has-input">
       <item-counter id="albumCount" singular="album" plural="albums" order="date added"></item-counter>
       <input id="albumFilter" type="text" placeholder="search..." />
-      <ul is="custom-list" id="albumList" class="full-screen">
+      <custom-list id="albumList" class="full-screen">
         <template slot="item">
           <li is="album-list-item"></li>
         </template>
-      </ul>
+      </custom-list>
       <custom-list-skeleton></custom-list-skeleton>
     </section>
     <section id="songs" class="full-screen has-title has-subtitle">
       <item-counter id="songCount" singular="song" plural="songs" order="album"></item-counter>
       <span id="albumName" class="subtitle"></span>
-      <ul is="custom-list" id="songList" class="full-screen">
+      <custom-list id="songList" class="full-screen">
         <template slot="item">
           <li is="song-list-item"></li>
         </template>
-      </ul>
+      </custom-list>
       <custom-list-skeleton></custom-list-skeleton>
     </section>
     `;

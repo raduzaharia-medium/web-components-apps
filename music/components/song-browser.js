@@ -16,11 +16,11 @@ export class SongBrowser extends HTMLDivElement {
     this.innerHTML = `<section id="songs" class="full-screen has-title has-input">
       <item-counter id="songCount" singular="song" plural="songs" order="album"></item-counter>
       <input id="songFilter" type="text" placeholder="search..." />
-      <ul is="custom-list" id="songList" class="full-screen">
+      <custom-list id="songList" class="full-screen">
         <template slot="item">
           <li is="song-list-item"></li>
         </template>
-      </ul>
+      </custom-list>
       <custom-list-skeleton></custom-list-skeleton>
     </section>
     `;
