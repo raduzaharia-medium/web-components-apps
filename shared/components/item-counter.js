@@ -32,8 +32,6 @@ export class ItemCounter extends HTMLElement {
   constructor() {
     super();
 
-    this.classList.add("item-counter");
-
     this.innerHTML = `
       <strong>0 ${this.plural}</strong>
       <span>BY ${this.order}</span>
@@ -50,4 +48,4 @@ export class ItemCounter extends HTMLElement {
   }
 }
 
-customElements.define("item-counter", ItemCounter, { extends: "header" });
+customElements.define("item-counter", ItemCounter);

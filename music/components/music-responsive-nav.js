@@ -25,7 +25,7 @@ export class MusicResponsiveNav extends HTMLElement {
         document.body.classList.remove("song-first");
         document.body.classList.add("artist-first");
 
-        document.querySelector("main").innerHTML = `<div is="artist-browser"></div>`;
+        document.querySelector("main").innerHTML = `<artist-browser></artist-browser>`;
       } else if (selection === "albums") {
         document.body.classList.remove("artist-first");
         document.body.classList.remove("genre-first");

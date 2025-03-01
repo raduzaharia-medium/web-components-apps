@@ -44,7 +44,7 @@ export class AudioPlayer extends HTMLDivElement {
       const selection = await window.showDirectoryPicker();
       await loadData(selection);
 
-      document.querySelector("main").innerHTML = `<div is="artist-browser"></div>`;
+      document.querySelector("main").innerHTML = `<artist-browser></artist-browser>`;
     });
     this.querySelector("#play").addEventListener("click", () => {
       if (!this.querySelector("#player").src) return;

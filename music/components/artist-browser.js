@@ -10,16 +10,14 @@ import "../../shared/components/custom-list-skeleton.js";
 import { loadArtists, loadAlbumsForArtist, loadSongsForArtist } from "../scripts/lists.js";
 import { getFileUrl } from "../scripts/services.js";
 
-export class ArtistBrowser extends HTMLDivElement {
+export class ArtistBrowser extends HTMLElement {
   constructor() {
     super();
 
-    this.classList.add("artist-browser");
     history.pushState({ page: "artists" }, "Music - browse by artist", ".");
 
     this.innerHTML = `<section id="artists" class="full-screen has-title has-input">
-      <header is="item-counter" class="section-title" id="artistCount" singular="artist" plural="artists" order="a-z">
-      </header>
+      <item-counter id="artistCount" singular="artist" plural="artists" order="a-z"></item-counter>
       <div is="action-input" id="artistFilter" placeholder="search..." trigger="any"></div>
       <ul is="custom-list" id="artistList" class="full-screen">
         <template slot="item">
@@ -29,7 +27,7 @@ export class ArtistBrowser extends HTMLDivElement {
       <custom-list-skeleton></custom-list-skeleton>
     </section>
      <section id="albums" class="full-screen has-title">
-      <header is="item-counter" class="section-title" id="albumCount" singular="album" plural="albums" order="date added"></header>
+      <header is="item-counter" id="albumCount" singular="album" plural="albums" order="date added"></header>
       <ul is="custom-list" id="albumList" class="full-screen">
         <template slot="item">
           <li is="album-list-item"></li>
@@ -38,7 +36,7 @@ export class ArtistBrowser extends HTMLDivElement {
       <custom-list-skeleton></custom-list-skeleton>
     </section>
     <section id="songs" class="full-screen has-title has-subtitle">
-      <header is="item-counter" class="section-title" id="songCount" singular="song" plural="songs" order="album">
+      <header is="item-counter" id="songCount" singular="song" plural="songs" order="album">
       </header>
       <span id="albumName" class="subtitle"></span>
       <ul is="custom-list" id="songList" class="full-screen">
@@ -93,4 +91,4 @@ export class ArtistBrowser extends HTMLDivElement {
   }
 }
 
-customElements.define("artist-browser", ArtistBrowser, { extends: "div" });
+customElements.define("artist-browser", ArtistBrowser);

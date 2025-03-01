@@ -15,8 +15,7 @@ export class SongBrowser extends HTMLDivElement {
     history.pushState({ page: "songs" }, "Music - browse by song", ".");
 
     this.innerHTML = `<section id="songs" class="full-screen has-title has-input">
-      <header is="item-counter" class="section-title" id="songCount" singular="song" plural="songs" order="album">
-      </header>
+      <item-counter id="songCount" singular="song" plural="songs" order="album"></item-counter>
       <div is="action-input" id="songFilter" placeholder="search..." trigger="any"></div>
       <ul is="custom-list" id="songList" class="full-screen">
         <template slot="item">

@@ -1,2 +1,15 @@
 @import url(../../shared/components/selected-item-nav.css);
 @import url(../../shared/components/responsive-nav.css);
+
+selected-item-nav {
+    display: none;
+}
+
+@media (max-width: 710px) {
+
+    body.artist-first.artist-selected selected-item-nav,
+    body.genre-first.genre-selected selected-item-nav,
+    body.album-first.album-selected selected-item-nav {
+        display: block;
+    }
+}

@@ -16,8 +16,7 @@ export class GenreBrowser extends HTMLDivElement {
     this.classList.add("genre-browser");
 
     this.innerHTML = `<section id="genres" class="full-screen has-title has-input">
-      <header is="item-counter" class="section-title" id="genreCount" singular="genre" plural="genres" order="a-z">
-      </header>
+      <item-counter id="genreCount" singular="genre" plural="genres" order="a-z"></item-counter>
       <div is="action-input" id="genreFilter" placeholder="search..." trigger="any"></div>
       <ul is="custom-list" id="genreList" class="full-screen">
         <template slot="item">
@@ -27,7 +26,7 @@ export class GenreBrowser extends HTMLDivElement {
       <custom-list-skeleton></custom-list-skeleton>
     </section>
      <section id="albums" class="full-screen has-title">
-      <header is="item-counter" class="section-title" id="albumCount" singular="album" plural="albums" order="date added"></header>
+      <item-counter id="albumCount" singular="album" plural="albums" order="date added"></item-counter>
       <ul is="custom-list" id="albumList" class="full-screen">
         <template slot="item">
           <li is="album-list-item"></li>
@@ -36,8 +35,7 @@ export class GenreBrowser extends HTMLDivElement {
       <custom-list-skeleton></custom-list-skeleton>
     </section>
     <section id="songs" class="full-screen has-title has-subtitle">
-      <header is="item-counter" class="section-title" id="songCount" singular="song" plural="songs" order="album">
-      </header>
+      <item-counter id="songCount" singular="song" plural="songs" order="album"></item-counter>
       <span id="albumName" class="subtitle"></span>
       <ul is="custom-list" id="songList" class="full-screen">
         <template slot="item">
