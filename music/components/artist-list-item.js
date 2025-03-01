@@ -15,4 +15,4 @@ export class ArtistListItem extends CustomListItem {
   }
 }
 
-customElements.define("artist-list-item", ArtistListItem, { extends: "li" });
+customElements.define("artist-list-item", ArtistListItem);

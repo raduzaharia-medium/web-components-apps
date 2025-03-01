@@ -1,4 +1,4 @@
-export class CustomListItem extends HTMLLIElement {
+export class CustomListItem extends HTMLElement {
   get data() {
     return this.dataset;
   }
@@ -13,6 +13,7 @@ export class CustomListItem extends HTMLLIElement {
 
   constructor() {
     super();
+
     this.classList.add("custom-list-item");
   }
 
@@ -44,4 +45,4 @@ export class CustomListItem extends HTMLLIElement {
   }
 }
 
-customElements.define("custom-list-item", CustomListItem, { extends: "li" });
+customElements.define("custom-list-item", CustomListItem);

@@ -1,20 +1,20 @@
-li.custom-list-item {
+.custom-list-item {
   cursor: pointer;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow-x: clip;
   margin-bottom: 0.6em;
-}
 
-li.custom-list-item.selected {
-  text-shadow: var(--selection-shadow-light);
-}
+  &.selected {
+    text-shadow: var(--selection-shadow-light);
+  }
 
-li.custom-list-item.hidden {
-  display: none !important;
-}
+  &.hidden {
+    display: none !important;
+  }
 
-li.custom-list-item strong {
-  color: var(--text-color);
-  font-weight: 500;
+  strong {
+    color: var(--text-color);
+    font-weight: 500;
+  }
 }

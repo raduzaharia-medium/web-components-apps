@@ -26,7 +26,7 @@ export class GenreBrowser extends HTMLElement {
       <item-counter id="albumCount" singular="album" plural="albums" order="date added"></item-counter>
       <custom-list id="albumList" class="full-screen">
         <template slot="item">
-          <li is="album-list-item"></li>
+          <album-list-item></album-list-item>
         </template>
       </custom-list>
       <custom-list-skeleton></custom-list-skeleton>
@@ -36,7 +36,7 @@ export class GenreBrowser extends HTMLElement {
       <span id="albumName" class="subtitle"></span>
       <custom-list id="songList" class="full-screen">
         <template slot="item">
-          <li is="song-list-item"></li>
+          <song-list-item></song-list-item>
         </template>
       </custom-list>
       <custom-list-skeleton></custom-list-skeleton>

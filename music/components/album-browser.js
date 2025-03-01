@@ -19,7 +19,7 @@ export class AlbumBrowser extends HTMLElement {
       <input id="albumFilter" type="text" placeholder="search..." />
       <custom-list id="albumList" class="full-screen">
         <template slot="item">
-          <li is="album-list-item"></li>
+          <album-list-item></album-list-item>
         </template>
       </custom-list>
       <custom-list-skeleton></custom-list-skeleton>
@@ -29,7 +29,7 @@ export class AlbumBrowser extends HTMLElement {
       <span id="albumName" class="subtitle"></span>
       <custom-list id="songList" class="full-screen">
         <template slot="item">
-          <li is="song-list-item"></li>
+          <song-list-item></song-list-item>
         </template>
       </custom-list>
       <custom-list-skeleton></custom-list-skeleton>

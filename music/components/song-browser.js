@@ -17,7 +17,7 @@ export class SongBrowser extends HTMLElement {
       <input id="songFilter" type="text" placeholder="search..." />
       <custom-list id="songList" class="full-screen">
         <template slot="item">
-          <li is="song-list-item"></li>
+          <song-list-item></song-list-item>
         </template>
       </custom-list>
       <custom-list-skeleton></custom-list-skeleton>

@@ -17,7 +17,6 @@ export class AlbumListItem extends CustomListItem {
   constructor() {
     super();
 
-    this.classList.add("album-list-item");
     this.innerHTML = `<img loading="lazy" decoding="async" src="/music/images/musical-note.svg" />
       <legend>
         <strong></strong>
@@ -26,4 +25,4 @@ export class AlbumListItem extends CustomListItem {
   }
 }
 
-customElements.define("album-list-item", AlbumListItem, { extends: "li" });
+customElements.define("album-list-item", AlbumListItem);

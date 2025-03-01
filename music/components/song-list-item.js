@@ -24,4 +24,4 @@ export class SongListItem extends CustomListItem {
   }
 }
 
-customElements.define("song-list-item", SongListItem, { extends: "li" });
+customElements.define("song-list-item", SongListItem);
