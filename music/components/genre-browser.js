@@ -74,8 +74,8 @@ export class GenreBrowser extends HTMLElement {
       if (selection) {
         const songs = this.querySelector("#songList").allData;
 
-        document.querySelector("div.audio-player").setPlaylist(songs);
-        document.querySelector("div.audio-player").src = `/music/stream?location=${selection.location}`;
+        document.querySelector("audio-player").setPlaylist(songs);
+        document.querySelector("audio-player").src = `/music/stream?location=${selection.location}`;
         document.querySelector("body").classList.add("song-selected");
       }
     });

@@ -56,8 +56,8 @@ export class AlbumBrowser extends HTMLElement {
       if (selection) {
         const songs = this.querySelector("#songList").allData;
 
-        document.querySelector("div.audio-player").setPlaylist(songs);
-        document.querySelector("div.audio-player").src = await getFileUrl(selection.file);
+        document.querySelector("audio-player").setPlaylist(songs);
+        document.querySelector("audio-player").src = await getFileUrl(selection.file);
         document.querySelector("body").classList.add("song-selected");
       }
     });

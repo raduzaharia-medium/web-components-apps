@@ -48,11 +48,18 @@ async function parseMusicFilesLegacy(fileList) {
   return files;
 }
 
-export async function getFileUrl(handle) {
-  const file = await handle.getFile();
-  const url = URL.createObjectURL(file);
+export async function getFileUrl(fileOrHandle) {
+  let file;
 
-  return url;
+  if (fileOrHandle instanceof FileSystemFileHandle) {
+    file = await fileOrHandle.getFile(); // File System API (Chrome)
+  } else if (fileOrHandle instanceof File) {
+    file = fileOrHandle; // Input file (Safari)
+  } else {
+    throw new Error("Invalid input: Not a file or file handle");
+  }
+
+  return URL.createObjectURL(file);
 }
 
 export async function getArtists() {
