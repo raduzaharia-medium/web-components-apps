@@ -1,10 +1,4 @@
 song-list-item {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow-x: clip;
-  margin-bottom: 0.6em;
-  cursor: pointer;
-
   .title {
     white-space: nowrap;
     overflow: hidden;

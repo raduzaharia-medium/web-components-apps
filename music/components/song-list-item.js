@@ -17,7 +17,6 @@ export class SongListItem extends CustomListItem {
   constructor() {
     super();
 
-    this.classList.add("song-list-item");
     this.innerHTML = `<img loading="lazy" decoding="async" src="../music/images/play.svg" />
       <span class="title"></span>
       <span class="artist"></span>`;
