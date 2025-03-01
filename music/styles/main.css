@@ -12,7 +12,7 @@ body.album-first main {
   grid-template-columns: 2.6fr 1fr;
 }
 
-nav.selected-item-nav {
+selected-item-nav {
   display: none;
 }
 
@@ -89,14 +89,15 @@ body:not(.song-first) ul#songList .artist {
 }
 
 @media (max-width: 710px) {
+
   main,
   body.album-first main {
     grid-template-columns: 1fr;
   }
 
-  body.artist-first.artist-selected nav.responsive-nav,
-  body.genre-first.genre-selected nav.responsive-nav,
-  body.album-first.album-selected nav.responsive-nav {
+  body.artist-first.artist-selected responsive-nav,
+  body.genre-first.genre-selected responsive-nav,
+  body.album-first.album-selected responsive-nav {
     display: none;
   }
 
@@ -107,9 +108,9 @@ body:not(.song-first) ul#songList .artist {
     display: none;
   }
 
-  body.artist-first.artist-selected nav.selected-item-nav,
-  body.genre-first.genre-selected nav.selected-item-nav,
-  body.album-first.album-selected nav.selected-item-nav {
+  body.artist-first.artist-selected selected-item-nav,
+  body.genre-first.genre-selected selected-item-nav,
+  body.album-first.album-selected selected-item-nav {
     display: block;
   }
 }

@@ -1,24 +1,3 @@
-nav.top {
-  text-align: right;
-  font-weight: 100;
-  font-size: 2em;
-  color: var(--text-color-light);
-  text-transform: lowercase;
-}
-
-nav.top img {
-  width: 1.2em;
-  vertical-align: middle;
-}
-
-nav.top span {
-  vertical-align: middle;
-}
-
-nav.top select {
-  vertical-align: middle;
-}
-
 body.full-screen main {
   position: absolute;
   display: grid;
@@ -98,25 +77,6 @@ section span.subtitle {
 }
 
 @media (max-width: 710px) {
-  nav.top {
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: 300;
-    filter: drop-shadow(var(--selection-shadow));
-    text-transform: capitalize;
-    color: var(--text-color);
-  }
-
-  nav.top select {
-    background-image: url(../images/dark/down-arrow.svg);
-    background-repeat: no-repeat;
-    background-position-x: 100%;
-    background-color: transparent;
-    padding-right: 1.4em;
-    text-align: right;
-    margin-inline: 0.4em;
-  }
-
   body.full-screen main {
     left: 1em;
     right: 1em;

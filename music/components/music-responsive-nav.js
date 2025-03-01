@@ -4,14 +4,11 @@ import "../../shared/components/selected-item-nav.js";
 export class MusicResponsiveNav extends HTMLElement {
   constructor() {
     super();
-
     this.classList.add("music-responsive-nav");
-    this.classList.add("top");
 
     this.innerHTML = `
-      <nav is="responsive-nav" options="artists,albums,genres,songs" value="artists"></nav>
-      <nav is="selected-item-nav" behavior="back-button"></nav>
-    `;
+      <responsive-nav options="artists,albums,genres,songs" value="artists"></responsive-nav>
+      <selected-item-nav behavior="back-button"></selected-item-nav>`;
 
     this.initChangeHandler();
     this.initBackHandler();
@@ -19,8 +16,8 @@ export class MusicResponsiveNav extends HTMLElement {
   }
 
   initChangeHandler() {
-    document.querySelector("nav.responsive-nav").addEventListener("change", () => {
-      const selection = document.querySelector("nav.responsive-nav").value;
+    document.querySelector("responsive-nav").addEventListener("change", () => {
+      const selection = document.querySelector("responsive-nav").value;
 
       if (selection === "artists") {
         document.body.classList.remove("genre-first");
@@ -90,8 +87,8 @@ export class MusicResponsiveNav extends HTMLElement {
   showArtists(ignoreHistory) {
     if (!ignoreHistory) history.pushState({ page: "artists" }, "Music - browse by artist", ".");
 
-    document.querySelector("nav.responsive-nav").value = "artists";
-    document.querySelector("nav.selected-item-nav").value = "";
+    document.querySelector("responsive-nav").value = "artists";
+    document.querySelector("selected-item-nav").value = "";
 
     document.getElementById("artistFilter").value = "";
 
@@ -108,8 +105,8 @@ export class MusicResponsiveNav extends HTMLElement {
   showGenres(ignoreHistory) {
     if (!ignoreHistory) history.pushState({ page: "genres" }, "Music - browse by genre", ".");
 
-    document.querySelector("nav.responsive-nav").value = "genres";
-    document.querySelector("nav.selected-item-nav").value = "";
+    document.querySelector("responsive-nav").value = "genres";
+    document.querySelector("selected-item-nav").value = "";
 
     document.getElementById("genreFilter").value = "";
 
@@ -124,8 +121,8 @@ export class MusicResponsiveNav extends HTMLElement {
     document.body.classList.add("genre-first");
   }
   showAlbums(ignoreHistory) {
-    document.querySelector("nav.responsive-nav").value = "albums";
-    document.querySelector("nav.selected-item-nav").value = "";
+    document.querySelector("responsive-nav").value = "albums";
+    document.querySelector("selected-item-nav").value = "";
 
     document.getElementById("albumFilter").value = "";
 
@@ -137,8 +134,8 @@ export class MusicResponsiveNav extends HTMLElement {
     document.body.classList.add("album-first");
   }
   showSongs(ignoreHistory) {
-    document.querySelector("nav.responsive-nav").value = "songs";
-    document.querySelector("nav.selected-item-nav").value = "";
+    document.querySelector("responsive-nav").value = "songs";
+    document.querySelector("selected-item-nav").value = "";
 
     document.getElementById("songFilter").value = "";
     document.getElementById("songs").classList.add("has-input");
@@ -147,4 +144,4 @@ export class MusicResponsiveNav extends HTMLElement {
   }
 }
 
-customElements.define("music-responsive-nav", MusicResponsiveNav, { extends: "nav" });
+customElements.define("music-responsive-nav", MusicResponsiveNav);

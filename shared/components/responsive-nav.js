@@ -1,6 +1,3 @@
-import "./loadable-select.js";
-import "./loadable-ul.js";
-
 export class ResponsiveNav extends HTMLElement {
   static get observedAttributes() {
     return ["value", "options"];
@@ -23,12 +20,45 @@ export class ResponsiveNav extends HTMLElement {
   constructor() {
     super();
 
-    this.classList.add("responsive-nav");
+    // TODO: put them in teir own components
+    // if (this.getAttribute("preset") === "months") {
+    //   this.innerHTML = `<option value="1">january</option>
+    //     <option value="2">february</option>
+    //     <option value="3">march</option>
+    //     <option value="4">april</option>
+    //     <option value="5">may</option>
+    //     <option value="6">june</option>
+    //     <option value="7">july</option>
+    //     <option value="8">august</option>
+    //     <option value="9">september</option>
+    //     <option value="10">october</option>
+    //     <option value="11">november</option>
+    //     <option value="12">december</option>`;
+    // } else if (this.getAttribute("preset") === "range") {
+    //   const from = parseInt(this.getAttribute("from"));
+    //   const to = parseInt(this.getAttribute("to"));
+
+    //   for (let i = from; i <= to; i++) {
+    //     const option = document.createElement("option");
+
+    //     option.innerText = i;
+    //     option.value = i;
+
+    //     this.appendChild(option);
+    //   }
+    // }
 
     this.innerHTML = `
-      <ul is="loadable-ul" class="desktop-only" items="${this.options}"></ul>
-      <select is="loadable-select" class="mobile-only" items="${this.options}"></select>
-    `;
+      <ul class="desktop-only">${this.options
+        .split(",")
+        .map((element) => `<li class="${element.trim() === this.value ? "selected" : ""}" data-value="${element.trim().toLowerCase()}">${element.trim()}</li>`)
+        .join("")}
+      </ul>
+      <select class="mobile-only">${this.options
+        .split(",")
+        .map((element) => `<option value="${element.trim().toLowerCase()}">${element.trim()}</option>`)
+        .join("")}
+      </select>`;
 
     this.querySelector("select").addEventListener("change", () => {
       this.value = this.querySelector("select").value;
@@ -61,4 +91,4 @@ export class ResponsiveNav extends HTMLElement {
   }
 }
 
-customElements.define("responsive-nav", ResponsiveNav, { extends: "nav" });
+customElements.define("responsive-nav", ResponsiveNav);

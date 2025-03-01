@@ -16,8 +16,6 @@ export class SelectedItemNav extends HTMLElement {
 
     const behavior = this.getAttribute("behavior");
 
-    this.classList.add("selected-item-nav");
-
     this.innerHTML = `
         <img src="../shared/images/dark/left-arrow.svg">
         <span>${this.value}</span>
@@ -31,4 +29,4 @@ export class SelectedItemNav extends HTMLElement {
   }
 }
 
-customElements.define("selected-item-nav", SelectedItemNav, { extends: "nav" });
+customElements.define("selected-item-nav", SelectedItemNav);

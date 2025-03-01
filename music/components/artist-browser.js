@@ -58,7 +58,7 @@ export class ArtistBrowser extends HTMLDivElement {
 
       if (selection) {
         document.querySelector("body").classList.add("artist-selected");
-        document.querySelector("nav.selected-item-nav").value = selection;
+        document.querySelector("selected-item-nav").value = selection;
 
         await loadAlbumsForArtist(selection);
         document.getElementById("albumList").selectFirst();
@@ -70,7 +70,7 @@ export class ArtistBrowser extends HTMLDivElement {
       if (selection) {
         document.querySelector("body").classList.add("album-selected");
         document.getElementById("albumName").innerText = selection.item;
-        // if (updateNav) document.querySelector("nav.selected-item-nav").value = selection.item;
+        // if (updateNav) document.querySelector("selected-item-nav").value = selection.item;
 
         await loadSongsForArtist(selection.artist, selection.item);
       }

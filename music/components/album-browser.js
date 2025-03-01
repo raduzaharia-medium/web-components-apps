@@ -48,7 +48,7 @@ export class AlbumBrowser extends HTMLDivElement {
       if (selection) {
         document.querySelector("body").classList.add("album-selected");
         document.getElementById("albumName").innerText = selection.item;
-        document.querySelector("nav.selected-item-nav").value = selection.item;
+        document.querySelector("selected-item-nav").value = selection.item;
 
         await loadSongsForArtist(selection.artist, selection.item);
       }

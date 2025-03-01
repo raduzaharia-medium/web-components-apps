@@ -56,7 +56,7 @@ export class GenreBrowser extends HTMLDivElement {
 
       if (selection) {
         document.querySelector("body").classList.add("genre-selected");
-        document.querySelector("nav.selected-item-nav").value = selection;
+        document.querySelector("selected-item-nav").value = selection;
 
         await loadAlbumsForGenre(selection);
         document.getElementById("albumList").selectFirst();
@@ -68,7 +68,7 @@ export class GenreBrowser extends HTMLDivElement {
       if (selection) {
         document.querySelector("body").classList.add("album-selected");
         document.getElementById("albumName").innerText = selection.item;
-        // if (updateNav) document.querySelector("nav.selected-item-nav").value = selection.item;
+        // if (updateNav) document.querySelector("selected-item-nav").value = selection.item;
 
         await loadSongsForGenre(document.getElementById("genreList").value, selection.item);
       }

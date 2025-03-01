@@ -1,5 +1,23 @@
-nav.selected-item-nav {
+selected-item-nav {
   cursor: pointer;
   width: max-content;
   margin: 0 auto;
+
+  img {
+    width: 1.2em;
+    vertical-align: middle;
+  }
+
+  span {
+    vertical-align: middle;
+  }
+
+  @media (max-width: 710px) {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 300;
+    filter: drop-shadow(var(--selection-shadow));
+    text-transform: capitalize;
+    color: var(--text-color);
+  }
 }

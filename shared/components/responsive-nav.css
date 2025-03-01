@@ -1,15 +1,53 @@
-nav.responsive-nav {
+responsive-nav {
   display: block;
   width: 100%;
-}
 
-nav.responsive-nav li {
-  cursor: pointer;
-  display: inline;
-  margin: 0.2em;
-}
+  text-align: right;
+  font-weight: 100;
+  font-size: 2em;
+  color: var(--text-color-light);
+  text-transform: lowercase;
 
-nav.responsive-nav .selected {
-  color: var(--text-color);
-  text-shadow: var(--selection-shadow-light);
+  img {
+    width: 1.2em;
+    vertical-align: middle;
+  }
+
+  span {
+    vertical-align: middle;
+  }
+
+  select {
+    vertical-align: middle;
+
+    @media (max-width: 710px) {
+      background-image: url(../images/dark/down-arrow.svg);
+      background-repeat: no-repeat;
+      background-position-x: 100%;
+      background-color: transparent;
+      padding-right: 1.4em;
+      text-align: right;
+      margin-inline: 0.4em;
+    }
+  }
+
+  li {
+    cursor: pointer;
+    display: inline;
+    margin: 0.2em;
+
+    &.selected {
+      color: var(--text-color);
+      text-shadow: var(--selection-shadow-light);
+    }
+  }
+
+  @media (max-width: 710px) {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 300;
+    filter: drop-shadow(var(--selection-shadow));
+    text-transform: capitalize;
+    color: var(--text-color);
+  }
 }
