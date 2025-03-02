@@ -12,9 +12,21 @@ artist-browser {
   grid-template-columns: minmax(16em, 1fr) 1.6fr 1fr;
   height: 100%;
 
+  &.artist-selected {
+    artists-section {
+      display: none;
+    }
+  }
+
   songs-section {
     input {
       display: none;
+    }
+
+    .subtitle {
+      @media (max-width: 1000px) {
+        display: none;
+      }
     }
 
     custom-list {
@@ -22,6 +34,10 @@ artist-browser {
 
       .artist {
         display: none;
+      }
+
+      @media (max-width: 1000px) {
+        top: 2em;
       }
     }
   }

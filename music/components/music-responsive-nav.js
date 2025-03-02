@@ -60,7 +60,7 @@ export class MusicResponsiveNav extends HTMLElement {
 
   initBackHandler() {
     window.onpopstate = (e) => {
-      if (document.body.classList.contains("artist-first") && document.body.classList.contains("artist-selected")) {
+      if (document.querySelector("artist-browser.artist-selected")) {
         this.showArtists();
         return;
       }
@@ -96,7 +96,7 @@ export class MusicResponsiveNav extends HTMLElement {
     document.getElementById("albums").classList.remove("has-input");
     document.getElementById("songs").classList.remove("has-input");
 
-    document.body.classList.remove("artist-selected");
+    document.querySelector("artist-browser").classList.remove("artist-selected");
     document.body.classList.remove("album-selected");
     document.body.classList.remove("song-first");
     document.body.classList.remove("album-first");

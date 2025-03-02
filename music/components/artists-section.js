@@ -32,7 +32,7 @@ export class ArtistsSection extends HTMLElement {
       const selection = this.querySelector("custom-list").value;
 
       if (selection) {
-        document.querySelector("body").classList.add("artist-selected");
+        document.querySelector("artist-browser").classList.add("artist-selected");
         document.querySelector("selected-item-nav").value = selection;
 
         this.dispatchEvent(new Event("change"));

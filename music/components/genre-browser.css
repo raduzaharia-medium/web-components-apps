@@ -17,11 +17,21 @@ genre-browser {
       display: none;
     }
 
+    .subtitle {
+      @media (max-width: 1000px) {
+        display: none;
+      }
+    }
+
     custom-list {
       border-right: none;
 
       .artist {
         display: none;
+      }
+
+      @media (max-width: 1000px) {
+        top: 2em;
       }
     }
   }
