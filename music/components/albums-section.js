@@ -16,7 +16,7 @@ export class AlbumsSection extends HTMLElement {
     super();
 
     this.innerHTML = `
-        <item-counter id="albumCount" singular="album" plural="albums" order="date added"></item-counter>
+        <item-counter singular="album" plural="albums" order="date added"></item-counter>
         <input id="albumFilter" type="text" placeholder="search..." />
         <custom-list id="albumList" class="full-screen">
           <template slot="item">
@@ -33,6 +33,8 @@ export class AlbumsSection extends HTMLElement {
 
       if (selection) {
         document.querySelector("body").classList.add("album-selected");
+        document.querySelector("selected-item-nav").value = selection.item;
+
         this.dispatchEvent(new Event("change"));
       }
     });

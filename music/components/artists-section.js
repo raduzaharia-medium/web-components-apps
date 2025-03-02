@@ -16,7 +16,7 @@ export class ArtistsSection extends HTMLElement {
     super();
 
     this.innerHTML = `
-        <item-counter id="artistCount" singular="artist" plural="artists" order="a-z"></item-counter>
+        <item-counter singular="artist" plural="artists" order="a-z"></item-counter>
         <input id="artistFilter" type="text" placeholder="search..." />
         <custom-list id="artistList" class="full-screen">
             <template slot="item">

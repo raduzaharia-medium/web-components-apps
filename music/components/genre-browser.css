@@ -30,14 +30,14 @@ genre-browser {
     input {
       display: none;
     }
+
+    @media (max-width: 1000px) {
+      display: none;
+    }
   }
 
   @media (max-width: 1000px) {
     grid-template-columns: 1.4fr 1fr;
-
-    #albums {
-      display: none;
-    }
   }
 
   @media (max-width: 710px) {

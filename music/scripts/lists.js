@@ -34,7 +34,7 @@ export async function loadArtists() {
   const artists = await getArtists();
 
   document.getElementById("artistList").setItems(artists);
-  document.getElementById("artistCount").value = artists.length;
+  document.querySelector("artists-section item-counter").value = artists.length;
   document.getElementById("artists").classList.remove("loading");
 }
 
@@ -43,7 +43,7 @@ export async function loadGenres() {
   const genres = await getGenres();
 
   document.getElementById("genreList").setItems(genres);
-  document.getElementById("genreCount").value = genres.length;
+  document.querySelector("genres-section item-counter").value = genres.length;
   document.getElementById("genres").classList.remove("loading");
 }
 
@@ -53,7 +53,7 @@ export async function loadAlbums() {
   const albums = await getAlbums();
 
   document.getElementById("albumList").setItems(albums);
-  document.getElementById("albumCount").value = albums.length;
+  document.querySelector("albums-section item-counter").value = albums.length;
   document.getElementById("albums").classList.remove("loading");
   document.getElementById("songs").classList.remove("loading");
 
@@ -66,7 +66,7 @@ export async function loadSongs() {
   const songs = await getSongs();
 
   document.getElementById("songList").setItems(songs);
-  document.getElementById("songCount").value = songs.length;
+  document.querySelector("songs-section item-counter").value = songs.length;
   document.getElementById("songs").classList.remove("loading");
 }
 
@@ -75,7 +75,7 @@ export async function loadSongsForArtist(artist, album) {
   const songs = await getSongsForArtist(artist, album);
 
   document.getElementById("songList").setItems(songs);
-  document.getElementById("songCount").value = songs.length;
+  document.querySelector("songs-section item-counter").value = songs.length;
   document.getElementById("songs").classList.remove("loading");
 }
 
@@ -86,7 +86,7 @@ export async function loadAlbumsForArtist(artist) {
 
   albums.splice(0, 0, { name: "All Albums", artist });
   document.getElementById("albumList").setItems(albums);
-  document.getElementById("albumCount").value = albums.length;
+  document.querySelector("albums-section item-counter").value = albums.length;
   document.getElementById("albums").classList.remove("loading");
   document.getElementById("songs").classList.remove("loading");
 
@@ -101,7 +101,7 @@ export async function loadAlbumsForGenre(genre) {
 
   albums.splice(0, 0, { name: "All Albums", artist: "All Artists" });
   document.getElementById("albumList").setItems(albums);
-  document.getElementById("albumCount").value = albums.length;
+  document.querySelector("albums-section item-counter").value = albums.length;
   document.getElementById("albums").classList.remove("loading");
   document.getElementById("songs").classList.remove("loading");
 
@@ -114,6 +114,6 @@ export async function loadSongsForGenre(genre, album) {
   const songs = await getSongsForGenre(genre, album);
 
   document.getElementById("songList").setItems(songs);
-  document.getElementById("songCount").value = songs.length;
+  document.querySelector("songs-section item-counter").value = songs.length;
   document.getElementById("songs").classList.remove("loading");
 }

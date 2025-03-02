@@ -6,30 +6,7 @@ custom-list-skeleton {
   display: none;
 }
 
-#artists.loading ul,
-#genres.loading ul,
-#albums.loading ul,
-#songs.loading ul,
-#artists.loading input,
-#genres.loading input,
-#albums.loading input,
-#songs.loading input {
-  display: none;
-}
-
-#artists.loading custom-list-skeleton,
-#genres.loading custom-list-skeleton,
-#albums.loading custom-list-skeleton,
-#songs.loading custom-list-skeleton {
-  display: block;
-}
-
-ul#songList {
-  border-right: none;
-}
-
 @media (max-width: 710px) {
-
   body.artist-first.artist-selected responsive-nav,
   body.genre-first.genre-selected responsive-nav,
   body.album-first.album-selected responsive-nav {

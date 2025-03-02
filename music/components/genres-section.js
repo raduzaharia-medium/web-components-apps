@@ -16,7 +16,7 @@ export class GenresSection extends HTMLElement {
     super();
 
     this.innerHTML = `
-        <item-counter id="genreCount" singular="genre" plural="genres" order="a-z"></item-counter>
+        <item-counter singular="genre" plural="genres" order="a-z"></item-counter>
         <input id="genreFilter" type="text" placeholder="search..." />
         <custom-list id="genreList" class="full-screen">
             <template slot="item">
@@ -29,11 +29,11 @@ export class GenresSection extends HTMLElement {
       this.querySelector("custom-list").filter(this.querySelector("input").value);
     });
     this.querySelector("custom-list").addEventListener("change", async () => {
-      const selection = this.querySelector("custom-list").value;
+      const selection = this.querySelector("custom-list").selectedData;
 
       if (selection) {
         document.querySelector("body").classList.add("genre-selected");
-        document.querySelector("selected-item-nav").value = selection;
+        document.querySelector("selected-item-nav").value = selection.item;
 
         this.dispatchEvent(new Event("change"));
       }
