@@ -12,7 +12,11 @@ genre-browser {
   grid-template-columns: minmax(16em, 1fr) 1.6fr 1fr;
   height: 100%;
 
-  #songs {
+  songs-section {
+    input {
+      display: none;
+    }
+
     custom-list {
       border-right: none;
 

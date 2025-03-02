@@ -7,36 +7,40 @@
 @import url(../../shared/styles/loaders.css);
 
 artist-browser {
-    display: grid;
-    grid-column-gap: 1em;
-    grid-template-columns: minmax(16em, 1fr) 1.6fr 1fr;
-    height: 100%;
+  display: grid;
+  grid-column-gap: 1em;
+  grid-template-columns: minmax(16em, 1fr) 1.6fr 1fr;
+  height: 100%;
 
-    #songs {
-        custom-list {
-            border-right: none;
-
-            .artist {
-                display: none;
-            }
-        }
+  songs-section {
+    input {
+      display: none;
     }
 
-    albums-section {
-        input {
-            display: none;
-        }
-    }
+    custom-list {
+      border-right: none;
 
-    @media (max-width: 1000px) {
-        grid-template-columns: 1.4fr 1fr;
-
-        #albums {
-            display: none;
-        }
+      .artist {
+        display: none;
+      }
     }
+  }
 
-    @media (max-width: 710px) {
-        grid-template-columns: 1fr;
+  albums-section {
+    input {
+      display: none;
     }
+  }
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1.4fr 1fr;
+
+    #albums {
+      display: none;
+    }
+  }
+
+  @media (max-width: 710px) {
+    grid-template-columns: 1fr;
+  }
 }

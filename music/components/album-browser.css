@@ -27,6 +27,10 @@ album-browser {
       display: none;
     }
 
+    input {
+      display: none;
+    }
+
     custom-list {
       border-right: none;
       top: 2em;

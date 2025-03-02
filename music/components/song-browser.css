@@ -7,8 +7,22 @@
 @import url(../../shared/styles/loaders.css);
 
 song-browser {
-    display: grid;
-    grid-column-gap: 1em;
-    grid-template-columns: 1fr;
-    height: 100%;
+  display: grid;
+  grid-column-gap: 1em;
+  grid-template-columns: 1fr;
+  height: 100%;
+
+  .subtitle {
+    display: none;
+  }
+
+  songs-section {
+    custom-list {
+      border-right: none;
+
+      @media (max-width: 710px) {
+        top: 2em;
+      }
+    }
+  }
 }
