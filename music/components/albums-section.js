@@ -14,6 +14,7 @@ export class AlbumsSection extends HTMLElement {
 
     this.innerHTML = `
         <item-counter id="albumCount" singular="album" plural="albums" order="date added"></item-counter>
+        <input id="albumFilter" type="text" placeholder="search..." />
         <custom-list id="albumList" class="full-screen">
           <template slot="item">
             <album-list-item></album-list-item>
@@ -21,6 +22,9 @@ export class AlbumsSection extends HTMLElement {
         </custom-list>
         <custom-list-skeleton></custom-list-skeleton>`;
 
+    this.querySelector("custom-list").addEventListener("keyup", (e) => {
+      this.querySelector("custom-list").filter(this.querySelector("input").value);
+    });
     this.querySelector("custom-list").addEventListener("change", async () => {
       const selection = this.querySelector("custom-list").selectedData;
 
