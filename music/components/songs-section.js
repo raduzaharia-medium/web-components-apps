@@ -1,3 +1,9 @@
+import "../../shared/components/item-counter.js";
+import "../../shared/components/custom-list.js";
+import "../../shared/components/custom-list-skeleton.js";
+
+import "./song-list-item.js";
+
 export class SongsSection extends HTMLElement {
   get selection() {
     return this.querySelector("custom-list").value;

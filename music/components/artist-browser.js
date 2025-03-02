@@ -1,14 +1,6 @@
-import "./artist-list-item.js";
-import "./album-list-item.js";
-import "./song-list-item.js";
-
 import "./artists-section.js";
 import "./albums-section.js";
 import "./songs-section.js";
-
-import "../../shared/components/item-counter.js";
-import "../../shared/components/custom-list.js";
-import "../../shared/components/custom-list-skeleton.js";
 
 import { loadArtists, loadAlbumsForArtist, loadSongsForArtist } from "../scripts/lists.js";
 import { getFileUrl } from "../scripts/services.js";
