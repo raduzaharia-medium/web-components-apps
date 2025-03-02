@@ -1,0 +1,54 @@
+songs-section {
+    position: relative;
+
+    &.loading {
+
+        ul,
+        input {
+            display: none;
+        }
+
+        custom-list-skeleton {
+            display: block;
+        }
+    }
+
+    .subtitle {
+        font-weight: 400;
+        padding: 0.2em 0;
+        display: block;
+        margin-bottom: 0.8em;
+        font-size: 1.1em;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        @media (max-width: 710px) {
+            display: none;
+        }
+    }
+
+    input {
+        display: block;
+        font-family: var(--font-family);
+        color: var(--text-color);
+        font-size: 1em;
+        font-weight: 100;
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid var(--border-color);
+    }
+
+    custom-list {
+        position: absolute;
+        overflow-x: hidden;
+        top: 4em;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        @media (max-width: 710px) {
+            top: 0em;
+        }
+    }
+}

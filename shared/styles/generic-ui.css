@@ -24,65 +24,6 @@ div.actions img {
   cursor: pointer;
 }
 
-section {
-  input {
-    display: block;
-    font-family: var(--font-family);
-    color: var(--text-color);
-    font-size: 1em;
-    font-weight: 100;
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid var(--border-color);
-  }
-}
-
-section:last-of-type {
-  custom-list {
-    border-right: none;
-  }
-}
-
-section.full-screen {
-  position: relative;
-}
-
-section.full-screen .full-screen {
-  position: absolute;
-  overflow-x: hidden;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-section.full-screen.has-title .full-screen,
-section.full-screen.has-subtitle .full-screen,
-section.full-screen.has-input .full-screen {
-  top: 2em;
-}
-
-section.full-screen.has-title.has-subtitle .full-screen,
-section.full-screen.has-title.has-input .full-screen,
-section.full-screen.has-subtitle.has-input .full-screen {
-  top: 4em;
-}
-
-section.full-screen.has-title.has-subtitle.has-input .full-screen {
-  top: 6em;
-}
-
-section span.subtitle {
-  font-weight: 400;
-  padding: 0.2em 0;
-  display: block;
-  margin-bottom: 0.8em;
-  font-size: 1.1em;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
 @media (max-width: 710px) {
   body.full-screen main {
     left: 1em;
@@ -109,21 +50,5 @@ section span.subtitle {
 
   body.full-screen.has-footer.scroll-behind-footer section.full-screen .full-screen {
     padding-bottom: 6em;
-  }
-
-  section span.subtitle {
-    display: none;
-  }
-
-  section.full-screen.has-title .full-screen,
-  section.full-screen.has-subtitle .full-screen,
-  section.full-screen.has-title.has-subtitle .full-screen {
-    top: 0;
-  }
-
-  section.full-screen.has-title.has-input .full-screen,
-  section.full-screen.has-subtitle.has-input .full-screen,
-  section.full-screen.has-title.has-subtitle.has-input .full-screen {
-    top: 2em;
   }
 }

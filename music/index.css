@@ -6,6 +6,7 @@
 
 @import url(./components/artists-section.css);
 @import url(./components/albums-section.css);
+@import url(./components/songs-section.css);
 
 @import url(./components/artist-browser.css);
 @import url(./components/genre-browser.css);
