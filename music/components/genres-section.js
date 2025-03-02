@@ -2,9 +2,9 @@ import "../../shared/components/item-counter.js";
 import "../../shared/components/custom-list.js";
 import "../../shared/components/custom-list-skeleton.js";
 
-import "./album-list-item.js";
+import "./genre-list-item.js";
 
-export class AlbumsSection extends HTMLElement {
+export class GenresSection extends HTMLElement {
   get selection() {
     return this.querySelector("custom-list").value;
   }
@@ -16,12 +16,12 @@ export class AlbumsSection extends HTMLElement {
     super();
 
     this.innerHTML = `
-        <item-counter id="albumCount" singular="album" plural="albums" order="date added"></item-counter>
-        <input id="albumFilter" type="text" placeholder="search..." />
-        <custom-list id="albumList" class="full-screen">
-          <template slot="item">
-            <album-list-item></album-list-item>
-          </template>
+        <item-counter id="genreCount" singular="genre" plural="genres" order="a-z"></item-counter>
+        <input id="genreFilter" type="text" placeholder="search..." />
+        <custom-list id="genreList" class="full-screen">
+            <template slot="item">
+                <genre-list-item></genre-list-item>
+            </template>
         </custom-list>
         <custom-list-skeleton></custom-list-skeleton>`;
 
@@ -29,14 +29,16 @@ export class AlbumsSection extends HTMLElement {
       this.querySelector("custom-list").filter(this.querySelector("input").value);
     });
     this.querySelector("custom-list").addEventListener("change", async () => {
-      const selection = this.querySelector("custom-list").selectedData;
+      const selection = this.querySelector("custom-list").value;
 
       if (selection) {
-        document.querySelector("body").classList.add("album-selected");
+        document.querySelector("body").classList.add("genre-selected");
+        document.querySelector("selected-item-nav").value = selection;
+
         this.dispatchEvent(new Event("change"));
       }
     });
   }
 }
 
-customElements.define("albums-section", AlbumsSection);
+customElements.define("genres-section", GenresSection);

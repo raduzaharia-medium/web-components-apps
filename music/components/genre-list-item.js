@@ -15,4 +15,4 @@ export class GenreListItem extends CustomListItem {
   }
 }
 
-customElements.define("genre-list-item", GenreListItem, { extends: "li" });
+customElements.define("genre-list-item", GenreListItem);

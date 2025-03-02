@@ -1,10 +1,6 @@
-import "./genre-list-item.js";
-import "./album-list-item.js";
-import "./song-list-item.js";
-
-import "../../shared/components/item-counter.js";
-import "../../shared/components/custom-list.js";
-import "../../shared/components/custom-list-skeleton.js";
+import "./genres-section.js";
+import "./albums-section.js";
+import "./songs-section.js";
 
 import { loadGenres, loadAlbumsForGenre, loadSongsForGenre } from "../scripts/lists.js";
 
@@ -12,71 +8,30 @@ export class GenreBrowser extends HTMLElement {
   constructor() {
     super();
 
-    this.innerHTML = `<section id="genres" class="full-screen has-title has-input">
-      <item-counter id="genreCount" singular="genre" plural="genres" order="a-z"></item-counter>
-      <input id="genreFilter" type="text" placeholder="search..." />
-      <custom-list id="genreList" class="full-screen">
-        <template slot="item">
-          <li is="genre-list-item"></li>
-        </template>
-      </custom-list>
-      <custom-list-skeleton></custom-list-skeleton>
-    </section>
-     <section id="albums" class="full-screen has-title">
-      <item-counter id="albumCount" singular="album" plural="albums" order="date added"></item-counter>
-      <custom-list id="albumList" class="full-screen">
-        <template slot="item">
-          <album-list-item></album-list-item>
-        </template>
-      </custom-list>
-      <custom-list-skeleton></custom-list-skeleton>
-    </section>
-    <section id="songs" class="full-screen has-title has-subtitle">
-      <item-counter id="songCount" singular="song" plural="songs" order="album"></item-counter>
-      <span id="albumName" class="subtitle"></span>
-      <custom-list id="songList" class="full-screen">
-        <template slot="item">
-          <song-list-item></song-list-item>
-        </template>
-      </custom-list>
-      <custom-list-skeleton></custom-list-skeleton>
-    </section>
-    `;
+    this.innerHTML = `
+      <genres-section id="genres"></genres-section>
+      <albums-section id="albums"></albums-section>
+      <songs-section id="songs"></songs-section>`;
 
-    this.querySelector("#genreFilter").addEventListener("keyup", () => {
-      this.querySelector("#genreList").filter(this.querySelector("#genreFilter").value);
+    this.querySelector("genres-section").addEventListener("change", async () => {
+      await loadAlbumsForGenre(this.querySelector("genres-section").selection);
+      this.querySelector("#albumList").selectFirst();
     });
-    this.querySelector("#genreList").addEventListener("change", async () => {
-      const selection = this.querySelector("#genreList").value;
+    this.querySelector("albums-section").addEventListener("change", async () => {
+      const selection = this.querySelector("albums-section").selection;
 
-      if (selection) {
-        document.querySelector("body").classList.add("genre-selected");
-        document.querySelector("selected-item-nav").value = selection;
-
-        await loadAlbumsForGenre(selection);
-        this.querySelector("#albumList").selectFirst();
-      }
+      this.querySelector("#albumName").innerText = selection;
+      await loadSongsForGenre(this.querySelector("genres-section").selection, selection);
     });
-    this.querySelector("#albumList").addEventListener("change", async () => {
-      const selection = this.querySelector("#albumList").selectedData;
 
-      if (selection) {
-        document.querySelector("body").classList.add("album-selected");
-        this.querySelector("#albumName").innerText = selection.item;
-        // if (updateNav) document.querySelector("selected-item-nav").value = selection.item;
-
-        await loadSongsForGenre(this.querySelector("#genreList").value, selection.item);
-      }
-    });
-    this.querySelector("#songList").addEventListener("change", () => {
-      const selection = this.querySelector("#songList").selectedData;
+    this.querySelector("songs-section").addEventListener("change", async () => {
+      const selection = this.querySelector("songs-section").selection;
 
       if (selection) {
         const songs = this.querySelector("#songList").allData;
 
         document.querySelector("audio-player").setPlaylist(songs);
-        document.querySelector("audio-player").src = `/music/stream?location=${selection.location}`;
-        document.querySelector("body").classList.add("song-selected");
+        document.querySelector("audio-player").src = await getFileUrl(selection.file);
       }
     });
   }

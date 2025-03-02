@@ -8,6 +8,9 @@ export class ArtistsSection extends HTMLElement {
   get selection() {
     return this.querySelector("custom-list").value;
   }
+  get selectedData() {
+    return this.querySelector("custom-list").selectedData;
+  }
 
   constructor() {
     super();

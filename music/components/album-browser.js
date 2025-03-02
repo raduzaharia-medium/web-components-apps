@@ -15,10 +15,10 @@ export class AlbumBrowser extends HTMLElement {
       <songs-section id="songs"></songs-section>`;
 
     this.querySelector("albums-section").addEventListener("change", async () => {
-      const selection = this.querySelector("albums-section").selection;
+      const selection = this.querySelector("albums-section").selectedData;
 
-      this.querySelector("#albumName").innerText = selection;
-      await loadSongsForArtist(this.querySelector("artists-section").selection, selection);
+      this.querySelector("#albumName").innerText = selection.item;
+      await loadSongsForArtist(selection.artist, selection.item);
     });
 
     this.querySelector("songs-section").addEventListener("change", async () => {
