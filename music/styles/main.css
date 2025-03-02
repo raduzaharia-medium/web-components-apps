@@ -28,10 +28,6 @@ ul#songList {
   border-right: none;
 }
 
-body:not(.song-first) ul#songList .artist {
-  display: none;
-}
-
 @media (max-width: 710px) {
 
   body.artist-first.artist-selected responsive-nav,

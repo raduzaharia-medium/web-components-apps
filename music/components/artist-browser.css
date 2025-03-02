@@ -12,6 +12,14 @@ artist-browser {
     grid-template-columns: minmax(16em, 1fr) 1.6fr 1fr;
     height: 100%;
 
+    #songs {
+        custom-list {
+            .artist {
+                display: none;
+            }
+        }
+    }
+
     @media (max-width: 1000px) {
         grid-template-columns: 1.4fr 1fr;
 
