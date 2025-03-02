@@ -16,14 +16,14 @@ export class ArtistsSection extends HTMLElement {
     super();
 
     this.innerHTML = `
-        <item-counter singular="artist" plural="artists" order="a-z"></item-counter>
-        <input id="artistFilter" type="text" placeholder="search..." />
-        <custom-list id="artistList" class="full-screen">
-            <template slot="item">
-            <artist-list-item></artist-list-item>
-            </template>
-        </custom-list>
-        <custom-list-skeleton></custom-list-skeleton>`;
+      <item-counter singular="artist" plural="artists" order="a-z"></item-counter>
+      <input type="text" placeholder="search..." />
+      <custom-list class="full-screen">
+        <template slot="item">
+          <artist-list-item></artist-list-item>
+        </template>
+      </custom-list>
+      <custom-list-skeleton></custom-list-skeleton>`;
 
     this.querySelector("custom-list").addEventListener("keyup", (e) => {
       this.querySelector("custom-list").filter(this.querySelector("input").value);

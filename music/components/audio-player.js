@@ -89,7 +89,7 @@ export class AudioPlayer extends HTMLElement {
       const currentIndex = this.playlist.findIndex((element) => element.location === currentLocation);
       const nextIndex = (currentIndex + 1) % this.playlist.length;
 
-      document.querySelector("#songList").selectNext();
+      document.querySelector("songs-section custom-list").selectNext();
 
       this.src = `/stream?location=${this.playlist[nextIndex].location}`;
     });
@@ -102,7 +102,7 @@ export class AudioPlayer extends HTMLElement {
       let previousIndex = currentIndex - 1;
       if (previousIndex < 0) previousIndex = this.playlist.length - 1;
 
-      document.querySelector("#songList").selectPrevious();
+      document.querySelector("songs-section custom-list").selectPrevious();
 
       this.src = `/stream?location=${this.playlist[previousIndex].location}`;
     });

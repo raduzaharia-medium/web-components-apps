@@ -17,11 +17,11 @@ export class GenresSection extends HTMLElement {
 
     this.innerHTML = `
         <item-counter singular="genre" plural="genres" order="a-z"></item-counter>
-        <input id="genreFilter" type="text" placeholder="search..." />
-        <custom-list id="genreList" class="full-screen">
-            <template slot="item">
-                <genre-list-item></genre-list-item>
-            </template>
+        <input type="text" placeholder="search..." />
+        <custom-list class="full-screen">
+          <template slot="item">
+            <genre-list-item></genre-list-item>
+          </template>
         </custom-list>
         <custom-list-skeleton></custom-list-skeleton>`;
 

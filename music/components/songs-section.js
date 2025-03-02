@@ -17,9 +17,9 @@ export class SongsSection extends HTMLElement {
 
     this.innerHTML = `
         <item-counter singular="song" plural="songs" order="album"></item-counter>
-        <span id="albumName" class="subtitle"></span>
-        <input id="songFilter" type="text" placeholder="search..." />
-        <custom-list id="songList" class="full-screen">
+        <span class="subtitle"></span>
+        <input type="text" placeholder="search..." />
+        <custom-list class="full-screen">
           <template slot="item">
             <song-list-item></song-list-item>
           </template>

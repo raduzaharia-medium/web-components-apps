@@ -17,8 +17,8 @@ export class AlbumsSection extends HTMLElement {
 
     this.innerHTML = `
         <item-counter singular="album" plural="albums" order="date added"></item-counter>
-        <input id="albumFilter" type="text" placeholder="search..." />
-        <custom-list id="albumList" class="full-screen">
+        <input type="text" placeholder="search..." />
+        <custom-list class="full-screen">
           <template slot="item">
             <album-list-item></album-list-item>
           </template>

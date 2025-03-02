@@ -18,12 +18,12 @@ export class ArtistBrowser extends HTMLElement {
 
     this.querySelector("artists-section").addEventListener("change", async () => {
       await loadAlbumsForArtist(this.querySelector("artists-section").selection);
-      this.querySelector("#albumList").selectFirst();
+      this.querySelector("albums-section custom-list").selectFirst();
     });
     this.querySelector("albums-section").addEventListener("change", async () => {
       const selection = this.querySelector("albums-section").selection;
 
-      this.querySelector("#albumName").innerText = selection;
+      this.querySelector("songs-section span.subtitle").innerText = selection;
       await loadSongsForArtist(this.querySelector("artists-section").selection, selection);
     });
 
@@ -31,7 +31,7 @@ export class ArtistBrowser extends HTMLElement {
       const selection = this.querySelector("songs-section").selection;
 
       if (selection) {
-        const songs = this.querySelector("#songList").allData;
+        const songs = this.querySelector("songs-section custom-list").allData;
 
         document.querySelector("audio-player").setPlaylist(songs);
         document.querySelector("audio-player").src = await getFileUrl(selection.file);

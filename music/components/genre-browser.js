@@ -15,12 +15,12 @@ export class GenreBrowser extends HTMLElement {
 
     this.querySelector("genres-section").addEventListener("change", async () => {
       await loadAlbumsForGenre(this.querySelector("genres-section").selection);
-      this.querySelector("#albumList").selectFirst();
+      this.querySelector("albums-section custom-list").selectFirst();
     });
     this.querySelector("albums-section").addEventListener("change", async () => {
       const selection = this.querySelector("albums-section").selection;
 
-      this.querySelector("#albumName").innerText = selection;
+      this.querySelector("songs-section span.subtitle").innerText = selection;
       await loadSongsForGenre(this.querySelector("genres-section").selection, selection);
     });
 
@@ -28,7 +28,7 @@ export class GenreBrowser extends HTMLElement {
       const selection = this.querySelector("songs-section").selection;
 
       if (selection) {
-        const songs = this.querySelector("#songList").allData;
+        const songs = this.querySelector("songs-section custom-list").allData;
 
         document.querySelector("audio-player").setPlaylist(songs);
         document.querySelector("audio-player").src = await getFileUrl(selection.file);

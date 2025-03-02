@@ -54,7 +54,7 @@ export class MusicResponsiveNav extends HTMLElement {
   initPlayerChangeHandler() {
     document.querySelector("audio-player").addEventListener("change", () => {
       const selection = document.querySelector("audio-player").data;
-      if (selection) document.getElementById("songList").select(selection.item);
+      if (selection) document.querySelector("songs-section custom-list").select(selection.item);
     });
   }
 
@@ -90,7 +90,7 @@ export class MusicResponsiveNav extends HTMLElement {
     document.querySelector("responsive-nav").value = "artists";
     document.querySelector("selected-item-nav").value = "";
 
-    document.getElementById("artistFilter").value = "";
+    document.querySelector("artists-section input").value = "";
 
     document.getElementById("artists").classList.add("has-input");
     document.getElementById("albums").classList.remove("has-input");
@@ -108,7 +108,7 @@ export class MusicResponsiveNav extends HTMLElement {
     document.querySelector("responsive-nav").value = "genres";
     document.querySelector("selected-item-nav").value = "";
 
-    document.getElementById("genreFilter").value = "";
+    document.querySelector("genres-section input").value = "";
 
     document.getElementById("genres").classList.add("has-input");
     document.getElementById("albums").classList.remove("has-input");
@@ -124,7 +124,7 @@ export class MusicResponsiveNav extends HTMLElement {
     document.querySelector("responsive-nav").value = "albums";
     document.querySelector("selected-item-nav").value = "";
 
-    document.getElementById("albumFilter").value = "";
+    document.querySelector("albums-section input").value = "";
 
     document.getElementById("albums").classList.add("has-input");
     document.getElementById("songs").classList.remove("has-input");
@@ -137,7 +137,7 @@ export class MusicResponsiveNav extends HTMLElement {
     document.querySelector("responsive-nav").value = "songs";
     document.querySelector("selected-item-nav").value = "";
 
-    document.getElementById("songFilter").value = "";
+    document.querySelector("songs-section input").value = "";
     document.getElementById("songs").classList.add("has-input");
 
     document.body.classList.add("song-first");

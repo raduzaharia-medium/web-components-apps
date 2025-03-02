@@ -1,29 +1,3 @@
-body.song-first main {
-  grid-template-columns: 1fr;
-}
-
 custom-list-skeleton {
   display: none;
-}
-
-@media (max-width: 710px) {
-  body.artist-first.artist-selected responsive-nav,
-  body.genre-first.genre-selected responsive-nav,
-  body.album-first.album-selected responsive-nav {
-    display: none;
-  }
-
-  body.artist-first.artist-selected main #songs,
-  body.genre-first.genre-selected main #songs,
-  body.album-first.album-selected main #songs,
-  body.song-first main #songs {
-    display: block;
-  }
-
-  body.artist-selected main #artists,
-  body.genre-selected main #genres,
-  body.album-selected main #albums,
-  main #songs {
-    display: none;
-  }
 }

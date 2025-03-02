@@ -17,7 +17,7 @@ export class AlbumBrowser extends HTMLElement {
     this.querySelector("albums-section").addEventListener("change", async () => {
       const selection = this.querySelector("albums-section").selectedData;
 
-      this.querySelector("#albumName").innerText = selection.item;
+      this.querySelector("songs-section span.subtitle").innerText = selection.item;
       await loadSongsForArtist(selection.artist, selection.item);
     });
 
@@ -25,7 +25,7 @@ export class AlbumBrowser extends HTMLElement {
       const selection = this.querySelector("songs-section").selection;
 
       if (selection) {
-        const songs = this.querySelector("#songList").allData;
+        const songs = this.querySelector("songs-section custom-list").allData;
 
         document.querySelector("audio-player").setPlaylist(songs);
         document.querySelector("audio-player").src = await getFileUrl(selection.file);

@@ -7,6 +7,12 @@ selected-item-nav {
 
 @media (max-width: 710px) {
 
+    body.artist-first.artist-selected responsive-nav,
+    body.genre-first.genre-selected responsive-nav,
+    body.album-first.album-selected responsive-nav {
+        display: none;
+    }
+
     body.artist-first.artist-selected selected-item-nav,
     body.genre-first.genre-selected selected-item-nav,
     body.album-first.album-selected selected-item-nav {
