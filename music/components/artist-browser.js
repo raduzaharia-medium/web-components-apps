@@ -32,7 +32,7 @@ export class ArtistBrowser extends HTMLElement {
       }
     });
 
-    this.querySelector("songs-section").addEventListener("change", async () => {
+    this.querySelector("songs-section custom-list").addEventListener("change", async () => {
       const selection = this.querySelector("songs-section custom-list").selectedData;
 
       if (selection) {

@@ -1,6 +1,6 @@
 import "./songs-section.js";
 
-import { loadSongs } from "../scripts/lists.js";
+import { getSongs, getFileUrl } from "../scripts/services.js";
 
 export class SongBrowser extends HTMLElement {
   constructor() {
@@ -11,24 +11,30 @@ export class SongBrowser extends HTMLElement {
     this.innerHTML = `
       <songs-section class="full-screen has-title has-input"></songs-section>`;
 
-    this.querySelector("songs-section input").addEventListener("keyup", () => {
-      this.querySelector("songs-section custom-list").filter(this.querySelector("songs-section input").value);
-    });
-    this.querySelector("songs-section custom-list").addEventListener("change", () => {
+    this.querySelector("songs-section custom-list").addEventListener("change", async () => {
       const selection = this.querySelector("songs-section custom-list").selectedData;
 
       if (selection) {
         const songs = this.querySelector("songs-section custom-list").allData;
 
         document.querySelector("audio-player").setPlaylist(songs);
-        document.querySelector("audio-player").src = `/music/stream?location=${selection.location}`;
-        document.querySelector("body").classList.add("song-selected");
+        document.querySelector("audio-player").src = await getFileUrl(selection.file);
       }
     });
   }
 
   async connectedCallback() {
-    await loadSongs();
+    await this.loadSongs();
+  }
+
+  async loadSongs() {
+    this.querySelector("songs-section").classList.add("loading");
+
+    const songs = await getSongs();
+
+    this.querySelector("songs-section custom-list").setItems(songs);
+    this.querySelector("songs-section item-counter").value = songs.length;
+    this.querySelector("songs-section").classList.remove("loading");
   }
 }
 

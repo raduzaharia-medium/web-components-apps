@@ -18,7 +18,7 @@ export class ArtistsSection extends HTMLElement {
       </custom-list>
       <custom-list-skeleton></custom-list-skeleton>`;
 
-    this.querySelector("custom-list").addEventListener("keyup", (e) => {
+    this.querySelector("input").addEventListener("keyup", () => {
       this.querySelector("custom-list").filter(this.querySelector("input").value);
     });
     this.querySelector("custom-list").addEventListener("change", async () => {

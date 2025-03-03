@@ -5,13 +5,6 @@ import "../../shared/components/custom-list-skeleton.js";
 import "./song-list-item.js";
 
 export class SongsSection extends HTMLElement {
-  get selection() {
-    return this.querySelector("custom-list").value;
-  }
-  get selectedData() {
-    return this.querySelector("custom-list").selectedData;
-  }
-
   constructor() {
     super();
 
@@ -33,8 +26,7 @@ export class SongsSection extends HTMLElement {
       const selection = this.querySelector("custom-list").selectedData;
 
       if (selection) {
-        document.querySelector("body").classList.add("song-selected");
-        this.dispatchEvent(new Event("change"));
+        document.body.classList.add("song-selected");
       }
     });
   }
