@@ -92,11 +92,11 @@ export class MusicResponsiveNav extends HTMLElement {
 
     document.querySelector("artists-section input").value = "";
 
-    document.getElementById("artists").classList.add("has-input");
-    document.getElementById("albums").classList.remove("has-input");
-    document.getElementById("songs").classList.remove("has-input");
+    document.querySelector("artists-section").classList.add("has-input");
+    document.querySelector("albums-section").classList.remove("has-input");
+    document.querySelector("songs-section").classList.remove("has-input");
 
-    document.querySelector("artist-browser").classList.remove("artist-selected");
+    document.body.classList.remove("artist-selected");
     document.body.classList.remove("album-selected");
     document.body.classList.remove("song-first");
     document.body.classList.remove("album-first");
@@ -110,9 +110,9 @@ export class MusicResponsiveNav extends HTMLElement {
 
     document.querySelector("genres-section input").value = "";
 
-    document.getElementById("genres").classList.add("has-input");
-    document.getElementById("albums").classList.remove("has-input");
-    document.getElementById("songs").classList.remove("has-input");
+    document.querySelector("genres-section").classList.add("has-input");
+    document.querySelector("albums-section").classList.remove("has-input");
+    document.querySelector("songs-section").classList.remove("has-input");
 
     document.body.classList.remove("genre-selected");
     document.body.classList.remove("album-selected");
@@ -126,8 +126,8 @@ export class MusicResponsiveNav extends HTMLElement {
 
     document.querySelector("albums-section input").value = "";
 
-    document.getElementById("albums").classList.add("has-input");
-    document.getElementById("songs").classList.remove("has-input");
+    document.querySelector("albums-section").classList.add("has-input");
+    document.querySelector("songs-section").classList.remove("has-input");
 
     document.body.classList.remove("album-selected");
     document.body.classList.remove("song-first");
@@ -138,7 +138,7 @@ export class MusicResponsiveNav extends HTMLElement {
     document.querySelector("selected-item-nav").value = "";
 
     document.querySelector("songs-section input").value = "";
-    document.getElementById("songs").classList.add("has-input");
+    document.querySelector("songs-section").classList.add("has-input");
 
     document.body.classList.add("song-first");
   }

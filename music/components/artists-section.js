@@ -5,13 +5,6 @@ import "../../shared/components/custom-list-skeleton.js";
 import "./artist-list-item.js";
 
 export class ArtistsSection extends HTMLElement {
-  get selection() {
-    return this.querySelector("custom-list").value;
-  }
-  get selectedData() {
-    return this.querySelector("custom-list").selectedData;
-  }
-
   constructor() {
     super();
 
@@ -32,10 +25,8 @@ export class ArtistsSection extends HTMLElement {
       const selection = this.querySelector("custom-list").value;
 
       if (selection) {
-        document.querySelector("artist-browser").classList.add("artist-selected");
+        document.body.classList.add("artist-selected");
         document.querySelector("selected-item-nav").value = selection;
-
-        this.dispatchEvent(new Event("change"));
       }
     });
   }

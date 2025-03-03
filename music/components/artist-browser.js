@@ -2,8 +2,7 @@ import "./artists-section.js";
 import "./albums-section.js";
 import "./songs-section.js";
 
-import { loadArtists, loadAlbumsForArtist, loadSongsForArtist } from "../scripts/lists.js";
-import { getFileUrl } from "../scripts/services.js";
+import { getArtists, getAlbumsByArtist, getSongsForArtist, getFileUrl } from "../scripts/services.js";
 
 export class ArtistBrowser extends HTMLElement {
   constructor() {
@@ -16,19 +15,25 @@ export class ArtistBrowser extends HTMLElement {
       <albums-section id="albums"></albums-section>
       <songs-section id="songs"></songs-section>`;
 
-    this.querySelector("artists-section").addEventListener("change", async () => {
-      await loadAlbumsForArtist(this.querySelector("artists-section").selection);
-      this.querySelector("albums-section custom-list").selectFirst();
+    this.querySelector("artists-section custom-list").addEventListener("change", async () => {
+      const selection = this.querySelector("artists-section custom-list").selectedData;
+
+      if (selection) {
+        await this.loadAlbums(selection);
+        this.querySelector("albums-section custom-list").selectFirst();
+      }
     });
     this.querySelector("albums-section").addEventListener("change", async () => {
-      const selection = this.querySelector("albums-section").selection;
+      const selection = this.querySelector("albums-section custom-list").selectedData;
 
-      this.querySelector("songs-section span.subtitle").innerText = selection;
-      await loadSongsForArtist(this.querySelector("artists-section").selection, selection);
+      if (selection) {
+        this.querySelector("songs-section span.subtitle").innerText = selection.item;
+        await this.loadSongs(selection.artist, selection.item);
+      }
     });
 
     this.querySelector("songs-section").addEventListener("change", async () => {
-      const selection = this.querySelector("songs-section").selection;
+      const selection = this.querySelector("songs-section custom-list").selectedData;
 
       if (selection) {
         const songs = this.querySelector("songs-section custom-list").allData;
@@ -40,7 +45,43 @@ export class ArtistBrowser extends HTMLElement {
   }
 
   async connectedCallback() {
-    await loadArtists();
+    await this.loadArtists();
+  }
+
+  async loadArtists() {
+    this.querySelector("artists-section").classList.add("loading");
+
+    const artists = await getArtists();
+
+    this.querySelector("artists-section custom-list").setItems(artists);
+    this.querySelector("artists-section item-counter").value = artists.length;
+    this.querySelector("artists-section").classList.remove("loading");
+  }
+
+  async loadAlbums(artist) {
+    this.querySelector("albums-section").classList.add("loading");
+    this.querySelector("songs-section").classList.add("loading");
+
+    const albums = await getAlbumsByArtist(artist);
+    albums.splice(0, 0, { name: "All Albums", artist });
+
+    this.querySelector("albums-section custom-list").setItems(albums);
+    this.querySelector("albums-section item-counter").value = albums.length;
+    this.querySelector("albums-section").classList.remove("loading");
+    this.querySelector("songs-section").classList.remove("loading");
+
+    // observer.disconnect();
+    // document.querySelectorAll("albums-section custom-list li img").forEach((element) => observer.observe(element));
+  }
+
+  async loadSongs(artist, album) {
+    this.querySelector("songs-section").classList.add("loading");
+
+    const songs = await getSongsForArtist(artist, album);
+
+    this.querySelector("songs-section custom-list").setItems(songs);
+    this.querySelector("songs-section item-counter").value = songs.length;
+    this.querySelector("songs-section").classList.remove("loading");
   }
 }
 
