@@ -62,6 +62,34 @@ export async function getFileUrl(fileOrHandle) {
   return URL.createObjectURL(file);
 }
 
+export async function getAlbumArt(artistName, albumName) {
+  const selection = data.find((song) => song.artist === artistName && song.album === albumName);
+  if (!selection) return "images/musical-note.svg";
+
+  const file = await selection.file.getFile();
+
+  return new Promise((resolve) => {
+    jsmediatags.read(file, {
+      onSuccess: function (tag) {
+        const image = tag.tags.picture;
+
+        if (image) {
+          const blob = new Blob([new Uint8Array(image.data)], { type: image.format });
+          const objectUrl = URL.createObjectURL(blob);
+
+          selection.albumArtUrl = objectUrl;
+          resolve(objectUrl);
+        } else {
+          resolve("images/musical-note.svg");
+        }
+      },
+      onError: function () {
+        resolve("images/musical-note.svg");
+      },
+    });
+  });
+}
+
 export async function getArtists() {
   const artists = data.map((song) => song.artist);
   const uniqueArtists = [...new Set(artists)].sort();

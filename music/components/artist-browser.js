@@ -2,9 +2,14 @@ import "./artists-section.js";
 import "./albums-section.js";
 import "./songs-section.js";
 
-import { getArtists, getAlbumsByArtist, getSongsForArtist, getFileUrl } from "../scripts/services.js";
+import { getArtists, getAlbumsByArtist, getSongsForArtist, getFileUrl, getAlbumArt } from "../scripts/services.js";
 
 export class ArtistBrowser extends HTMLElement {
+  observer = new IntersectionObserver(this.loadAlbumArt, {
+    root: this.querySelector("albums-section custom-list"),
+    threshold: 1.0,
+  });
+
   constructor() {
     super();
 
@@ -44,6 +49,28 @@ export class ArtistBrowser extends HTMLElement {
     });
   }
 
+  loadAlbumArt(entries, observer) {
+    let interactionEntries = [];
+    let timeout;
+
+    interactionEntries.push(...entries);
+    clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      interactionEntries
+        .filter((element) => element.isIntersecting)
+        .slice(-20)
+        .forEach(async (element) => {
+          const selection = element.target.parentElement.dataset;
+
+          element.target.src = await getAlbumArt(selection.artist, selection.item);
+          observer.unobserve(element.target);
+        });
+
+      interactionEntries = [];
+    }, 500);
+  }
+
   async connectedCallback() {
     await this.loadArtists();
   }
@@ -70,8 +97,8 @@ export class ArtistBrowser extends HTMLElement {
     this.querySelector("albums-section").classList.remove("loading");
     this.querySelector("songs-section").classList.remove("loading");
 
-    // observer.disconnect();
-    // document.querySelectorAll("albums-section custom-list li img").forEach((element) => observer.observe(element));
+    this.observer.disconnect();
+    this.querySelectorAll("albums-section custom-list album-list-item img").forEach((element) => this.observer.observe(element));
   }
 
   async loadSongs(artist, album) {
