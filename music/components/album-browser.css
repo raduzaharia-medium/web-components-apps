@@ -12,6 +12,14 @@ album-browser {
   grid-template-columns: 2.6fr 1fr;
   height: 100%;
 
+  @media (max-width: 1000px) {
+    grid-template-columns: 2.6fr 1fr;
+  }
+
+  @media (max-width: 710px) {
+    grid-template-columns: 1fr;
+  }
+
   albums-section {
     custom-list {
       top: 4em;
@@ -23,6 +31,10 @@ album-browser {
   }
 
   songs-section {
+    @media (max-width: 710px) {
+      display: none;
+    }
+
     .subtitle {
       display: none;
     }
@@ -35,17 +47,47 @@ album-browser {
       border-right: none;
       top: 2em;
 
+      @media (max-width: 710px) {
+        top: 0em;
+      }
+
       .artist {
         display: none;
       }
     }
   }
+}
 
-  @media (max-width: 1000px) {
-    grid-template-columns: 2.6fr 1fr;
+body.album-selected {
+  album-browser {
+    albums-section {
+      @media (max-width: 710px) {
+        display: none;
+      }
+    }
   }
 
-  @media (max-width: 710px) {
-    grid-template-columns: 1fr;
+  music-responsive-nav {
+    responsive-nav {
+      @media (max-width: 710px) {
+        display: none;
+      }
+    }
+
+    selected-item-nav {
+      @media (max-width: 710px) {
+        display: block;
+      }
+    }
+  }
+}
+
+body.album-selected {
+  album-browser {
+    songs-section {
+      @media (max-width: 710px) {
+        display: block;
+      }
+    }
   }
 }

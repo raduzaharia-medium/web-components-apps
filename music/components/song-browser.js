@@ -9,7 +9,7 @@ export class SongBrowser extends HTMLElement {
     history.pushState({ page: "songs" }, "Music - browse by song", ".");
 
     this.innerHTML = `
-      <songs-section id="songs" class="full-screen has-title has-input"></songs-section>`;
+      <songs-section class="full-screen has-title has-input"></songs-section>`;
 
     this.querySelector("songs-section input").addEventListener("keyup", () => {
       this.querySelector("songs-section custom-list").filter(this.querySelector("songs-section input").value);

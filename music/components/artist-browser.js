@@ -11,9 +11,9 @@ export class ArtistBrowser extends HTMLElement {
     history.pushState({ page: "artists" }, "Music - browse by artist", ".");
 
     this.innerHTML = `
-      <artists-section id="artists"></artists-section>
-      <albums-section id="albums"></albums-section>
-      <songs-section id="songs"></songs-section>`;
+      <artists-section></artists-section>
+      <albums-section></albums-section>
+      <songs-section></songs-section>`;
 
     this.querySelector("artists-section custom-list").addEventListener("change", async () => {
       const selection = this.querySelector("artists-section custom-list").selectedData;
@@ -23,7 +23,7 @@ export class ArtistBrowser extends HTMLElement {
         this.querySelector("albums-section custom-list").selectFirst();
       }
     });
-    this.querySelector("albums-section").addEventListener("change", async () => {
+    this.querySelector("albums-section custom-list").addEventListener("change", async () => {
       const selection = this.querySelector("albums-section custom-list").selectedData;
 
       if (selection) {

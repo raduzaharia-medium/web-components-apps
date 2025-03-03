@@ -9,9 +9,9 @@ export class GenreBrowser extends HTMLElement {
     super();
 
     this.innerHTML = `
-      <genres-section id="genres"></genres-section>
-      <albums-section id="albums"></albums-section>
-      <songs-section id="songs"></songs-section>`;
+      <genres-section></genres-section>
+      <albums-section></albums-section>
+      <songs-section></songs-section>`;
 
     this.querySelector("genres-section").addEventListener("change", async () => {
       await loadAlbumsForGenre(this.querySelector("genres-section").selection);
