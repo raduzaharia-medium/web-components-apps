@@ -5,13 +5,6 @@ import "../../shared/components/custom-list-skeleton.js";
 import "./genre-list-item.js";
 
 export class GenresSection extends HTMLElement {
-  get selection() {
-    return this.querySelector("custom-list").value;
-  }
-  get selectedData() {
-    return this.querySelector("custom-list").selectedData;
-  }
-
   constructor() {
     super();
 
@@ -32,10 +25,8 @@ export class GenresSection extends HTMLElement {
       const selection = this.querySelector("custom-list").selectedData;
 
       if (selection) {
-        document.querySelector("body").classList.add("genre-selected");
+        document.body.classList.add("genre-selected");
         document.querySelector("selected-item-nav").value = selection.item;
-
-        this.dispatchEvent(new Event("change"));
       }
     });
   }

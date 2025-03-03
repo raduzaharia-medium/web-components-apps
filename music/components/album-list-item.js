@@ -8,6 +8,7 @@ export class AlbumListItem extends CustomListItem {
   set data(newValue) {
     this.dataset.item = newValue.name;
     this.dataset.artist = newValue.artist;
+    this.dataset.genre = newValue.genre;
     this.dataset.src = `/music/album-art?artist=${newValue.artist}&album=${newValue.name}`;
 
     this.querySelector("strong").innerText = newValue.name;

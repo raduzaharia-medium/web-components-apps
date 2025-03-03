@@ -99,7 +99,7 @@ export async function loadAlbumsForGenre(genre) {
   document.querySelector("songs-section").classList.add("loading");
   const albums = await getAlbumsByGenre(genre);
 
-  albums.splice(0, 0, { name: "All Albums", artist: "All Artists" });
+  albums.splice(0, 0, { name: "All Albums", artist: "All Artists", genre: genre });
   document.querySelector("albums-section custom-list").setItems(albums);
   document.querySelector("albums-section item-counter").value = albums.length;
   document.querySelector("albums-section").classList.remove("loading");

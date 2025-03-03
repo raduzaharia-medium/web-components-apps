@@ -118,6 +118,7 @@ export async function getAlbumsByGenre(genreName) {
       return {
         name: song.album,
         artist: song.artist,
+        genre: song.genre,
       };
     });
   const uniqueAlbums = [...new Set(albums.map(JSON.stringify))];
