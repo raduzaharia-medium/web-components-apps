@@ -65,6 +65,7 @@ export async function getFileUrl(fileOrHandle) {
 export async function getAlbumArt(artistName, albumName) {
   const selection = data.find((song) => song.artist === artistName && song.album === albumName);
   if (!selection) return "images/musical-note.svg";
+  if (selection.albumArtUrl) return selection.albumArtUrl;
 
   const file = await selection.file.getFile();
 
