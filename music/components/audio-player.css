@@ -5,6 +5,15 @@ audio-player {
   justify-items: center;
   grid-template-columns: 1fr 6em 18em 10em 1fr;
 
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 3px black;
+  backdrop-filter: blur(3px);
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
   .media-control {
     width: 3em;
     padding: 0.6em 1em;

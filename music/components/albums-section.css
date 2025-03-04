@@ -35,5 +35,9 @@ albums-section {
         bottom: 0;
         left: 0;
         right: 0;
+
+        @media (max-width: 710px) {
+            padding-bottom: 6em;
+        }
     }
 }

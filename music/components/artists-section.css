@@ -38,6 +38,8 @@ artists-section {
 
         @media (max-width: 710px) {
             top: 2em;
+            padding-bottom: 6em;
+
         }
     }
 }
