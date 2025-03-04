@@ -13,6 +13,10 @@ artists-section {
         }
     }
 
+    custom-list-skeleton {
+        display: none;
+    }
+
     input {
         display: block;
         font-family: var(--font-family);
