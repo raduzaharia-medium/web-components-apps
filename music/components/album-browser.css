@@ -65,25 +65,7 @@ body.album-selected {
         display: none;
       }
     }
-  }
 
-  music-responsive-nav {
-    responsive-nav {
-      @media (max-width: 710px) {
-        display: none;
-      }
-    }
-
-    selected-item-nav {
-      @media (max-width: 710px) {
-        display: block;
-      }
-    }
-  }
-}
-
-body.album-selected {
-  album-browser {
     songs-section {
       @media (max-width: 710px) {
         display: block;

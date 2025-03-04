@@ -4,3 +4,51 @@
 selected-item-nav {
     display: none;
 }
+
+body.album-selected {
+    music-responsive-nav {
+        responsive-nav {
+            @media (max-width: 710px) {
+                display: none;
+            }
+        }
+
+        selected-item-nav {
+            @media (max-width: 710px) {
+                display: block;
+            }
+        }
+    }
+}
+
+body.artist-selected {
+    music-responsive-nav {
+        responsive-nav {
+            @media (max-width: 710px) {
+                display: none;
+            }
+        }
+
+        selected-item-nav {
+            @media (max-width: 710px) {
+                display: block;
+            }
+        }
+    }
+}
+
+body.genre-selected {
+    music-responsive-nav {
+        responsive-nav {
+            @media (max-width: 710px) {
+                display: none;
+            }
+        }
+
+        selected-item-nav {
+            @media (max-width: 710px) {
+                display: block;
+            }
+        }
+    }
+}

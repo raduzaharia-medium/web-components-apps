@@ -70,25 +70,7 @@ body.artist-selected {
         display: none;
       }
     }
-  }
 
-  music-responsive-nav {
-    responsive-nav {
-      @media (max-width: 710px) {
-        display: none;
-      }
-    }
-
-    selected-item-nav {
-      @media (max-width: 710px) {
-        display: block;
-      }
-    }
-  }
-}
-
-body.artist-selected.album-selected {
-  artist-browser {
     songs-section {
       @media (max-width: 710px) {
         display: block;

@@ -1,3 +1,8 @@
+import "./artist-browser.js";
+import "./album-browser.js";
+import "./genre-browser.js";
+import "./song-browser.js";
+
 import "../../shared/components/responsive-nav.js";
 import "../../shared/components/selected-item-nav.js";
 

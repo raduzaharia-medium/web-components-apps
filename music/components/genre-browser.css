@@ -70,25 +70,7 @@ body.genre-selected {
         display: none;
       }
     }
-  }
 
-  music-responsive-nav {
-    responsive-nav {
-      @media (max-width: 710px) {
-        display: none;
-      }
-    }
-
-    selected-item-nav {
-      @media (max-width: 710px) {
-        display: block;
-      }
-    }
-  }
-}
-
-body.genre-selected.album-selected {
-  genre-browser {
     songs-section {
       @media (max-width: 710px) {
         display: block;
