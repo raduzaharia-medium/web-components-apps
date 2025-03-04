@@ -8,6 +8,12 @@ responsive-nav {
   color: var(--text-color-light);
   text-transform: lowercase;
 
+  ul {
+    @media (max-width: 710px) {
+      display: none;
+    }
+  }
+
   img {
     width: 1.2em;
     vertical-align: middle;
@@ -19,8 +25,10 @@ responsive-nav {
 
   select {
     vertical-align: middle;
+    display: none;
 
     @media (max-width: 710px) {
+      display: initial;
       background-image: url(../images/dark/down-arrow.svg);
       background-repeat: no-repeat;
       background-position-x: 100%;

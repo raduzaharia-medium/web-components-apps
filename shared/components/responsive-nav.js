@@ -49,7 +49,7 @@ export class ResponsiveNav extends HTMLElement {
     // }
 
     this.innerHTML = `
-      <ul class="desktop-only">${this.options
+      <ul>${this.options
         .split(",")
         .map((element) => `<li class="${element.trim() === this.value ? "selected" : ""}" data-value="${element.trim().toLowerCase()}">${element.trim()}</li>`)
         .join("")}
