@@ -1,5 +1,4 @@
 @import url(../shared/styles/base.css);
-@import url(../shared/styles/generic-ui.css);
 
 @import url(./components/music-responsive-nav.css);
 @import url(./components/audio-player.css);
