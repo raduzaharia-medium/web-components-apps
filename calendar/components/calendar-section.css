@@ -1,0 +1,52 @@
+@import url(../../shared/components/custom-list-skeleton.css);
+@import url(./calendar-grid.css);
+@import url(./date-navigator.css);
+
+calendar-section {
+    header {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-row-gap: 0.1em;
+        grid-column-gap: 0.1em;
+        padding: 0.2em;
+        text-align: center;
+    }
+
+    &.loading {
+        calendar-grid {
+            display: none;
+        }
+
+        custom-list-skeleton {
+            display: block;
+        }
+    }
+
+    nav {
+        text-align: center;
+        display: grid;
+        align-items: center;
+        justify-items: end;
+        grid-template-columns: 1fr;
+
+        background: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 0 3px black;
+        backdrop-filter: blur(3px);
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        img {
+            width: 3em;
+            padding: 0.6em 1em;
+            vertical-align: middle;
+            cursor: pointer;
+
+            @media (max-width: 710px) {
+                padding: 0.4em 0.4em;
+            }
+        }
+    }
+}

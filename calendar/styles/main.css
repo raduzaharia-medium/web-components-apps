@@ -1,0 +1,33 @@
+body.add-event .configure-event-action:not(#deleteEvent) {
+  display: inline-block;
+}
+
+body.edit-event .configure-event-action {
+  display: inline-block;
+}
+
+body.add-event section.calendar-section,
+body.add-event img#newEvent,
+body.add-event nav select,
+body.edit-event section.calendar-section,
+body.edit-event img#newEvent,
+body.edit-event nav select {
+  display: none;
+}
+
+custom-list-skeleton {
+  display: none;
+  margin-top: 1em;
+}
+
+img.danger {
+  float: left;
+}
+
+#cancelEvent {
+  margin-right: 1em;
+}
+
+a.button:hover {
+  text-decoration: none;
+}

@@ -1,0 +1,64 @@
+calendar-day {
+  padding: 0.2em;
+  display: grid;
+  grid-template-rows: min-content auto;
+  grid-row-gap: 0.2em;
+  overflow-x: hidden;
+  scrollbar-width: none;
+
+  &.today {
+    text-shadow: var(--selection-shadow);
+  }
+
+  &.valid {
+    border: 1px solid var(--border-color);
+
+    @media (max-width: 710px) {
+      border: none;
+      margin-bottom: 1em;
+    }
+  }
+
+  &.invalid {
+    @media (max-width: 710px) {
+      display: none;
+    }
+
+    span {
+      display: none;
+    }
+  }
+
+  &.no-events {
+    @media (max-width: 710px) {
+      display: none;
+    }
+  }
+
+  span {
+    font-weight: 300;
+
+    &.mobile-title {
+      display: none;
+
+      @media (max-width: 710px) {
+        display: initial;
+      }
+    }
+
+    &.desktop-title {
+      @media (max-width: 710px) {
+        display: none;
+      }
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-row-gap: 0.1em;
+  }
+}

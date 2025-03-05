@@ -1,0 +1,24 @@
+date-navigator {
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-bottom: 2em;
+
+    select {
+        border: 1px solid var(--border-color);
+        border-radius: 0.4em;
+        padding: 0.2em 0.6em;
+        vertical-align: middle;
+    }
+
+    img {
+        width: 2.2em;
+        vertical-align: middle;
+        margin-inline: 2em;
+        cursor: pointer;
+
+        @media (max-width: 710px) {
+            display: none;
+        }
+    }
+}

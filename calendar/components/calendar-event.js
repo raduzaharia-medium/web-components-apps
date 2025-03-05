@@ -8,9 +8,7 @@ export class CalendarEvent extends HTMLLIElement {
     const calendarYear = parseInt(this.closest("div").dataset.year);
     const calendarMonth = parseInt(this.closest("div").dataset.month);
     const calendarDay = parseInt(this.closest("div").dataset.day);
-    const isoCalendarDate = `${calendarYear}-${calendarMonth.toString().padStart(2, "0")}-${calendarDay
-      .toString()
-      .padStart(2, "0")}`;
+    const isoCalendarDate = `${calendarYear}-${calendarMonth.toString().padStart(2, "0")}-${calendarDay.toString().padStart(2, "0")}`;
 
     this.dataset.startDate = newValue.startDate;
     if (newValue.startTime) this.dataset.startTime = newValue.startTime;
@@ -21,9 +19,7 @@ export class CalendarEvent extends HTMLLIElement {
     this.dataset.calendar = newValue.calendar;
     this.dataset.id = newValue.id;
 
-    this.querySelector("span.title").innerText = newValue.startTime
-      ? `${newValue.startTime} - ${newValue.endTime} ${newValue.summary}`
-      : newValue.summary;
+    this.querySelector("span.title").innerText = newValue.startTime ? `${newValue.startTime} - ${newValue.endTime} ${newValue.summary}` : newValue.summary;
     this.querySelector("span.location").innerText = newValue.location ?? "";
     this.style.backgroundColor = getColorFromName(newValue.calendar);
 
@@ -35,7 +31,7 @@ export class CalendarEvent extends HTMLLIElement {
         else this.classList.add("multiple-days-middle");
       } else this.classList.add("single-day");
     } else {
-      if (newValue.calendar === "aniversari") this.classList.add("single-day");
+      if (newValue.calendar === "Birthdays") this.classList.add("single-day");
       else if (newValue.endDate === 1) this.classList.add("multiple-days-end");
       else this.classList.add("multiple-days-middle");
     }

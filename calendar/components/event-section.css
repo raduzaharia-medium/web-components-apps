@@ -1,0 +1,81 @@
+nav .configure-event-title,
+event-section,
+.configure-event-action {
+    display: none;
+}
+
+@media (max-width: 710px) {
+    span.configure-event-title {
+        font-size: 1.1em;
+        text-transform: capitalize;
+        color: var(--text-color);
+        font-weight: 300;
+        text-shadow: var(--selection-shadow-light);
+    }
+}
+
+event-section {
+    margin-inline: auto;
+
+    @media (max-width: 710px) {
+        width: 100%;
+    }
+
+    fieldset {
+        display: grid;
+        grid-template-columns: max-content max-content max-content max-content;
+        grid-column-gap: 0.8em;
+        grid-row-gap: 0.4em;
+        border: none;
+
+        @media (max-width: 710px) {
+            grid-template-columns: 1fr;
+            padding: 0.2em;
+        }
+
+        select.event-calendar,
+        input.event-summary,
+        input.event-location {
+            grid-column-end: span 3;
+
+            @media (max-width: 710px) {
+                grid-column-end: span 1;
+            }
+        }
+    }
+
+    nav {
+        text-align: center;
+        display: grid;
+        align-items: center;
+        justify-items: end;
+        grid-template-columns: 1fr;
+
+        background: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 0 3px black;
+        backdrop-filter: blur(3px);
+
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        img {
+            width: 3em;
+            padding: 0.6em 1em;
+            vertical-align: middle;
+            cursor: pointer;
+
+            @media (max-width: 710px) {
+                padding: 0.4em 0.4em;
+            }
+        }
+    }
+}
+
+body.add-event nav .configure-event-title,
+body.add-event section.configure-event-section,
+body.edit-event nav .configure-event-title,
+body.edit-event section.configure-event-section {
+    display: block;
+}
