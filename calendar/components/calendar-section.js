@@ -25,6 +25,7 @@ export class CalendarSection extends HTMLElement {
       
       <nav>
         <img id="newEvent" src="../shared/images/dark/add-new.svg">
+        <img id="loadEvents" src="../shared/images/dark/button-load.svg">
       </nav>`;
   }
 }

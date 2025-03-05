@@ -23,11 +23,8 @@ calendar-section {
     }
 
     nav {
-        text-align: center;
-        display: grid;
-        align-items: center;
-        justify-items: end;
-        grid-template-columns: 1fr;
+        display: flex;
+        justify-content: end;
 
         background: rgba(255, 255, 255, 0.4);
         box-shadow: 0 0 3px black;
