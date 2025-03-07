@@ -1,3 +1,5 @@
+import "./calendar-section.js";
+
 export class DateNavigator extends HTMLElement {
   constructor() {
     super();
@@ -19,11 +21,16 @@ export class DateNavigator extends HTMLElement {
     this.querySelector("#month").value = new Date().getMonth() + 1;
 
     this.querySelector("#year").addEventListener("change", () => {
-      // generate new calendar
-    });
+      const year = parseInt(document.querySelector("date-navigator #year")?.value ?? new Date().getFullYear());
+      const month = parseInt(document.querySelector("date-navigator #month")?.value ?? new Date().getMonth() + 1);
 
+      document.querySelector("main").innerHTML = `<calendar-grid data-year="${year}" data-month="${month}"></calendar-grid>`;
+    });
     document.querySelector("#month").addEventListener("change", () => {
-      // generate new calendar
+      const year = parseInt(document.querySelector("date-navigator #year")?.value ?? new Date().getFullYear());
+      const month = parseInt(document.querySelector("date-navigator #month")?.value ?? new Date().getMonth() + 1);
+
+      document.querySelector("main").innerHTML = `<calendar-grid data-year="${year}" data-month="${month}"></calendar-grid>`;
     });
     document.querySelector("#previousMonth").addEventListener("click", () => {
       if (this.querySelector("#month").value === "1") {
@@ -31,16 +38,21 @@ export class DateNavigator extends HTMLElement {
         this.querySelector("#year").value = parseInt(this.querySelector("#year").value) - 1;
       } else this.querySelector("#month").value = parseInt(this.querySelector("#month").value) - 1;
 
-      // generate new calendar
-    });
+      const year = parseInt(document.querySelector("date-navigator #year")?.value ?? new Date().getFullYear());
+      const month = parseInt(document.querySelector("date-navigator #month")?.value ?? new Date().getMonth() + 1);
 
+      document.querySelector("main").innerHTML = `<calendar-grid data-year="${year}" data-month="${month}"></calendar-grid>`;
+    });
     this.querySelector("#nextMonth").addEventListener("click", () => {
       if (this.querySelector("#month").value === "12") {
         this.querySelector("#month").value = 1;
         this.querySelector("#year").value = parseInt(this.querySelector("#year").value) + 1;
       } else this.querySelector("#month").value = parseInt(this.querySelector("#month").value) + 1;
 
-      // generate new calendar
+      const year = parseInt(document.querySelector("date-navigator #year")?.value ?? new Date().getFullYear());
+      const month = parseInt(document.querySelector("date-navigator #month")?.value ?? new Date().getMonth() + 1);
+
+      document.querySelector("main").innerHTML = `<calendar-grid data-year="${year}" data-month="${month}"></calendar-grid>`;
     });
   }
 }
