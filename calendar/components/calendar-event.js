@@ -1,4 +1,4 @@
-export class CalendarEvent extends HTMLLIElement {
+export class CalendarEvent extends HTMLElement {
   get data() {
     return this.dataset;
   }
@@ -40,11 +40,11 @@ export class CalendarEvent extends HTMLLIElement {
   constructor() {
     super();
 
-    this.classList.add("calendar-event");
+    this.style.backgroundColor = getColorFromName(this.dataset.calendar);
 
     this.innerHTML = `
-      <span class="title"></span>
-      <span class="location"></span>`;
+      <span class="title" title="${this.dataset.summary} ${this.dataset.location === "null" ? "" : `(${this.dataset.location})`}">${this.dataset.summary}</span>
+      <span class="location">${this.dataset.location === "null" ? "" : this.dataset.location}</span>`;
   }
 }
 
@@ -74,4 +74,4 @@ export function parseIsoDate(isoDateString) {
   return [year, month, day];
 }
 
-customElements.define("calendar-event", CalendarEvent, { extends: "li" });
+customElements.define("calendar-event", CalendarEvent);
