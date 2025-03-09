@@ -86,3 +86,29 @@ export async function saveEvent(event) {
 export async function deleteEvent(event) {
   // remove the event from the data object
 }
+
+export function getColorFromName(name) {
+  const preparedName = name.toLowerCase().replaceAll(" ", "");
+  const limitedName = preparedName.substring(0, 6);
+  const components = limitedName.split("");
+  const numberMap = components.map((e) => parseInt(("abcdefghijklmnopqrstuvwxyz".indexOf(e) + 1) % 16).toString(16));
+  const result = numberMap.join("").padEnd(6, "ff");
+  const transparentResult = `#${result}44`;
+
+  return transparentResult;
+}
+
+export function isDateInPast(isoDateString) {
+  const today = new Date();
+  const [year, month, day] = parseIsoDate(isoDateString);
+
+  return day < today.getDate() || month < today.getMonth() + 1 || year < today.getFullYear();
+}
+
+export function parseIsoDate(isoDateString) {
+  const year = parseInt(isoDateString.substr(0, 4));
+  const month = parseInt(isoDateString.substr(5, 2));
+  const day = parseInt(isoDateString.substr(8, 2));
+
+  return [year, month, day];
+}
