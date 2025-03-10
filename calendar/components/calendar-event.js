@@ -19,6 +19,7 @@ export class CalendarEvent extends HTMLElement {
     const eventYear = this.dataset.startDate.substring(0, 4);
     const eventMonth = this.dataset.startDate.substring(5, 7);
     const eventDay = this.dataset.startDate.substring(8, 10);
+    const calendarDate = `${this.dataset.calendarYear}-${this.dataset.calendarMonth.padStart(2, "0")}-${this.dataset.calendarDay.padStart(2, "0")}`;
 
     this.style.backgroundColor = getColorFromName(this.dataset.calendar);
 
@@ -26,7 +27,7 @@ export class CalendarEvent extends HTMLElement {
     if (eventYear === this.dataset.calendarYear && eventMonth === this.dataset.calendarMonth.padStart(2, "0")) {
       if (this.dataset.endDate && this.dataset.endDate > this.dataset.startDate) {
         if (this.dataset.calendarDay.padStart(2, "0") === eventDay) this.classList.add("multiple-days-start");
-        else if (this.dataset.endDate === eventDay) this.classList.add("multiple-days-end");
+        else if (this.dataset.endDate === calendarDate) this.classList.add("multiple-days-end");
         else this.classList.add("multiple-days-middle");
       } else this.classList.add("single-day");
     } else {

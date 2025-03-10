@@ -76,7 +76,7 @@ export function getEvents(year, month, day) {
   const dateStart = new Date(year, month - 1, day, 0, 0, 0, 0);
   const dateEnd = new Date(year, month - 1, day, 23, 59, 59, 999);
 
-  return eventsForMonth.filter((e) => e.startDate >= dateStart && e.startDate <= dateEnd);
+  return eventsForMonth.filter((e) => (e.startDate >= dateStart && e.startDate <= dateEnd) || (e.startDate <= dateStart && e.endDate >= dateStart));
 }
 
 export async function saveEvent(event) {
