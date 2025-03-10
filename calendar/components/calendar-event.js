@@ -18,21 +18,22 @@ export class CalendarEvent extends HTMLElement {
   connectedCallback() {
     const eventYear = this.dataset.startDate.substring(0, 4);
     const eventMonth = this.dataset.startDate.substring(5, 7);
+    const eventDay = this.dataset.startDate.substring(8, 10);
 
     this.style.backgroundColor = getColorFromName(this.dataset.calendar);
 
     if (isDateInPast(this.dataset.startDate)) this.classList.add("past-event");
-    // if (eventYear === this.dataset.calendarYear && eventMonth === this.dataset.calendarMonth) {
-    //   if (this.dataset.endDate && this.dataset.endDate > this.dataset.startDate) {
-    //     if (this.dataset.startDate === isoCalendarDate) this.classList.add("multiple-days-start");
-    //     else if (this.dataset.endDate === isoCalendarDate) this.classList.add("multiple-days-end");
-    //     else this.classList.add("multiple-days-middle");
-    //   } else this.classList.add("single-day");
-    // } else {
-    //   if (this.dataset.calendar === "Birthdays") this.classList.add("single-day");
-    //   else if (this.dataset.endDate === 1) this.classList.add("multiple-days-end");
-    //   else this.classList.add("multiple-days-middle");
-    // }
+    if (eventYear === this.dataset.calendarYear && eventMonth === this.dataset.calendarMonth.padStart(2, "0")) {
+      if (this.dataset.endDate && this.dataset.endDate > this.dataset.startDate) {
+        if (this.dataset.calendarDay.padStart(2, "0") === eventDay) this.classList.add("multiple-days-start");
+        else if (this.dataset.endDate === eventDay) this.classList.add("multiple-days-end");
+        else this.classList.add("multiple-days-middle");
+      } else this.classList.add("single-day");
+    } else {
+      if (this.dataset.calendar === "Birthdays") this.classList.add("single-day");
+      else if (this.dataset.endDate === 1) this.classList.add("multiple-days-end");
+      else this.classList.add("multiple-days-middle");
+    }
   }
 }
 
