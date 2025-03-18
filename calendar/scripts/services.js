@@ -1,8 +1,8 @@
 import ICAL from "https://unpkg.com/ical.js/dist/ical.min.js";
 
 const data = {};
-const yearlyCache = {};
-const monthlyCache = {};
+let yearlyCache = {};
+let monthlyCache = {};
 
 export async function loadEvents(files) {
   const file = files[0];
@@ -36,6 +36,9 @@ export async function loadEvents(files) {
       duration: event.duration,
     };
   });
+
+  yearlyCache = {};
+  monthlyCache = {};
 }
 
 export function getEventsForYear(year) {
