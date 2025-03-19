@@ -115,3 +115,132 @@ export function parseIsoDate(isoDateString) {
 
   return [year, month, day];
 }
+
+export function generatePDF(year, month) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF("landscape");
+
+  const settings = initializeSettings(doc);
+  const monthName = new Date(year, month).toLocaleString("default", { month: "long" });
+  const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const adjustedFirstDay = getAdjustedFirstDay(year, month);
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  // Draw title, header, and calendar in sequence
+  drawTitle(doc, monthName, year, settings);
+  drawHeader(doc, daysOfWeek, settings);
+  drawCalendar(doc, year, month, daysInMonth, adjustedFirstDay, settings);
+
+  doc.save(`${monthName.toLowerCase()}_${year}_calendar.pdf`);
+}
+
+function initializeSettings(doc) {
+  const pageWidth = doc.internal.pageSize.width;
+  const pageHeight = doc.internal.pageSize.height;
+  const margin = 10;
+  const gap = 1;
+  const numColumns = 7;
+  const numRows = 6;
+  const textColor = "#2a3434";
+  const titleHeight = 20;
+  const headerHeight = 10;
+  const footerHeight = 10;
+  const availableHeight = pageHeight - 2 * margin - titleHeight - headerHeight - footerHeight;
+  const cellWidth = (pageWidth - 2 * margin - (numColumns - 1) * gap) / numColumns;
+  const cellHeight = availableHeight / numRows;
+
+  return { margin, gap, numColumns, numRows, titleHeight, headerHeight, footerHeight, cellWidth, cellHeight, textColor };
+}
+
+function drawTitle(doc, monthName, year, settings) {
+  doc.setFontSize(18);
+  doc.setTextColor(settings.textColor);
+  doc.text(`${monthName} ${year}`, doc.internal.pageSize.width / 2, settings.margin + settings.titleHeight / 2, { align: "center" });
+}
+
+function drawHeader(doc, daysOfWeek, settings) {
+  doc.setFontSize(16);
+  daysOfWeek.forEach((day, i) => {
+    doc.text(
+      day,
+      settings.margin + i * (settings.cellWidth + settings.gap) + settings.cellWidth / 2,
+      settings.margin + settings.titleHeight + settings.headerHeight / 2,
+      { align: "center" }
+    );
+  });
+}
+
+function getAdjustedFirstDay(year, month) {
+  const firstDayOfMonth = new Date(year, month, 1).getDay();
+  return firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
+}
+
+function drawCalendar(doc, year, month, daysInMonth, adjustedFirstDay, settings) {
+  let day = 1;
+  for (let row = 0; row < settings.numRows; row++) {
+    for (let col = 0; col < settings.numColumns; col++) {
+      const x = settings.margin + col * (settings.cellWidth + settings.gap);
+      const y = settings.margin + settings.titleHeight + settings.headerHeight + row * (settings.cellHeight + settings.gap);
+
+      if ((row === 0 && col >= adjustedFirstDay) || (row > 0 && day <= daysInMonth)) {
+        doc.setDrawColor("#bec5c4");
+        doc.rect(x, y, settings.cellWidth, settings.cellHeight);
+        doc.setFontSize(16);
+        doc.text(day.toString(), x + 3, y + 7); // Draw day number
+
+        // Draw events
+        drawEvents(doc, x, y, day, year, month, settings);
+        day++;
+      }
+    }
+  }
+}
+
+function drawEvents(doc, x, y, day, year, month, settings) {
+  const events = getEvents(year, month + 1, day);
+  const eventWidth = settings.cellWidth - 6;
+
+  let eventY = y + 10;
+  let annotationText = "";
+
+  doc.setTextColor(settings.textColor);
+  doc.setFontSize(8);
+
+  events.forEach((event) => {
+    if (eventY + 6 <= y + settings.cellHeight) {
+      annotationText += `${
+        event.startTimeString === "00:00:00"
+          ? event.summary
+          : `${event.startTimeString.substring(0, 5)} - ${event.endTimeString.substring(0, 5)} ${event.summary}`
+      } ${event.location ?? ""}\n`;
+      const eventSummary = `${event.startTimeString === "00:00:00" ? event.summary : `${event.startTimeString.substring(0, 5)} ${event.summary}`}`;
+
+      doc.setDrawColor("#bec5c4");
+      doc.setFillColor(255, 255, 255);
+      doc.roundedRect(x + 3, eventY, eventWidth, 4.3, 1, 1); // Draw rounded rectangle for the event
+      doc.text(truncateEventText(doc, eventSummary, eventWidth), x + 4.3, eventY + 3); // Draw event text inside the pill
+
+      eventY += 4.3 + 1; // Move down for the next event
+    }
+  });
+
+  if (annotationText)
+    doc.createAnnotation({
+      type: "text", // A simple text annotation (like a tooltip)
+      bounds: { x: x + 11, y: y + 1, w: eventWidth, h: 2 }, // Position of the annotation
+      title: "Events", // Title of the annotation (optional)
+      contents: annotationText, // The content (tooltip) to display when clicked
+      open: false, // Set to true to have it initially open, false for it to open on click
+    });
+}
+
+function truncateEventText(doc, eventSummary, eventWidth) {
+  let truncatedText = "";
+  for (let i = 0; i < eventSummary.length; i++) {
+    truncatedText += eventSummary[i];
+    if (doc.getTextWidth(truncatedText + "...") > eventWidth - 3) {
+      return truncatedText + "...";
+    }
+  }
+  return eventSummary;
+}
