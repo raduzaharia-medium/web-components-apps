@@ -123,8 +123,11 @@ export function generatePDF(year, month) {
   const settings = initializeSettings(doc);
   const monthName = new Date(year, month).toLocaleString("default", { month: "long" });
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  const adjustedFirstDay = getAdjustedFirstDay(year, month);
+  const firstDayOfMonth = new Date(year, month, 1).getDay();
+  const adjustedFirstDay = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
   const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  doc.setFont("Ubuntu-R", "normal");
 
   // Draw title, header, and calendar in sequence
   drawTitle(doc, monthName, year, settings);
@@ -142,6 +145,8 @@ function initializeSettings(doc) {
   const numColumns = 7;
   const numRows = 6;
   const textColor = "#2a3434";
+  const textColorLight = "#778a8a";
+  const borderColor = "#bec5c4";
   const titleHeight = 20;
   const headerHeight = 10;
   const footerHeight = 10;
@@ -149,17 +154,20 @@ function initializeSettings(doc) {
   const cellWidth = (pageWidth - 2 * margin - (numColumns - 1) * gap) / numColumns;
   const cellHeight = availableHeight / numRows;
 
-  return { margin, gap, numColumns, numRows, titleHeight, headerHeight, footerHeight, cellWidth, cellHeight, textColor };
+  return { margin, gap, numColumns, numRows, titleHeight, headerHeight, footerHeight, cellWidth, cellHeight, textColor, textColorLight, borderColor };
 }
 
 function drawTitle(doc, monthName, year, settings) {
   doc.setFontSize(18);
   doc.setTextColor(settings.textColor);
+
   doc.text(`${monthName} ${year}`, doc.internal.pageSize.width / 2, settings.margin + settings.titleHeight / 2, { align: "center" });
 }
 
 function drawHeader(doc, daysOfWeek, settings) {
   doc.setFontSize(16);
+  doc.setTextColor(settings.textColor);
+
   daysOfWeek.forEach((day, i) => {
     doc.text(
       day,
@@ -170,11 +178,6 @@ function drawHeader(doc, daysOfWeek, settings) {
   });
 }
 
-function getAdjustedFirstDay(year, month) {
-  const firstDayOfMonth = new Date(year, month, 1).getDay();
-  return firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
-}
-
 function drawCalendar(doc, year, month, daysInMonth, adjustedFirstDay, settings) {
   let day = 1;
   for (let row = 0; row < settings.numRows; row++) {
@@ -183,9 +186,11 @@ function drawCalendar(doc, year, month, daysInMonth, adjustedFirstDay, settings)
       const y = settings.margin + settings.titleHeight + settings.headerHeight + row * (settings.cellHeight + settings.gap);
 
       if ((row === 0 && col >= adjustedFirstDay) || (row > 0 && day <= daysInMonth)) {
-        doc.setDrawColor("#bec5c4");
+        doc.setDrawColor(settings.borderColor);
         doc.rect(x, y, settings.cellWidth, settings.cellHeight);
+
         doc.setFontSize(16);
+        doc.setDrawColor(settings.textColor);
         doc.text(day.toString(), x + 3, y + 7); // Draw day number
 
         // Draw events
@@ -199,43 +204,86 @@ function drawCalendar(doc, year, month, daysInMonth, adjustedFirstDay, settings)
 function drawEvents(doc, x, y, day, year, month, settings) {
   const events = getEvents(year, month + 1, day);
   const eventWidth = settings.cellWidth - 6;
+  const monthName = new Date(year, month).toLocaleString("default", { month: "long" });
 
   let eventY = y + 10;
-  let annotationText = "";
+  let annotationText = "\n";
+  let displayedEventCount = 0;
 
   doc.setTextColor(settings.textColor);
   doc.setFontSize(8);
 
   events.forEach((event) => {
-    if (eventY + 6 <= y + settings.cellHeight) {
-      annotationText += `${
-        event.startTimeString === "00:00:00"
-          ? event.summary
-          : `${event.startTimeString.substring(0, 5)} - ${event.endTimeString.substring(0, 5)} ${event.summary}`
-      } ${event.location ?? ""}\n`;
-      const eventSummary = `${event.startTimeString === "00:00:00" ? event.summary : `${event.startTimeString.substring(0, 5)} ${event.summary}`}`;
+    const eventSummary =
+      event.startTimeString === "00:00:00"
+        ? event.summary
+        : `${event.startTimeString.substring(0, 5)} - ${event.endTimeString.substring(0, 5)} ${event.summary}`;
 
-      doc.setDrawColor("#bec5c4");
-      doc.setFillColor(255, 255, 255);
-      doc.roundedRect(x + 3, eventY, eventWidth, 4.3, 1, 1); // Draw rounded rectangle for the event
-      doc.text(truncateEventText(doc, eventSummary, eventWidth), x + 4.3, eventY + 3); // Draw event text inside the pill
+    annotationText += `${eventSummary} ${event.location ? `(${event.location})` : ""}\n`;
+
+    if (eventY + 6 <= y + settings.cellHeight) {
+      // Draw the event using the extracted drawEvent method
+      drawEvent(doc, x, eventY, event, eventWidth, settings);
 
       eventY += 4.3 + 1; // Move down for the next event
+      displayedEventCount++;
     }
   });
 
-  if (annotationText)
+  // If more events exist, add a "More..." label at the bottom
+  if (displayedEventCount < events.length) {
+    const moreText = "...";
+    const textWidth = doc.getTextWidth(moreText); // Get the width of the "More..." text
+    const centerX = x + 3 + (eventWidth - textWidth) / 2; // Calculate the X position to center the text
+
+    doc.setTextColor(settings.textColorLight); // Light gray for "More..." text
+    doc.text(moreText, centerX, eventY); // Position the "More..." label centered
+    doc.setTextColor(settings.textColor); // Reset the text color
+  }
+
+  if (annotationText !== "\n")
     doc.createAnnotation({
       type: "text", // A simple text annotation (like a tooltip)
       bounds: { x: x + 11, y: y + 1, w: eventWidth, h: 2 }, // Position of the annotation
-      title: "Events", // Title of the annotation (optional)
+      title: `${day} ${monthName} ${year}`, // Title of the annotation (optional)
       contents: annotationText, // The content (tooltip) to display when clicked
       open: false, // Set to true to have it initially open, false for it to open on click
     });
 }
 
+function drawEvent(doc, x, eventY, event, eventWidth, settings) {
+  const eventSummary = `${event.startTimeString === "00:00:00" ? event.summary : `${event.startTimeString.substring(0, 5)} ${event.summary}`}`;
+
+  // Get the color based on the event summary (or any string you'd like)
+  const eventColor = getColorFromName(event.calendar);
+
+  // Set the fill color for the event pill (background color)
+  const r = parseInt(eventColor.slice(1, 3), 16); // Extract the red component (from hex)
+  const g = parseInt(eventColor.slice(3, 5), 16); // Extract the green component (from hex)
+  const b = parseInt(eventColor.slice(5, 7), 16); // Extract the blue component (from hex)
+
+  // Get the alpha channel (last 2 characters in the hex color)
+  const alphaHex = eventColor.substring(6, 8);
+  const alpha = parseInt(alphaHex, 16) / 255; // Convert alpha to a decimal value (0 to 1)
+
+  // Lighten the color by blending it with white (rgb(255, 255, 255))
+  const lightR = Math.round((1 - alpha) * r + alpha * 255);
+  const lightG = Math.round((1 - alpha) * g + alpha * 255);
+  const lightB = Math.round((1 - alpha) * b + alpha * 255);
+
+  doc.setFillColor(lightR, lightG, lightB); // Use the RGB values from the hex color
+
+  doc.setDrawColor(settings.borderColor);
+  doc.roundedRect(x + 3, eventY, eventWidth, 4.3, 1, 1, "FD"); // Draw filled rounded rectangle (FD = fill and draw)
+
+  // Draw the event text inside the pill
+  doc.setTextColor(settings.textColor);
+  doc.text(truncateEventText(doc, eventSummary, eventWidth), x + 4.3, eventY + 3);
+}
+
 function truncateEventText(doc, eventSummary, eventWidth) {
   let truncatedText = "";
+
   for (let i = 0; i < eventSummary.length; i++) {
     truncatedText += eventSummary[i];
     if (doc.getTextWidth(truncatedText + "...") > eventWidth - 3) {
