@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Ubuntu-R.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/Ubuntu-B.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: italic;
+    font-weight: 400;
+    src: url('../fonts/Ubuntu-RI.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: italic;
+    font-weight: 700;
+    src: url('../fonts/Ubuntu-BI.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 100;
+    src: url('../fonts/Ubuntu-L.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: italic;
+    font-weight: 100;
+    src: url('../fonts/Ubuntu-LI.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../fonts/Ubuntu-M.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: italic;
+    font-weight: 600;
+    src: url('../fonts/Ubuntu-MI.ttf') format('truetype');
+}

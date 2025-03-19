@@ -1,7 +1,4 @@
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('../fonts/Ubuntu-R.ttf') format('truetype');
-}
+@import url('./fonts.css');
 
 :root {
   --text-color: #2a3434;

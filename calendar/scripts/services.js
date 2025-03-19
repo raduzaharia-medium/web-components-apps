@@ -127,8 +127,6 @@ export function generatePDF(year, month) {
   const adjustedFirstDay = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-  doc.setFont("Ubuntu-R", "normal");
-
   // Draw title, header, and calendar in sequence
   drawTitle(doc, monthName, year, settings);
   drawHeader(doc, daysOfWeek, settings);
@@ -160,6 +158,7 @@ function initializeSettings(doc) {
 function drawTitle(doc, monthName, year, settings) {
   doc.setFontSize(18);
   doc.setTextColor(settings.textColor);
+  doc.setFont("Ubuntu-R", "normal");
 
   doc.text(`${monthName} ${year}`, doc.internal.pageSize.width / 2, settings.margin + settings.titleHeight / 2, { align: "center" });
 }
@@ -167,6 +166,7 @@ function drawTitle(doc, monthName, year, settings) {
 function drawHeader(doc, daysOfWeek, settings) {
   doc.setFontSize(16);
   doc.setTextColor(settings.textColor);
+  doc.setFont("Ubuntu-R", "normal");
 
   daysOfWeek.forEach((day, i) => {
     doc.text(
@@ -190,6 +190,7 @@ function drawCalendar(doc, year, month, daysInMonth, adjustedFirstDay, settings)
         doc.rect(x, y, settings.cellWidth, settings.cellHeight);
 
         doc.setFontSize(16);
+        doc.setFont("Ubuntu-L", "normal");
         doc.setDrawColor(settings.textColor);
         doc.text(day.toString(), x + 3, y + 7); // Draw day number
 
@@ -211,6 +212,7 @@ function drawEvents(doc, x, y, day, year, month, settings) {
   let displayedEventCount = 0;
 
   doc.setTextColor(settings.textColor);
+  doc.setFont("Ubuntu-R", "normal");
   doc.setFontSize(8);
 
   events.forEach((event) => {
@@ -278,6 +280,7 @@ function drawEvent(doc, x, eventY, event, eventWidth, settings) {
 
   // Draw the event text inside the pill
   doc.setTextColor(settings.textColor);
+  doc.setFont("Ubuntu-R", "normal");
   doc.text(truncateEventText(doc, eventSummary, eventWidth), x + 4.3, eventY + 3);
 }
 
