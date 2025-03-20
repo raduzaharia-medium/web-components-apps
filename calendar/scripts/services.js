@@ -233,7 +233,7 @@ function drawEvents(doc, x, y, day, year, month, settings) {
 
     if (eventY + 6 <= y + settings.cellHeight) {
       // Draw the event using the extracted drawEvent method
-      drawEvent(doc, x, eventY, event, eventWidth, settings);
+      drawEvent(doc, x, eventY, event, eventWidth, settings, day, month + 1, year);
 
       eventY += 4.3 + 1; // Move down for the next event
       displayedEventCount++;
@@ -261,7 +261,7 @@ function drawEvents(doc, x, y, day, year, month, settings) {
     });
 }
 
-function drawEvent(doc, x, eventY, event, eventWidth, settings) {
+function drawEvent(doc, x, eventY, event, eventWidth, settings, calendarDay, calendarMonth, calendarYear) {
   const eventSummary = `${event.startTimeString === "00:00:00" ? event.summary : `${event.startTimeString.substring(0, 5)} ${event.summary}`}`;
 
   // Get the color based on the event summary (or any string you'd like)
@@ -279,14 +279,35 @@ function drawEvent(doc, x, eventY, event, eventWidth, settings) {
   const lightB = Math.round((1 - alpha) * b + alpha * 255);
 
   doc.setFillColor(lightR, lightG, lightB); // Use the RGB values from the hex color
-
   doc.setDrawColor(settings.borderColor);
-  doc.roundedRect(x + 3, eventY, eventWidth, 4.3, 1, 1, "FD"); // Draw filled rounded rectangle (FD = fill and draw)
 
-  // Draw the event text inside the pill
-  doc.setTextColor(settings.textColor);
-  doc.setFont("Ubuntu-R", "normal");
-  doc.text(truncateEventText(doc, eventSummary, eventWidth), x + 4.3, eventY + 3);
+  // doc.roundedRect(x + 3, eventY, eventWidth, 4.3, 1, 1, "FD"); // Draw filled rounded rectangle (FD = fill and draw)
+
+  const eventDay = event.startDateString.substring(8, 10);
+  const calendarDate = `${calendarYear}-${calendarMonth.toString().padStart(2, "0")}-${calendarDay.toString().padStart(2, "0")}`;
+  const isMultiDay = event.endDateString && event.endDate > event.startDate && event.endTimeString !== "00:00:00" && event.duration.days > 0;
+  const isMultiDayStart = calendarDay.toString().padStart(2, "0") === eventDay;
+  const isMultiDayEnd = event.endDateString === calendarDate;
+
+  if (isMultiDay && !isMultiDayStart && !isMultiDayEnd) {
+    doc.rect(x, eventY, settings.cellWidth, 4.3, "FD");
+  } else if (isMultiDay && isMultiDayStart) {
+    doc.rect(x + 3, eventY, settings.cellWidth - 3, 4.3, "FD");
+
+    // Draw the event text inside the pill
+    doc.setTextColor(settings.textColor);
+    doc.setFont("Ubuntu-R", "normal");
+    doc.text(truncateEventText(doc, eventSummary, eventWidth), x + 4.3, eventY + 3);
+  } else if (isMultiDay && isMultiDayEnd) {
+    doc.rect(x, eventY, eventWidth + 3, 4.3, "FD");
+  } else {
+    doc.rect(x + 3, eventY, eventWidth, 4.3, "FD");
+
+    // Draw the event text inside the pill
+    doc.setTextColor(settings.textColor);
+    doc.setFont("Ubuntu-R", "normal");
+    doc.text(truncateEventText(doc, eventSummary, eventWidth), x + 4.3, eventY + 3);
+  }
 }
 
 function truncateEventText(doc, eventSummary, eventWidth) {
