@@ -36,10 +36,10 @@ calendar-day {
   }
 
   span {
-    font-weight: 300;
 
     &.mobile-title {
       display: none;
+      font-weight: 300;
 
       @media (max-width: 710px) {
         display: initial;
@@ -47,6 +47,8 @@ calendar-day {
     }
 
     &.desktop-title {
+      font-weight: 300;
+
       @media (max-width: 710px) {
         display: none;
       }

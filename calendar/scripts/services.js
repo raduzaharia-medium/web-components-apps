@@ -1,6 +1,10 @@
 import ICAL from "https://unpkg.com/ical.js/dist/ical.min.js";
 
-const data = {};
+const data = localStorage.getItem("calendarData")
+  ? JSON.parse(localStorage.getItem("calendarData"), (key, value) => {
+      return typeof value === "string" && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/.test(value) ? new Date(value) : value;
+    })
+  : {};
 let yearlyCache = {};
 let monthlyCache = {};
 
@@ -33,9 +37,11 @@ export async function loadEvents(files) {
         2,
         0
       )}`,
-      duration: event.duration,
+      duration: { days: event.duration.days, hours: event.duration.hours, minutes: event.duration.minutes },
     };
   });
+
+  localStorage.setItem("calendarData", JSON.stringify(data));
 
   yearlyCache = {};
   monthlyCache = {};
@@ -44,7 +50,7 @@ export async function loadEvents(files) {
 export function getEventsForYear(year) {
   let eventsForYear = yearlyCache[year];
 
-  if (!eventsForYear) {
+  if (!eventsForYear || eventsForYear.length === 0) {
     const dateStart = new Date(year, 0, 1);
     const dateEnd = new Date(year, 12, 31);
     eventsForYear = [];
@@ -63,7 +69,7 @@ export function getEventsForYear(year) {
 export function getEventsForMonth(year, month) {
   let eventsForMonth = monthlyCache[`${year}-${month}`];
 
-  if (!eventsForMonth) {
+  if (!eventsForMonth || eventsForMonth.length === 0) {
     const dateStart = new Date(year, month - 1, 1);
     const dateEnd = new Date(year, month, 0);
     const eventsForYear = getEventsForYear(year);
@@ -246,7 +252,7 @@ function drawEvents(doc, x, y, day, year, month, settings) {
   if (annotationText !== "\n")
     doc.createAnnotation({
       type: "text", // A simple text annotation (like a tooltip)
-      bounds: { x: x + 11, y: y + 1, w: eventWidth, h: 2 }, // Position of the annotation
+      bounds: { x: x, y: y, w: settings.cellWidth, h: settings.cellHeight }, // Position of the annotation
       title: `${day} ${monthName} ${year}`, // Title of the annotation (optional)
       contents: annotationText, // The content (tooltip) to display when clicked
       open: false, // Set to true to have it initially open, false for it to open on click
