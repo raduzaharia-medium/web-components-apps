@@ -135,12 +135,14 @@ export function generatePDF(year, month) {
   const adjustedFirstDay = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
+  doc.addImage("../../shared/backgrounds/light-pink.png", "PNG", 0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight());
+
   // Draw title, header, and calendar in sequence
   drawTitle(doc, monthName, year, settings);
   drawHeader(doc, daysOfWeek, settings);
   drawCalendar(doc, year, month, daysInMonth, adjustedFirstDay, settings);
 
-  doc.save(`${monthName.toLowerCase()}_${year}_calendar.pdf`);
+  doc.save(`${year}-${(month + 1).toString().padStart(2, "0")}.pdf`);
 }
 
 function initializeSettings(doc) {
