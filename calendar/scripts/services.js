@@ -60,7 +60,7 @@ export function getEventsForYear(year) {
       eventsForYear = [...eventsForYear, ...selection];
     }
 
-    eventsForYear.sort((a, b) => a.startDate - b.startDate);
+    eventsForYear.sort((a, b) => (a.endDate > a.startDate ? 1000 : a.startDate - b.startDate));
     yearlyCache[year] = eventsForYear;
   }
 
@@ -85,7 +85,9 @@ export function getEvents(year, month, day) {
   const dateStart = new Date(year, month - 1, day, 0, 0, 0, 0);
   const dateEnd = new Date(year, month - 1, day, 23, 59, 59, 999);
 
-  return eventsForMonth.filter((e) => (e.startDate >= dateStart && e.startDate <= dateEnd) || (e.startDate <= dateStart && e.endDate >= dateStart));
+  return eventsForMonth.filter(
+    (e) => (e.startDate >= dateStart && e.startDate <= dateEnd) || (e.startDate <= dateStart && e.endDate >= dateStart && e.endTimeString !== "00:00:00")
+  );
 }
 
 export async function saveEvent(event) {
@@ -264,15 +266,12 @@ function drawEvent(doc, x, eventY, event, eventWidth, settings) {
 
   // Get the color based on the event summary (or any string you'd like)
   const eventColor = getColorFromName(event.calendar);
+  const alpha = 0.8; // Convert alpha to a decimal value (0 to 1)
 
   // Set the fill color for the event pill (background color)
   const r = parseInt(eventColor.slice(1, 3), 16); // Extract the red component (from hex)
   const g = parseInt(eventColor.slice(3, 5), 16); // Extract the green component (from hex)
   const b = parseInt(eventColor.slice(5, 7), 16); // Extract the blue component (from hex)
-
-  // Get the alpha channel (last 2 characters in the hex color)
-  const alphaHex = eventColor.substring(6, 8);
-  const alpha = parseInt(alphaHex, 16) / 255; // Convert alpha to a decimal value (0 to 1)
 
   // Lighten the color by blending it with white (rgb(255, 255, 255))
   const lightR = Math.round((1 - alpha) * r + alpha * 255);

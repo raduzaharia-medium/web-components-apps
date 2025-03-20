@@ -25,7 +25,7 @@ export class CalendarEvent extends HTMLElement {
 
     if (isDateInPast(this.dataset.startDate)) this.classList.add("past-event");
     if (eventYear === this.dataset.calendarYear && eventMonth === this.dataset.calendarMonth.padStart(2, "0")) {
-      if (this.dataset.endDate && this.dataset.endDate > this.dataset.startDate) {
+      if (this.dataset.endDate && this.dataset.endDate > this.dataset.startDate && this.dataset.endTime !== "00:00:00") {
         if (this.dataset.calendarDay.padStart(2, "0") === eventDay) this.classList.add("multiple-days-start");
         else if (this.dataset.endDate === calendarDate) this.classList.add("multiple-days-end");
         else this.classList.add("multiple-days-middle");

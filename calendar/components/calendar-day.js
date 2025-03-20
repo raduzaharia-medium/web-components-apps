@@ -18,6 +18,8 @@ export class CalendarDay extends HTMLElement {
   }
 
   connectedCallback() {
+    if (this.classList.contains("invalid")) return;
+
     const events = getEvents(this.dataset.year, this.dataset.month, this.dataset.day);
 
     if (events.length > 0) {
