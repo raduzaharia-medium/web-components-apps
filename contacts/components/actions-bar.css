@@ -1,0 +1,63 @@
+actions-bar {
+    display: flex;
+    justify-content: end;
+
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 3px black;
+    backdrop-filter: blur(3px);
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    img {
+        width: 3em;
+        padding: 0.6em 1em;
+        vertical-align: middle;
+        cursor: pointer;
+
+        @media (max-width: 710px) {
+            padding: 0.4em 0.4em;
+        }
+    }
+
+    #editContact,
+    #deleteContact,
+    #cancelEdit,
+    #commitEdit {
+        display: none;
+    }
+
+    #deleteContact {
+        float: left;
+    }
+}
+
+body.contact-selected {
+
+    #newContact,
+    #loadContacts {
+        display: none;
+    }
+
+    #editContact,
+    #deleteContact {
+        display: inline;
+    }
+}
+
+body.edit {
+
+    #newContact,
+    #loadContacts,
+    #editContact,
+    #deleteContact {
+        display: none;
+    }
+
+    #cancelEdit,
+    #commitEdit {
+        display: inline;
+    }
+}

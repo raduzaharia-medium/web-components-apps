@@ -43,17 +43,15 @@ export class CalendarSection extends HTMLElement {
     });
 
     this.querySelector("#loadEvents").addEventListener("click", async () => {
-      const directoryPicker = document.createElement("input");
+      const filePicker = document.createElement("input");
 
-      directoryPicker.type = "file";
-      directoryPicker.click();
+      filePicker.type = "file";
+      filePicker.click();
 
-      directoryPicker.addEventListener("change", async () => {
-        loadEvents(directoryPicker.files);
+      filePicker.addEventListener("change", async () => {
+        loadEvents(filePicker.files);
         this.querySelector("main").innerHTML = `<calendar-grid></calendar-grid>`;
       });
-
-      return;
     });
   }
 }

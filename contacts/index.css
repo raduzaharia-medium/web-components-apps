@@ -1,0 +1,37 @@
+@import url(../shared/styles/base.css);
+
+@import url(./components/contacts-responsive-nav.css);
+@import url(./components/contacts-section.css);
+@import url(./components/details-section.css);
+@import url(./components/edit-section.css);
+@import url(./components/actions-bar.css);
+
+main {
+    display: grid;
+    grid-column-gap: 1em;
+    grid-template-columns: 0.5fr 1fr;
+
+    position: absolute;
+    left: 3em;
+    right: 3em;
+    top: 6em;
+    bottom: 6em;
+
+    @media (max-width: 710px) {
+        grid-template-columns: 1fr;
+
+        left: 1em;
+        right: 1em;
+        top: 4em;
+        bottom: 0;
+    }
+}
+
+@media (max-width: 710px) {
+
+    body.contact-selected main #contacts,
+    main edit-section,
+    main details-section {
+        display: none;
+    }
+}

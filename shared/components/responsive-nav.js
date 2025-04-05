@@ -39,6 +39,7 @@ export class ResponsiveNav extends HTMLElement {
 
     this.querySelector("ul").addEventListener("click", (e) => {
       const selection = e.target.closest("li");
+      if (!selection) return;
 
       this.value = selection.dataset.value;
       this.dispatchEvent(new Event("change"));
