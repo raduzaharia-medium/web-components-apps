@@ -23,8 +23,10 @@ export async function loadContacts(files) {
       if (item[0] === "adr") contact.homeAddress = item[3].filter(Boolean).join(", ");
       if (item[0] === "title") contact.title = item[3];
       if (item[0] === "org") contact.company = item[3][0];
+      if (item[0] === "uid") contact.uid = item[3][0];
     }
 
+    if (!contact.uid) contact.uid = uuidv4();
     data.push(contact);
   }
 
@@ -37,33 +39,6 @@ export function getContacts(category) {
 
   if (category === "all") return result;
   else return result.filter((contact) => contact.category === category);
-}
-
-export async function getContactDetails(location) {
-  const request = await fetch(`contact?location=${location}`);
-  const result = await request.json();
-
-  result.name = `${result.firstName} ${result.lastName}`;
-
-  if (result.homeStreet && result.homeLocality && result.homeCountry)
-    result.homeAddress = `${result.homeStreet}, ${result.homeLocality}, ${result.homeCountry}`;
-  else if (result.homeStreet && result.homeCountry) result.homeAddress = `${result.homeStreet}, ${result.homeCountry}`;
-  else if (result.homeStreet && result.homeLocality) result.homeAddress = `${result.homeStreet}, ${result.homeLocality}`;
-  else if (result.homeLocality && result.homeCountry) result.homeAddress = `${result.homeLocality}, ${result.homeCountry}`;
-  else if (result.homeStreet) result.homeAddress = `${result.homeStreet}`;
-  else if (result.homeLocality) result.homeAddress = `${result.homeLocality}`;
-  else if (result.homeCountry) result.homeAddress = `${result.homeCountry}`;
-
-  if (result.workStreet && result.workLocality && result.workCountry)
-    result.homeAddress = `${result.workStreet}, ${result.workLocality}, ${result.workCountry}`;
-  else if (result.workStreet && result.workCountry) result.homeAddress = `${result.workStreet}, ${result.workCountry}`;
-  else if (result.workStreet && result.workLocality) result.homeAddress = `${result.workStreet}, ${result.workLocality}`;
-  else if (result.workLocality && result.workCountry) result.homeAddress = `${result.workLocality}, ${result.workCountry}`;
-  else if (result.workStreet) result.homeAddress = `${result.workStreet}`;
-  else if (result.workLocality) result.homeAddress = `${result.workLocality}`;
-  else if (result.workCountry) result.homeAddress = `${result.workCountry}`;
-
-  return result;
 }
 
 export async function updateContactDetails(contactDetails, location) {
@@ -79,11 +54,9 @@ export async function updateContactDetails(contactDetails, location) {
   return response;
 }
 
-export async function deleteContact(location) {
-  const request = await fetch(`/contact?location=${location}`, { method: "DELETE" });
-  const response = await request.text();
-
-  return response;
+export function deleteContact(uid) {
+  data = data.filter((contact) => contact.uid !== uid);
+  return "OK";
 }
 
 export async function createContact(contactDetails) {
@@ -97,4 +70,12 @@ export async function createContact(contactDetails) {
   const response = await request.text();
 
   return response;
+}
+
+function uuidv4() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+    var r = (Math.random() * 16) | 0,
+      v = c == "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
 }

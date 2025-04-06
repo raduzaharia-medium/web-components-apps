@@ -14,13 +14,31 @@ export class ActionsBar extends HTMLElement {
         <img id="commitEdit" src="../shared/images/dark/save.svg">
         <img id="loadContacts" src="../shared/images/dark/button-load.svg">`;
 
-    this.querySelector("#deleteContact").addEventListener("click", async () => {
-      const selection = document.getElementById("contactList").selectedData;
+    this.querySelector("#cancelEdit").addEventListener("click", () => {
+      document.querySelector("section").innerHTML = `<details-section></details-section>`;
+      document.body.classList.remove("edit");
+
+      const selection = document.querySelector("contacts-section custom-list").selectedData;
+      if (!selection) return;
+      document.querySelector("details-section").data = selection;
+    });
+
+    this.querySelector("#deleteContact").addEventListener("click", () => {
+      const selection = document.querySelector("contacts-section custom-list").selectedData;
       if (!selection) return;
 
       if (confirm("Are you sure?")) {
-        const result = await deleteContact(selection.location);
-        if (result === "OK") loadContacts(document.getElementById("category").value);
+        document.querySelector("contacts-section").classList.add("loading");
+
+        const result = deleteContact(selection.uid);
+        if (result === "OK") {
+          const category = document.querySelector("responsive-nav").value;
+          const contacts = getContacts(category);
+
+          document.querySelector("contacts-section custom-list").setItems(contacts);
+        }
+
+        document.querySelector("contacts-section").classList.remove("loading");
       }
     });
 
@@ -51,7 +69,7 @@ export class ActionsBar extends HTMLElement {
         document.body.classList.remove("edit");
         document.body.classList.remove("contact-selected");
 
-        document.querySelector("details-section").clear();
+        document.querySelector("section").innerHTML = "";
         document.querySelector("contacts-section").classList.add("loading");
 
         await loadContacts(filePicker.files);

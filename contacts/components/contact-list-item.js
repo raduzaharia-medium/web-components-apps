@@ -17,6 +17,7 @@ export class ContactListItem extends CustomListItem {
     this.dataset.email = newValue.email;
     this.dataset.phone = newValue.phone;
     this.dataset.homeAddress = newValue.homeAddress;
+    this.dataset.uid = newValue.uid;
   }
 
   constructor() {
