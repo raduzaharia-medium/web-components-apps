@@ -1,18 +1,26 @@
 import "../../shared/components/custom-list-skeleton.js";
 
 export class EditSection extends HTMLElement {
-  #data;
+  #uid = null;
 
   get data() {
-    return this.#data;
+    return {
+      uid: this.#uid,
+      name: this.querySelector("#name").value,
+      nickname: this.querySelector("#nickname").value,
+      title: this.querySelector("#title").value,
+      company: this.querySelector("#company").value,
+      homeAddress: this.querySelector("#homeAddress").value,
+      gender: this.querySelector("#gender").value,
+    };
   }
 
   set data(newValue) {
-    this.#data = newValue;
     this.clear();
 
     if (newValue === null) return;
 
+    this.#uid = newValue.uid;
     this.setName(newValue.name, newValue.nickname);
     this.setBirthday(newValue.birthday);
     this.setPhoto(newValue.gender);

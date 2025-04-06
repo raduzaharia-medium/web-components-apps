@@ -41,17 +41,20 @@ export function getContacts(category) {
   else return result.filter((contact) => contact.category === category);
 }
 
-export async function updateContactDetails(contactDetails, location) {
-  const request = await fetch("/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ ...contactDetails, location: location }),
-  });
-  const response = await request.text();
+export async function updateContactDetails(uid, contactDetails) {
+  const selection = data.filter((contact) => contact.uid === uid)[0];
+  if (!selection) return "Contact not found";
 
-  return response;
+  selection.name = contactDetails.name;
+  selection.nickname = contactDetails.nickname;
+  selection.birthday = contactDetails.birthday;
+  selection.title = contactDetails.title;
+  selection.company = contactDetails.company;
+  selection.homeAddress = contactDetails.homeAddress;
+  selection.phone = contactDetails.phone;
+  selection.email = contactDetails.email;
+
+  return "OK";
 }
 
 export function deleteContact(uid) {

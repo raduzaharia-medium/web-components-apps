@@ -1,4 +1,4 @@
-import { loadContacts, deleteContact, getContacts } from "../scripts/services.js";
+import { loadContacts, deleteContact, getContacts, updateContactDetails } from "../scripts/services.js";
 import "./edit-section.js";
 
 export class ActionsBar extends HTMLElement {
@@ -57,6 +57,21 @@ export class ActionsBar extends HTMLElement {
       history.pushState({ page: selection.name }, "Contacts", "./");
       document.querySelector("selected-item-nav").value = selection.name;
       document.querySelector("edit-section").classList.remove("loading");
+    });
+
+    this.querySelector("#commitEdit").addEventListener("click", async () => {
+      const selection = document.querySelector("edit-section").data;
+      if (!selection) return;
+
+      updateContactDetails(selection.uid, selection);
+
+      document.body.classList.remove("edit");
+      document.querySelector("section").innerHTML = `<details-section></details-section>`;
+
+      const category = document.querySelector("responsive-nav").value;
+      const contacts = getContacts(category);
+
+      document.querySelector("contacts-section custom-list").setItems(contacts);
     });
 
     this.querySelector("#loadContacts").addEventListener("click", async () => {
