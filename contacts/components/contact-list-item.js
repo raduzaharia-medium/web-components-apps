@@ -8,7 +8,7 @@ export class ContactListItem extends CustomListItem {
   set data(newValue) {
     this.innerText = newValue.name;
 
-    this.dataset.item = newValue.name;
+    this.dataset.item = newValue.uid;
     this.dataset.name = newValue.name;
     this.dataset.nickname = newValue.nickname;
     this.dataset.birthday = newValue.birthday;

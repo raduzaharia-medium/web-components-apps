@@ -72,6 +72,7 @@ export class ActionsBar extends HTMLElement {
       const contacts = getContacts(category);
 
       document.querySelector("contacts-section custom-list").setItems(contacts);
+      document.querySelector("contacts-section custom-list").select(selection.uid);
     });
 
     this.querySelector("#loadContacts").addEventListener("click", async () => {
