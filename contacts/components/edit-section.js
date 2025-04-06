@@ -14,6 +14,8 @@ export class EditSection extends HTMLElement {
       gender: this.querySelector("#gender").value,
       category: this.querySelector("#category").value,
       birthday: this.querySelector("#birthday").value,
+      email: Array.from(this.querySelectorAll("ul#editEmailInfo li:not(#addEmail) input")).map((element) => element.value),
+      phone: Array.from(this.querySelectorAll("ul#editPhoneInfo li:not(#addPhone) input")).map((element) => element.value),
     };
   }
 
@@ -79,10 +81,10 @@ export class EditSection extends HTMLElement {
         </div>
 
         <ul id="editPhoneInfo">
-            <li><input id="addPhone" placeholder="Phone number"></li>
+            <li id="addPhone"><input placeholder="Phone number"></li>
         </ul>
         <ul id="editEmailInfo">
-            <li><input id="addEmail" placeholder="Email address"></li>
+            <li id="addEmail"><input placeholder="Email address"></li>
         </ul>
 
         <custom-list-skeleton></custom-list-skeleton>`;
@@ -98,8 +100,14 @@ export class EditSection extends HTMLElement {
     this.querySelector("#gender").value = "";
     this.querySelector("#category").value = "";
     this.querySelector("#homeAddress").value = "";
-    //this.querySelector("#emailInfo").value = "";
-    //this.querySelector("#phoneInfo").value = "";
+
+    this.querySelectorAll("ul#editEmailInfo li").forEach((element) => {
+      if (element.id !== "addEmail") element.remove();
+    });
+
+    this.querySelectorAll("ul#editPhoneInfo li").forEach((element) => {
+      if (element.id !== "addPhone") element.remove();
+    });
   }
 
   setName(name, nickname) {
@@ -128,7 +136,7 @@ export class EditSection extends HTMLElement {
   setPhoto(gender) {
     this.querySelector("#photo").src = "";
 
-    if (!gender) this.querySelector("#photo").src = "./images/man.svg";
+    if (!gender || gender === "undefined") this.querySelector("#photo").src = "./images/man.svg";
     else this.querySelector("#photo").src = gender === "male" ? "./images/man.svg" : "./images/woman.svg";
   }
   setGender(gender) {
@@ -151,22 +159,36 @@ export class EditSection extends HTMLElement {
     this.querySelector("#homeAddress").value = homeAddress;
   }
   setEmails(emails) {
-    // this.querySelector("#emailInfo").value = "";
-    // if (!emails) return;
-    // for (const element of emails.split(",")) {
-    //   const emailNode = document.createElement("li");
-    //   emailNode.value = element;
-    //   this.querySelector("#emailInfo").appendChild(emailNode);
-    // }
+    this.querySelectorAll("ul#editEmailInfo li").forEach((element) => {
+      if (element.id !== "addEmail") element.remove();
+    });
+    if (!emails) return;
+
+    for (const element of emails.split(",")) {
+      const emailNode = document.createElement("li");
+      const emailInput = document.createElement("input");
+
+      emailInput.value = element;
+
+      emailNode.appendChild(emailInput);
+      this.querySelector("#editEmailInfo").appendChild(emailNode);
+    }
   }
   setPhoneNumbers(phoneNumbers) {
-    // this.querySelector("#phoneInfo").value = "";
-    // if (!phoneNumbers) return;
-    // for (const element of phoneNumbers.split(",")) {
-    //   const phoneNode = document.createElement("li");
-    //   phoneNode.value = element;
-    //   this.querySelector("#phoneInfo").appendChild(phoneNode);
-    // }
+    this.querySelectorAll("ul#editPhoneInfo li").forEach((element) => {
+      if (element.id !== "addPhone") element.remove();
+    });
+    if (!phoneNumbers) return;
+
+    for (const element of phoneNumbers.split(",")) {
+      const phoneNode = document.createElement("li");
+      const phoneInput = document.createElement("input");
+
+      phoneInput.value = element;
+
+      phoneNode.appendChild(phoneInput);
+      this.querySelector("#editPhoneInfo").appendChild(phoneNode);
+    }
   }
 }
 

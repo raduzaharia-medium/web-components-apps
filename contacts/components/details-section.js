@@ -74,7 +74,7 @@ export class DetailsSection extends HTMLElement {
   setPhoto(gender) {
     this.querySelector("#photo").src = "";
 
-    if (!gender) this.querySelector("#photo").src = "./images/man.svg";
+    if (!gender || gender === "undefined") this.querySelector("#photo").src = "./images/man.svg";
     else this.querySelector("#photo").src = gender === "male" ? "./images/man.svg" : "./images/woman.svg";
   }
   setOccupation(title, company) {
