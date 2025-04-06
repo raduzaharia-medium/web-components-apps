@@ -36,7 +36,7 @@ export class ContactsResponsiveNav extends HTMLElement {
     document.body.classList.remove("edit");
     document.body.classList.remove("contact-selected");
 
-    document.querySelector("details-section").clear();
+    document.querySelector("section").innerHTML = "";
     document.querySelector("contacts-section").classList.add("loading");
 
     const category = document.querySelector("responsive-nav").value;

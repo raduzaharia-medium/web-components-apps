@@ -31,4 +31,17 @@ contacts-section {
     custom-list-skeleton {
         display: none;
     }
+
+    &.loading {
+
+        custom-list,
+        item-counter,
+        input {
+            display: none;
+        }
+
+        custom-list-skeleton {
+            display: block;
+        }
+    }
 }
