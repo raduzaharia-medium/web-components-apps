@@ -58,6 +58,7 @@ export async function updateContactDetails(uid, contactDetails) {
   selection.category = contactDetails.category;
   selection.gender = contactDetails.gender;
 
+  // localStorage.setItem("contacts", JSON.stringify(data));
   return "OK";
 }
 
