@@ -12,6 +12,8 @@ export class EditSection extends HTMLElement {
       company: this.querySelector("#company").value,
       homeAddress: this.querySelector("#homeAddress").value,
       gender: this.querySelector("#gender").value,
+      category: this.querySelector("#category").value,
+      birthday: this.querySelector("#birthday").value,
     };
   }
 
@@ -24,10 +26,12 @@ export class EditSection extends HTMLElement {
     this.setName(newValue.name, newValue.nickname);
     this.setBirthday(newValue.birthday);
     this.setPhoto(newValue.gender);
+    this.setGender(newValue.gender);
     this.setOccupation(newValue.title, newValue.company);
     this.setHomeAddress(newValue.homeAddress);
     this.setEmails(newValue.email);
     this.setPhoneNumbers(newValue.phone);
+    this.setCategory(newValue.category);
   }
 
   constructor() {
@@ -49,9 +53,20 @@ export class EditSection extends HTMLElement {
             </div>
 
             <div id="editCategoryBirthdayGender">
-                <input id="category" placeholder="Category">
+                <select id="category">
+                  <option value="">Category</option>
+                  <option value="family">Family</option>  
+                  <option value="friends">Friends</option>
+                  <option value="work">Work</option>
+                  <option value="services">Services</option>
+                  <option value="others">Others</option>
+                </select>
                 <input id="birthday" placeholder="Birthday (YYYY-MM-DD)">
-                <input id="gender" placeholder="Gender (male/female)">
+                <select id="gender">
+                  <option value="">Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
             </div>
 
             <div id="editHomeAddress">
@@ -80,6 +95,8 @@ export class EditSection extends HTMLElement {
     this.querySelector("#birthday").value = "";
     this.querySelector("#title").value = "";
     this.querySelector("#company").value = "";
+    this.querySelector("#gender").value = "";
+    this.querySelector("#category").value = "";
     this.querySelector("#homeAddress").value = "";
     //this.querySelector("#emailInfo").value = "";
     //this.querySelector("#phoneInfo").value = "";
@@ -102,11 +119,23 @@ export class EditSection extends HTMLElement {
 
     this.querySelector("#birthday").value = formatted;
   }
+  setCategory(category) {
+    this.querySelector("#category").value = "";
+    if (!category || category === "undefined") return;
+
+    this.querySelector("#category").value = category;
+  }
   setPhoto(gender) {
     this.querySelector("#photo").src = "";
 
     if (!gender) this.querySelector("#photo").src = "./images/man.svg";
     else this.querySelector("#photo").src = gender === "male" ? "./images/man.svg" : "./images/woman.svg";
+  }
+  setGender(gender) {
+    this.querySelector("#gender").value = "";
+
+    if (!gender || gender === "undefined") return;
+    else this.querySelector("#gender").value = gender;
   }
   setOccupation(title, company) {
     this.querySelector("#title").value = "";

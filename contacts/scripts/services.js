@@ -24,6 +24,8 @@ export async function loadContacts(files) {
       if (item[0] === "title") contact.title = item[3];
       if (item[0] === "org") contact.company = item[3][0];
       if (item[0] === "uid") contact.uid = item[3][0];
+      if (item[0] === "gender") contact.gender = item[3][0];
+      if (item[0] === "categories") contact.category = item[3][0];
     }
 
     if (!contact.uid) contact.uid = uuidv4();
@@ -53,6 +55,8 @@ export async function updateContactDetails(uid, contactDetails) {
   selection.homeAddress = contactDetails.homeAddress;
   selection.phone = contactDetails.phone;
   selection.email = contactDetails.email;
+  selection.category = contactDetails.category;
+  selection.gender = contactDetails.gender;
 
   return "OK";
 }

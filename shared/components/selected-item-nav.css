@@ -3,6 +3,11 @@ selected-item-nav {
   width: max-content;
   margin: 0 auto;
 
+  select {
+    appearance: none;
+    border: none;
+  }
+
   img {
     width: 1.2em;
     vertical-align: middle;
