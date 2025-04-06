@@ -88,6 +88,34 @@ export class EditSection extends HTMLElement {
         </ul>
 
         <custom-list-skeleton></custom-list-skeleton>`;
+
+    this.querySelector("ul#editEmailInfo li#addEmail input").addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        const emailNode = document.createElement("li");
+        const emailInput = document.createElement("input");
+
+        emailInput.value = event.target.value;
+        event.target.value = "";
+
+        emailNode.appendChild(emailInput);
+        this.querySelector("#editEmailInfo").appendChild(emailNode);
+      }
+    });
+
+    this.querySelector("ul#editPhoneInfo li#addPhone input").addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        const phoneNode = document.createElement("li");
+        const phoneInput = document.createElement("input");
+
+        phoneInput.value = event.target.value;
+        event.target.value = "";
+
+        phoneNode.appendChild(phoneInput);
+        this.querySelector("#editPhoneInfo").appendChild(phoneNode);
+      }
+    });
   }
 
   clear() {
