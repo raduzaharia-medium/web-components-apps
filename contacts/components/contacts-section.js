@@ -28,6 +28,8 @@ export class ContactsSection extends HTMLElement {
       if (selection) {
         document.body.classList.add("contact-selected");
         document.querySelector("selected-item-nav").value = selection.item;
+
+        this.dispatchEvent(new CustomEvent("contact-selected", { bubbles: true, composed: true, detail: selection }));
       }
     });
   }

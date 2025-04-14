@@ -124,7 +124,7 @@ export class CustomList extends HTMLElement {
         }
       }
 
-      this.dispatchEvent(new Event("change"));
+      this.dispatchEvent(new CustomEvent("change", { bubbles: true, composed: true }));
     }
   }
 }

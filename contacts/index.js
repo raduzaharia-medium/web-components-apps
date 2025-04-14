@@ -3,7 +3,7 @@ import "./components/details-section.js";
 
 history.pushState({ page: "all" }, "Contacts", "./");
 
-document.querySelector("contacts-section custom-list").addEventListener("change", async () => {
+document.addEventListener("contact-selected", async () => {
   const selection = document.querySelector("contacts-section custom-list").selectedData;
   if (!selection) return;
 
@@ -63,6 +63,17 @@ document.addEventListener("edit-contact", async () => {
 
   history.pushState({ page: selection.name }, "Contacts", "./");
   document.querySelector("selected-item-nav").value = selection.name;
+  document.querySelector("edit-section").classList.remove("loading");
+});
+
+document.addEventListener("new-contact", async () => {
+  document.querySelector("section").innerHTML = `<edit-section></edit-section>`;
+
+  document.querySelector("edit-section").classList.add("loading");
+  document.body.classList.add("contact-selected");
+  document.body.classList.add("edit");
+
+  history.pushState({ page: "new-contact" }, "Contacts", "./");
   document.querySelector("edit-section").classList.remove("loading");
 });
 
