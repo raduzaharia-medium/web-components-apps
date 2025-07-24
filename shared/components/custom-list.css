@@ -8,5 +8,6 @@ custom-list {
 
   @media (max-width: 710px) {
     border-right: none;
+    padding-right: 0;
   }
 }

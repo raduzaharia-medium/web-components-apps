@@ -3,10 +3,14 @@
 @import url(../../shared/components/custom-list-skeleton.css);
 @import url(../../shared/components/item-counter.css);
 
-@import url(./contact-list-item.css);
+@import url(./article-list-item.css);
 
-contacts-section {
-  position: relative;
+articles-section {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
   input {
     display: block;
@@ -26,6 +30,8 @@ contacts-section {
     bottom: 0;
     left: 0;
     right: 0;
+    padding-right: 0;
+    border-right: none;
 
     @media (max-width: 710px) {
       top: 2em;

@@ -26,7 +26,7 @@ export class ResponsiveNav extends HTMLElement {
         .map((element) => `<li class="${element.trim() === this.value ? "selected" : ""}" data-value="${element.trim().toLowerCase()}">${element.trim()}</li>`)
         .join("")}
       </ul>
-      <select class="mobile-only">${this.options
+      <select name="responsive-nav-selection" class="mobile-only">${this.options
         .split(",")
         .map((element) => `<option value="${element.trim().toLowerCase()}">${element.trim()}</option>`)
         .join("")}

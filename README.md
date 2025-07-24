@@ -20,7 +20,7 @@ The Music application offers to load a folder with `mp3` files and stores the me
 
 ## News
 
-The News application is an RSS reader which offers to load RSS feeds and store the articles in HTML local storage, showing them on a graphical list and details panel. It marks the read articles when they are opened and loads new articles when pressing the synchronization button.
+The News application is an RSS reader which offers to load an `opml` file with RSS feeds and store the articles in HTML local storage, showing them on a graphical list and details panel. It marks the read articles when they are opened and loads new articles when pressing the synchronization button. In order to load the articles for an RSS feed, the feed needs to have CORS access allowed. This is controlled by the feed provider, so in the absence of a backend we can only rely on feed URLS with CORS access.
 
 ## Roadmap and currently available applications
 

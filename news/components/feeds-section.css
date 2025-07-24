@@ -3,9 +3,9 @@
 @import url(../../shared/components/custom-list-skeleton.css);
 @import url(../../shared/components/item-counter.css);
 
-@import url(./contact-list-item.css);
+@import url(./feed-list-item.css);
 
-contacts-section {
+feeds-section {
   position: relative;
 
   input {

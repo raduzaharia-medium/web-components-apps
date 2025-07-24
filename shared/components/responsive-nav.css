@@ -25,17 +25,19 @@ responsive-nav {
 
   select {
     vertical-align: middle;
+    background-image: url(../images/dark/down-arrow.svg);
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-color: transparent;
+    padding-right: 1.4em;
+    text-align: center;
+    margin-inline: 0.4em;
+    appearance: none;
+    border: none;
     display: none;
 
     @media (max-width: 710px) {
       display: initial;
-      background-image: url(../images/dark/down-arrow.svg);
-      background-repeat: no-repeat;
-      background-position-x: 100%;
-      background-color: transparent;
-      padding-right: 1.4em;
-      text-align: right;
-      margin-inline: 0.4em;
     }
   }
 

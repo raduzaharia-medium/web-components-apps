@@ -1,9 +1,8 @@
 @import url(../shared/styles/base.css);
 
-@import url(./components/contacts-responsive-nav.css);
-@import url(./components/contacts-section.css);
-@import url(./components/details-section.css);
-@import url(./components/edit-section.css);
+@import url(./components/news-responsive-nav.css);
+@import url(./components/feeds-section.css);
+@import url(./components/articles-section.css);
 @import url(./components/actions-bar.css);
 
 main {
@@ -16,6 +15,10 @@ main {
   right: 3em;
   top: 6em;
   bottom: 6em;
+
+  section {
+    position: relative;
+  }
 
   @media (max-width: 710px) {
     grid-template-columns: 1fr;
@@ -34,8 +37,19 @@ main {
     }
   }
 
-  body.contact-selected main #contacts,
-  main edit-section,
+  body.feed-selected {
+    main {
+      feeds-section {
+        display: none;
+      }
+
+      section {
+        display: block;
+      }
+    }
+  }
+
+  body.article-selected main #articles,
   main details-section {
     display: none;
   }

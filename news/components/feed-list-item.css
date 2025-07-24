@@ -1,0 +1,20 @@
+feed-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+  justify-content: space-between;
+
+  .title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .counter {
+    background: #ae1c1c;
+    color: #fff;
+    font-size: 0.6em;
+    border-radius: 3em;
+    padding: 0.2em 0.4em;
+    font-weight: bold;
+  }
+}
