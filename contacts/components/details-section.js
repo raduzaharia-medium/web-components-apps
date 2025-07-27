@@ -24,7 +24,9 @@ export class DetailsSection extends HTMLElement {
 
   constructor() {
     super();
+  }
 
+  connectedCallback() {
     this.innerHTML = `
         <div class="main-info">
             <img id="photo" src="">

@@ -3,10 +3,55 @@ import "./components/details-section.js";
 
 history.pushState({ page: "all" }, "Contacts", "./");
 
-document.addEventListener("contact-selected", async () => {
+window.addEventListener("popstate", handlePopState);
+
+document.addEventListener("category-changed", handleCategoryChange);
+document.addEventListener("contact-selected", handleContactSelected);
+document.addEventListener("cancel-edit", handleCancelEdit);
+document.addEventListener("delete-contact", handleDeleteContact);
+document.addEventListener("edit-contact", handleEditContact);
+document.addEventListener("new-contact", handleNewContact);
+document.addEventListener("commit-edit", handleCommitEdit);
+document.addEventListener("import-vcf", handleImportVCF);
+
+function handlePopState(e) {
+  if (document.body.classList.contains("edit")) {
+    document.body.classList.remove("edit");
+    return;
+  }
+
+  if (document.body.classList.contains("contact-selected")) {
+    this.refreshContacts();
+    return;
+  }
+
+  if (!e.state || !e.state.page) return;
+
+  history.back();
+  this.refreshContacts();
+}
+
+function handleCategoryChange() {
+  document.body.classList.remove("edit");
+  document.body.classList.remove("contact-selected");
+
+  document.querySelector("section").innerHTML = "";
+  document.querySelector("contacts-section").classList.add("loading");
+
+  const category = document.querySelector("responsive-nav").value;
+  const contacts = getContacts(category);
+
+  document.querySelector("contacts-section item-counter").value = contacts.length;
+  document.querySelector("contacts-section custom-list").setItems(contacts);
+  document.querySelector("contacts-section").classList.remove("loading");
+}
+
+function handleContactSelected() {
   const selection = document.querySelector("contacts-section custom-list").selectedData;
   if (!selection) return;
 
+  document.body.classList.add("contact-selected");
+  document.querySelector("selected-item-nav").value = selection.item;
   document.querySelector("section").innerHTML = `<details-section></details-section>`;
 
   document.querySelector("details-section").classList.add("loading");
@@ -18,9 +63,9 @@ document.addEventListener("contact-selected", async () => {
   history.pushState({ page: selection.name }, "Contacts", "./");
   document.querySelector("selected-item-nav").value = selection.name;
   document.querySelector("details-section").classList.remove("loading");
-});
+}
 
-document.addEventListener("cancel-edit", async () => {
+function handleCancelEdit() {
   document.querySelector("section").innerHTML = `<details-section></details-section>`;
   document.body.classList.remove("edit");
 
@@ -28,9 +73,9 @@ document.addEventListener("cancel-edit", async () => {
   if (!selection) return;
 
   document.querySelector("details-section").data = selection;
-});
+}
 
-document.addEventListener("delete-contact", async () => {
+function handleDeleteContact() {
   const selection = document.querySelector("contacts-section custom-list").selectedData;
   if (!selection) return;
 
@@ -47,9 +92,9 @@ document.addEventListener("delete-contact", async () => {
 
     document.querySelector("contacts-section").classList.remove("loading");
   }
-});
+}
 
-document.addEventListener("edit-contact", async () => {
+function handleEditContact() {
   const selection = document.querySelector("contacts-section custom-list").selectedData;
   if (!selection) return;
 
@@ -64,9 +109,9 @@ document.addEventListener("edit-contact", async () => {
   history.pushState({ page: selection.name }, "Contacts", "./");
   document.querySelector("selected-item-nav").value = selection.name;
   document.querySelector("edit-section").classList.remove("loading");
-});
+}
 
-document.addEventListener("new-contact", async () => {
+function handleNewContact() {
   document.querySelector("section").innerHTML = `<edit-section></edit-section>`;
 
   document.querySelector("edit-section").classList.add("loading");
@@ -75,9 +120,9 @@ document.addEventListener("new-contact", async () => {
 
   history.pushState({ page: "new-contact" }, "Contacts", "./");
   document.querySelector("edit-section").classList.remove("loading");
-});
+}
 
-document.addEventListener("commit-edit", async () => {
+function handleCommitEdit() {
   const selection = document.querySelector("edit-section").data;
   if (!selection) return;
 
@@ -91,9 +136,9 @@ document.addEventListener("commit-edit", async () => {
 
   document.querySelector("contacts-section custom-list").setItems(contacts);
   document.querySelector("contacts-section custom-list").select(selection.uid);
-});
+}
 
-document.addEventListener("load-contacts", async () => {
+function handleImportVCF() {
   const filePicker = document.createElement("input");
 
   filePicker.type = "file";
@@ -114,4 +159,4 @@ document.addEventListener("load-contacts", async () => {
     document.querySelector("contacts-section custom-list").setItems(contacts);
     document.querySelector("contacts-section").classList.remove("loading");
   });
-});
+}

@@ -16,7 +16,9 @@ export class AlbumListItem extends CustomListItem {
 
   constructor() {
     super();
+  }
 
+  connectedCallback() {
     this.innerHTML = `<img loading="lazy" decoding="async" src="/music/images/musical-note.svg" />
       <legend>
         <strong></strong>

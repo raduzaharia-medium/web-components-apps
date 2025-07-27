@@ -1,7 +1,9 @@
 export class ActionsBar extends HTMLElement {
   constructor() {
     super();
+  }
 
+  connectedCallback() {
     this.innerHTML = `
         <img id="editContact" data-command="edit-contact" src="../shared/images/dark/edit.svg">
         <img id="newContact" data-command="new-contact" src="../shared/images/dark/plus.svg">
@@ -9,10 +11,8 @@ export class ActionsBar extends HTMLElement {
 
         <img id="cancelEdit" data-command="cancel-edit" src="../shared/images/dark/cancel.svg">
         <img id="commitEdit" data-command="commit-edit" src="../shared/images/dark/save.svg">
-        <img id="loadContacts" data-command="load-contacts" src="../shared/images/dark/button-load.svg">`;
-  }
+        <img id="loadContacts" data-command="import-vcf" src="../shared/images/dark/button-load.svg">`;
 
-  connectedCallback() {
     this.querySelectorAll("img").forEach((img) =>
       img.addEventListener("click", (event) => {
         const command = event.target.dataset.command;
