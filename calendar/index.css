@@ -5,5 +5,6 @@
 
 @import url(./components/calendar-section.css);
 @import url(./components/event-section.css);
+@import url(./components/actions-bar.css);
 
 @import url(./styles/main.css);

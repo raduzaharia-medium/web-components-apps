@@ -1,5 +1,3 @@
-import "./edit-section.js";
-
 export class ActionsBar extends HTMLElement {
   constructor() {
     super();

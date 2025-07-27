@@ -3,7 +3,9 @@ import "./calendar-section.js";
 export class DateNavigator extends HTMLElement {
   constructor() {
     super();
+  }
 
+  connectedCallback() {
     this.innerHTML = `
         <img id="previousMonth" src="../shared/images/light/left-arrow.svg">
         <select id="month">
@@ -21,16 +23,16 @@ export class DateNavigator extends HTMLElement {
     this.querySelector("#month").value = new Date().getMonth() + 1;
 
     this.querySelector("#year").addEventListener("change", () => {
-      const year = parseInt(document.querySelector("date-navigator #year")?.value ?? new Date().getFullYear());
-      const month = parseInt(document.querySelector("date-navigator #month")?.value ?? new Date().getMonth() + 1);
+      const year = parseInt(this.querySelector("#year")?.value ?? new Date().getFullYear());
+      const month = parseInt(this.querySelector("#month")?.value ?? new Date().getMonth() + 1);
 
-      document.querySelector("main").innerHTML = `<calendar-grid data-year="${year}" data-month="${month}"></calendar-grid>`;
+      this.dispatchEvent(new CustomEvent("date-changed", { bubbles: true, composed: true, detail: { year, month } }));
     });
     document.querySelector("#month").addEventListener("change", () => {
-      const year = parseInt(document.querySelector("date-navigator #year")?.value ?? new Date().getFullYear());
-      const month = parseInt(document.querySelector("date-navigator #month")?.value ?? new Date().getMonth() + 1);
+      const year = parseInt(this.querySelector("#year")?.value ?? new Date().getFullYear());
+      const month = parseInt(this.querySelector("#month")?.value ?? new Date().getMonth() + 1);
 
-      document.querySelector("main").innerHTML = `<calendar-grid data-year="${year}" data-month="${month}"></calendar-grid>`;
+      this.dispatchEvent(new CustomEvent("date-changed", { bubbles: true, composed: true, detail: { year, month } }));
     });
     document.querySelector("#previousMonth").addEventListener("click", () => {
       if (this.querySelector("#month").value === "1") {
@@ -41,7 +43,7 @@ export class DateNavigator extends HTMLElement {
       const year = parseInt(document.querySelector("date-navigator #year")?.value ?? new Date().getFullYear());
       const month = parseInt(document.querySelector("date-navigator #month")?.value ?? new Date().getMonth() + 1);
 
-      document.querySelector("main").innerHTML = `<calendar-grid data-year="${year}" data-month="${month}"></calendar-grid>`;
+      this.dispatchEvent(new CustomEvent("date-changed", { bubbles: true, composed: true, detail: { year, month } }));
     });
     this.querySelector("#nextMonth").addEventListener("click", () => {
       if (this.querySelector("#month").value === "12") {
@@ -52,7 +54,7 @@ export class DateNavigator extends HTMLElement {
       const year = parseInt(document.querySelector("date-navigator #year")?.value ?? new Date().getFullYear());
       const month = parseInt(document.querySelector("date-navigator #month")?.value ?? new Date().getMonth() + 1);
 
-      document.querySelector("main").innerHTML = `<calendar-grid data-year="${year}" data-month="${month}"></calendar-grid>`;
+      this.dispatchEvent(new CustomEvent("date-changed", { bubbles: true, composed: true, detail: { year, month } }));
     });
   }
 }

@@ -1,59 +1,30 @@
-import { saveEvent, deleteEvent } from "./scripts/services.js";
+import { generatePDF, loadEvents } from "./scripts/services.js";
+import "./components/event-section.js";
 
-function addEvents() {
-  document.getElementById("newEvent").addEventListener("click", () => {
-    const today = new Date();
+document.addEventListener("export-pdf", () => {
+  const year = parseInt(document.querySelector("date-navigator #year")?.value ?? new Date().getFullYear());
+  const month = parseInt(document.querySelector("date-navigator #month")?.value ?? new Date().getMonth() + 1);
 
-    document.querySelector(".event-calendar").value = "";
-    document.querySelector(".event-summary").value = "";
-    document.querySelector(".event-start-date").value = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, 0)}-${today.getDate()}`;
-    document.querySelector(".event-start-time").value = "";
-    document.querySelector(".event-end-date").value = "";
-    document.querySelector(".event-end-time").value = "";
-    document.querySelector(".event-location").value = "";
+  generatePDF(year, month - 1);
+});
 
-    document.body.classList.add("add-event");
+document.addEventListener("import-ics", async () => {
+  const filePicker = document.createElement("input");
+
+  filePicker.type = "file";
+  filePicker.click();
+
+  filePicker.addEventListener("change", async () => {
+    loadEvents(filePicker.files);
+    this.querySelector("main").innerHTML = `<calendar-grid></calendar-grid>`;
   });
+});
 
-  document.getElementById("saveEvent").addEventListener("click", async () => {
-    document.querySelector("section").classList.add("loading");
-    document.body.classList.remove("add-event");
-    document.body.classList.remove("edit-event");
+document.addEventListener("date-changed", (e) => {
+  document.querySelector("main").innerHTML = `<calendar-grid data-year="${e.detail.year}" data-month="${e.detail.month}"></calendar-grid>`;
+});
 
-    await saveEvent({
-      calendar: document.querySelector(".event-calendar").value.toLowerCase(),
-      summary: document.querySelector(".event-summary").value,
-      location: document.querySelector(".event-location").value,
-      startDate: document.querySelector(".event-start-date").value,
-      startTime: document.querySelector(".event-start-time").value,
-      endDate: document.querySelector(".event-end-date").value,
-      endTime: document.querySelector(".event-end-time").value,
-    });
-
-    drawCalendar();
-  });
-
-  document.getElementById("cancelEvent").addEventListener("click", () => {
-    document.body.classList.remove("add-event");
-    document.body.classList.remove("edit-event");
-  });
-
-  document.getElementById("deleteEvent").addEventListener("click", async () => {
-    if (confirm("Are you sure?")) {
-      document.querySelector("section").classList.add("loading");
-      document.body.classList.remove("edit-event");
-
-      await deleteEvent({
-        calendar: document.querySelector(".event-calendar").value.toLowerCase(),
-        summary: document.querySelector(".event-summary").value,
-        location: document.querySelector(".event-location").value,
-        startDate: document.querySelector(".event-start-date").value,
-        startTime: document.querySelector(".event-start-time").value,
-        endDate: document.querySelector(".event-end-date").value,
-        endTime: document.querySelector(".event-end-time").value,
-      });
-
-      drawCalendar();
-    }
-  });
-}
+document.addEventListener("event-clicked", (e) => {
+  document.body.classList.add("edit");
+  document.querySelector("main").innerHTML = `<event-section data-event='${JSON.stringify(e.detail)}'></event-section>`;
+});

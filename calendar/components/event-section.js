@@ -1,12 +1,10 @@
 export class EventSection extends HTMLElement {
   constructor() {
     super();
+  }
 
+  connectedCallback() {
     this.innerHTML = `
-      <nav class="top">
-        <span class="configure-event-title">configure event</span>
-      </nav>
-
       <fieldset>
         <label>In calendar</label>
         <select class="event-calendar">
@@ -29,13 +27,7 @@ export class EventSection extends HTMLElement {
         <input type="date" class="event-end-date" />
         <label>at</label>
         <input type="time" class="event-end-time" />
-      </fieldset>
-      
-      <nav>
-        <img class="configure-event-action danger" id="deleteEvent" src="../shared/images/dark/delete.svg">
-        <img class="configure-event-action" id="cancelEvent" src="../shared/images/dark/cancel.svg">
-        <img class="configure-event-action" id="saveEvent" src="../shared/images/dark/save.svg">
-      </nav>`;
+      </fieldset>`;
   }
 }
 
