@@ -3,7 +3,7 @@ import "./components/articles-section.js";
 
 window.addEventListener("popstate", handlePopState);
 
-document.addEventListener("import", handleImport);
+document.addEventListener("import-opml", handleImportOPML);
 document.addEventListener("category-changed", handleCategoryChange);
 document.addEventListener("feed-changed", handleFeedChange);
 
@@ -18,7 +18,7 @@ function handlePopState(e) {
   history.back();
 }
 
-async function handleImport() {
+async function handleImportOPML() {
   const filePicker = document.createElement("input");
 
   filePicker.type = "file";

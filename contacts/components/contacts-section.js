@@ -8,7 +8,9 @@ import { getContacts } from "../scripts/services.js";
 export class ContactsSection extends HTMLElement {
   constructor() {
     super();
+  }
 
+  connectedCallback() {
     this.innerHTML = `
       <item-counter singular="contact" plural="contacts" order="a-z"></item-counter>
       <input type="text" placeholder="search..." />
@@ -26,15 +28,10 @@ export class ContactsSection extends HTMLElement {
       const selection = this.querySelector("custom-list").selectedData;
 
       if (selection) {
-        document.body.classList.add("contact-selected");
-        document.querySelector("selected-item-nav").value = selection.item;
-
         this.dispatchEvent(new CustomEvent("contact-selected", { bubbles: true, composed: true, detail: selection }));
       }
     });
-  }
 
-  connectedCallback() {
     const category = document.querySelector("contacts-responsive-nav").value;
     const contacts = getContacts(category);
 

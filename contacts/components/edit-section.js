@@ -38,7 +38,9 @@ export class EditSection extends HTMLElement {
 
   constructor() {
     super();
+  }
 
+  connectedCallback() {
     this.innerHTML = `
         <div class="main-info">
             <img id="photo" src="">
