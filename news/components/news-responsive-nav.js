@@ -8,7 +8,6 @@ export class NewsResponsiveNav extends HTMLElement {
 
   constructor() {
     super();
-    this.classList.add("news-responsive-nav");
   }
 
   connectedCallback() {

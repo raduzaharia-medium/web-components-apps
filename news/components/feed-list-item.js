@@ -18,8 +18,6 @@ export class FeedListItem extends CustomListItem {
 
   constructor() {
     super();
-
-    this.classList.add("feed-list-item");
   }
 }
 

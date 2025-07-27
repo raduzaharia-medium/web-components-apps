@@ -23,8 +23,6 @@ export class ArticleListItem extends CustomListItem {
 
   constructor() {
     super();
-
-    this.classList.add("article-list-item");
   }
 }
 

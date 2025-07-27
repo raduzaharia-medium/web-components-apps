@@ -24,8 +24,6 @@ export class ContactListItem extends CustomListItem {
 
   constructor() {
     super();
-
-    this.classList.add("contact-list-item");
   }
 }
 

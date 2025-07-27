@@ -6,7 +6,6 @@ import "../../shared/components/selected-item-nav.js";
 export class ContactsResponsiveNav extends HTMLElement {
   constructor() {
     super();
-    this.classList.add("music-responsive-nav");
   }
 
   connectedCallback() {
