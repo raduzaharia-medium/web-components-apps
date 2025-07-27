@@ -1,6 +1,5 @@
-event-section {
+event-editor {
   margin-inline: auto;
-  display: none;
 
   @media (max-width: 710px) {
     width: 100%;
@@ -27,11 +26,5 @@ event-section {
         grid-column-end: span 1;
       }
     }
-  }
-}
-
-body.edit {
-  event-section {
-    display: block;
   }
 }

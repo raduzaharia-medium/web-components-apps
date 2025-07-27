@@ -1,5 +1,4 @@
 import { generatePDF, loadEvents } from "./scripts/services.js";
-import "./components/event-section.js";
 
 document.addEventListener("export-pdf", () => {
   const year = parseInt(document.querySelector("date-navigator #year")?.value ?? new Date().getFullYear());
@@ -25,6 +24,6 @@ document.addEventListener("date-changed", (e) => {
 });
 
 document.addEventListener("event-clicked", (e) => {
-  document.body.classList.add("edit");
-  document.querySelector("main").innerHTML = `<event-section data-event='${JSON.stringify(e.detail)}'></event-section>`;
+  document.querySelector("event-editor").dataset.event = JSON.stringify(e.detail);
+  document.querySelector("event-editor dialog").showModal();
 });

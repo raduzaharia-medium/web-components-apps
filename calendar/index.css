@@ -4,7 +4,7 @@
 @import url(../../shared/components/responsive-nav.css);
 
 @import url(./components/calendar-section.css);
-@import url(./components/event-section.css);
+@import url(./components/event-editor.css);
 @import url(./components/actions-bar.css);
 
 @import url(./styles/main.css);

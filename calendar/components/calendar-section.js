@@ -3,6 +3,7 @@ import "../../shared/components/custom-list-skeleton.js";
 import "./calendar-grid.js";
 import "./date-navigator.js";
 import "./actions-bar.js";
+import "./event-editor.js";
 
 export class CalendarSection extends HTMLElement {
   constructor() {
@@ -28,6 +29,7 @@ export class CalendarSection extends HTMLElement {
         <calendar-grid data-year="${year}" data-month="${month}"></calendar-grid>
       </main>
       <custom-list-skeleton></custom-list-skeleton>
+      <event-editor></event-editor>
       
       <actions-bar></actions-bar>`;
   }
