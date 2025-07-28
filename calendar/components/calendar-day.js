@@ -1,4 +1,4 @@
-import { getEvents } from "../scripts/services.js";
+import "./calendar-event.js";
 
 export class CalendarDay extends HTMLElement {
   constructor() {

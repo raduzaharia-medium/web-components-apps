@@ -1,5 +1,4 @@
 import "./calendar-day.js";
-import "./calendar-event.js";
 
 export class CalendarGrid extends HTMLElement {
   constructor() {
