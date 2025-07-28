@@ -1,4 +1,10 @@
 article-list-item {
+  &.unread {
+    summary {
+      font-weight: 600;
+    }
+  }
+
   summary {
     display: grid;
     grid-template-columns: auto 1fr 1.6em;

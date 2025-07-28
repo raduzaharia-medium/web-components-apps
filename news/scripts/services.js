@@ -45,6 +45,30 @@ export async function getArticles(feed) {
     guid: item.querySelector("guid")?.textContent || "",
   }));
 
+  const localData = localStorage.getItem("newsData");
+  const localArticles = localData ? JSON.parse(localData) : {};
+  const selectedFeed = localArticles[feed.title];
+
+  if (!selectedFeed) {
+    localArticles[feed.title] = result.map((article) => ({
+      ...article,
+      read: false,
+    }));
+    localStorage.setItem("newsData", JSON.stringify(localArticles));
+  } else {
+    result.forEach((article) => {
+      const existingArticle = selectedFeed.find((a) => a.guid === article.guid);
+      if (existingArticle) {
+        article.read = existingArticle.read;
+      } else {
+        selectedFeed.push({ ...article, read: false });
+      }
+    });
+
+    localArticles[feed.title] = selectedFeed;
+    localStorage.setItem("newsData", JSON.stringify(localArticles));
+  }
+
   return result;
 }
 
