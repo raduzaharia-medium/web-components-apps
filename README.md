@@ -27,8 +27,8 @@ The News application is an RSS reader which offers to load an `opml` file with R
 - [x] Calendar
 - [x] Contacts
 - [x] Music
-- [ ] News (currently in progress)
+- [x] News
 - [ ] Photos
 - [ ] Mail
 - [ ] Expenses tracker
-- [ ] Shopping list
+- [ ] Shopping list (currently in progress)
