@@ -29,14 +29,13 @@ calendar-day {
     }
   }
 
-  &.no-events {
+  &:has(ul:empty) {
     @media (max-width: 710px) {
       display: none;
     }
   }
 
   span {
-
     &.mobile-title {
       display: none;
       font-weight: 300;
