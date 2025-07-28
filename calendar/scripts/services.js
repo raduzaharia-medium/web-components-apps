@@ -89,13 +89,56 @@ export function getEvents(year, month, day) {
     (e) => (e.startDate >= dateStart && e.startDate <= dateEnd) || (e.startDate <= dateStart && e.endDate >= dateStart && e.endTimeString !== "00:00:00")
   );
 }
+export function getCalendars() {
+  return Object.keys(data).map((calendarName) => {
+    return {
+      id: calendarName,
+      name: calendarName,
+      color: getColorFromName(calendarName),
+    };
+  });
+}
 
 export async function saveEvent(event) {
-  // add the event to the data object
+  const calendarName = event.calendar;
+  const eventId = event.id;
+
+  if (!data[calendarName]) return;
+
+  const selection = data[calendarName].filter((e) => e.id === eventId)[0];
+  if (!selection) return;
+
+  selection.summary = event.summary;
+  selection.location = event.location;
+  selection.startDate = new Date(`${event.startDate}T${event.startTime}`);
+  selection.endDate = new Date(`${event.endDate}T${event.endTime}`);
+  selection.startDateString = event.startDate;
+  selection.startTimeString = event.startTime;
+  selection.endDateString = event.endDate;
+  selection.endTimeString = event.endTime;
+  selection.duration = {
+    days: Math.floor((event.endDate - event.startDate) / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((event.endDate - event.startDate) / (1000 * 60 * 60)) % 24,
+    minutes: Math.floor((event.endDate - event.startDate) / (1000 * 60)) % 60,
+  };
+
+  localStorage.setItem("calendarData", JSON.stringify(data));
+
+  yearlyCache = {};
+  monthlyCache = {};
 }
 
 export async function deleteEvent(event) {
-  // remove the event from the data object
+  const calendarName = event.calendar;
+  const eventId = event.id;
+
+  if (!data[calendarName]) return;
+
+  data[calendarName] = data[calendarName].filter((e) => e.id !== eventId);
+  localStorage.setItem("calendarData", JSON.stringify(data));
+
+  yearlyCache = {};
+  monthlyCache = {};
 }
 
 export function getColorFromName(name) {

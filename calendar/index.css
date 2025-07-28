@@ -2,9 +2,41 @@
 
 @import url(../../shared/components/selected-item-nav.css);
 @import url(../../shared/components/responsive-nav.css);
+@import url(../../shared/components/custom-list-skeleton.css);
 
-@import url(./components/calendar-section.css);
 @import url(./components/event-editor.css);
 @import url(./components/actions-bar.css);
+@import url(./components/calendar-grid.css);
+@import url(./components/date-navigator.css);
 
-@import url(./styles/main.css);
+header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: 0.1em;
+  grid-column-gap: 0.1em;
+  padding: 0.2em;
+  text-align: center;
+}
+
+body {
+  custom-list-skeleton {
+    display: none;
+  }
+
+  &.loading {
+    calendar-grid {
+      display: none;
+    }
+
+    custom-list-skeleton {
+      display: block;
+    }
+  }
+
+  &.edit {
+    date-navigator,
+    header {
+      display: none;
+    }
+  }
+}

@@ -6,8 +6,8 @@ export class CalendarGrid extends HTMLElement {
   }
 
   connectedCallback() {
-    const year = parseInt(document.querySelector("date-navigator #year").value ?? new Date().getFullYear());
-    const month = parseInt(document.querySelector("date-navigator #month").value ?? new Date().getMonth() + 1);
+    const year = parseInt(document.querySelector("date-navigator #year")?.value ?? new Date().getFullYear());
+    const month = parseInt(document.querySelector("date-navigator #month")?.value ?? new Date().getMonth() + 1);
 
     const numberOfDays = new Date(year, month, 0).getDate();
     const startingDayOfWeek = new Date(year, month - 1, 1).getDay() || 7;

@@ -1,4 +1,4 @@
-@import url('./fonts.css');
+@import url("./fonts.css");
 
 :root {
   --text-color: #2a3434;
@@ -42,6 +42,8 @@ input {
   text-align: inherit;
   text-shadow: inherit;
   text-transform: inherit;
+  background: none;
+  border: 1px solid var(--border-color);
 }
 
 select {
@@ -54,6 +56,7 @@ select {
   text-align: inherit;
   text-shadow: inherit;
   text-transform: inherit;
+  border: 1px solid var(--border-color);
 }
 
 ul {

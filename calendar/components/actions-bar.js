@@ -3,12 +3,19 @@ export class ActionsBar extends HTMLElement {
     super();
 
     this.innerHTML = `
-        <img class="danger" id="delete" data-command="delete" src="../shared/images/dark/delete.svg">
-        <img id="cancel" data-command="cancel" src="../shared/images/dark/cancel.svg">
-        <img id="save" data-command="save" src="../shared/images/dark/save.svg">
+        <div id="event">
+          <img id="delete" data-command="delete" src="../shared/images/dark/delete.svg">
 
-        <img id="exportPDF" data-command="export-pdf" src="../shared/images/dark/save.svg">
-        <img id="importICS" data-command="import-ics" src="../shared/images/dark/button-load.svg">`;
+          <div>
+            <img id="cancel" data-command="cancel" src="../shared/images/dark/cancel.svg">
+            <img id="save" data-command="save" src="../shared/images/dark/save.svg">
+          </div>
+        </div>
+
+        <div id="data">
+          <img id="exportPDF" data-command="export-pdf" src="../shared/images/dark/save.svg">
+          <img id="importICS" data-command="import-ics" src="../shared/images/dark/button-load.svg">
+        </div>`;
   }
 
   connectedCallback() {

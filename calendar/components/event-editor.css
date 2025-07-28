@@ -7,7 +7,7 @@ event-editor {
 
   fieldset {
     display: grid;
-    grid-template-columns: max-content max-content max-content max-content;
+    grid-template-columns: 7em 1fr 1em 1fr;
     grid-column-gap: 0.8em;
     grid-row-gap: 0.4em;
     border: none;

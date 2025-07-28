@@ -1,5 +1,3 @@
-import "./calendar-section.js";
-
 export class DateNavigator extends HTMLElement {
   constructor() {
     super();

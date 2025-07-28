@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Calendar</title>
 
-<head>
-  <title>Calendar</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5e1e9" />
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f5e1e9">
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="icon" href="./favicon.svg" />
 
-  <link rel="stylesheet" href="./index.css" />
-  <link rel="icon" href="./favicon.svg">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.1/jspdf.umd.min.js"></script>
+    <script src="./scripts/ubuntu-r-normal.js"></script>
+    <script src="./scripts/ubuntu-l-normal.js"></script>
 
-  <script src="./scripts/ubuntu-r-normal.js"></script>
-  <script src="./scripts/ubuntu-l-normal.js"></script>
-  <script type="module" src="./components/calendar-section.js"></script>
-  <script type="module" src="./index.js"></script>
-</head>
+    <script type="module" src="./components/date-navigator.js"></script>
+    <script type="module" src="./components/calendar-grid.js"></script>
+    <script type="module" src="../shared/components/custom-list-skeleton.js"></script>
+    <script type="module" src="./components/event-editor.js"></script>
+    <script type="module" src="./components/actions-bar.js"></script>
 
-<body>
-  <calendar-section></calendar-section>
-</body>
+    <script type="module" src="./index.js"></script>
+  </head>
 
+  <body>
+    <date-navigator></date-navigator>
+
+    <header>
+      <strong>Mo</strong>
+      <strong>Tu</strong>
+      <strong>We</strong>
+      <strong>Th</strong>
+      <strong>Fr</strong>
+      <strong>Sa</strong>
+      <strong>Su</strong>
+    </header>
+
+    <main>
+      <calendar-grid></calendar-grid>
+    </main>
+    <custom-list-skeleton></custom-list-skeleton>
+
+    <actions-bar></actions-bar>
+  </body>
 </html>
