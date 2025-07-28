@@ -1,5 +1,3 @@
-import { loadData, loadDataLegacy } from "../scripts/services.js";
-
 export class ActionsBar extends HTMLElement {
   static get observedAttributes() {
     return ["src"];
@@ -25,38 +23,25 @@ export class ActionsBar extends HTMLElement {
       <div></div>
       <div></div>
       <div>
-        <img class="media-control secondary previous" id="previous" src="../shared/images/dark/button-previous.svg" />
-        <img class="media-control primary play" id="play" src="../shared/images/dark/button-play.svg" />
-        <img class="media-control primary pause hidden" id="pause" src="../shared/images/dark/button-pause.svg" />
-        <img class="media-control secondary next" id="next" src="../shared/images/dark/button-next.svg" />
+        <img class="secondary" id="previous" data-command="previous" src="../shared/images/dark/button-previous.svg" />
+        <img class="primary" id="play" data-command="play" src="../shared/images/dark/button-play.svg" />
+        <img class="primary hidden" id="pause" data-command="pause" src="../shared/images/dark/button-pause.svg" />
+        <img class="secondary" id="next" data-command="next" src="../shared/images/dark/button-next.svg" />
       </div>
       <div>
-        <img class="media-control secondary repeat" id="repeat" src="../shared/images/dark/button-repeat.svg" />
-        <img class="media-control secondary repeat" id="load" src="../shared/images/dark/button-load.svg" />
+        <img class="secondary" id="repeat" data-command="repeat" src="../shared/images/dark/button-repeat.svg" />
+        <img class="secondary" id="load" data-command="load" src="../shared/images/dark/button-load.svg" />
       </div>
 
       <audio id="player" autoplay></audio>`;
 
-    this.querySelector("#load").addEventListener("click", async () => {
-      if (!window.showDirectoryPicker) {
-        const directoryPicker = document.createElement("input");
-        directoryPicker.type = "file";
-        directoryPicker.setAttribute("webkitdirectory", "");
-        directoryPicker.click();
+    this.querySelectorAll("img").forEach((img) =>
+      img.addEventListener("click", (event) => {
+        const command = event.target.dataset.command;
+        this.dispatchEvent(new CustomEvent(command, { bubbles: true, composed: true, detail: { playlist: this.playlist } }));
+      })
+    );
 
-        directoryPicker.addEventListener("change", async () => {
-          await loadDataLegacy(directoryPicker.files);
-          document.querySelector("main").innerHTML = `<artist-browser></artist-browser>`;
-        });
-
-        return;
-      }
-
-      const selection = await window.showDirectoryPicker();
-      await loadData(selection);
-
-      document.querySelector("main").innerHTML = `<artist-browser></artist-browser>`;
-    });
     this.querySelector("#play").addEventListener("click", () => {
       if (!this.querySelector("#player").src) return;
 
@@ -79,31 +64,6 @@ export class ActionsBar extends HTMLElement {
       this.querySelector("#pause").classList.add("hidden");
       this.querySelector("#play").classList.remove("hidden");
       this.querySelector("#pause").classList.remove("selected");
-    });
-
-    this.querySelector("#next").addEventListener("click", () => {
-      if (!this.playlist) return;
-
-      const currentLocation = this.src.replace("/stream?location=", "");
-      const currentIndex = this.playlist.findIndex((element) => element.location === currentLocation);
-      const nextIndex = (currentIndex + 1) % this.playlist.length;
-
-      document.querySelector("songs-section custom-list").selectNext();
-
-      this.src = `/stream?location=${this.playlist[nextIndex].location}`;
-    });
-
-    this.querySelector("#previous").addEventListener("click", () => {
-      if (!this.playlist) return;
-
-      const currentLocation = this.src.replace("/stream?location=", "");
-      const currentIndex = this.playlist.findIndex((element) => element.location === currentLocation);
-      let previousIndex = currentIndex - 1;
-      if (previousIndex < 0) previousIndex = this.playlist.length - 1;
-
-      document.querySelector("songs-section custom-list").selectPrevious();
-
-      this.src = `/stream?location=${this.playlist[previousIndex].location}`;
     });
 
     this.querySelector("#repeat").addEventListener("click", () => {

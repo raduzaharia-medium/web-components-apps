@@ -14,7 +14,7 @@ actions-bar {
   left: 0;
   right: 0;
 
-  .media-control {
+  img {
     width: 3em;
     padding: 0.6em 1em;
     vertical-align: middle;
