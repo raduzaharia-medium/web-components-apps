@@ -1,6 +1,6 @@
 import { loadData, loadDataLegacy } from "../scripts/services.js";
 
-export class AudioPlayer extends HTMLElement {
+export class ActionsBar extends HTMLElement {
   static get observedAttributes() {
     return ["src"];
   }
@@ -35,8 +35,7 @@ export class AudioPlayer extends HTMLElement {
         <img class="media-control secondary repeat" id="load" src="../shared/images/dark/button-load.svg" />
       </div>
 
-      <audio id="player" autoplay></audio>
-    `;
+      <audio id="player" autoplay></audio>`;
 
     this.querySelector("#load").addEventListener("click", async () => {
       if (!window.showDirectoryPicker) {
@@ -146,4 +145,4 @@ export class AudioPlayer extends HTMLElement {
   }
 }
 
-customElements.define("audio-player", AudioPlayer);
+customElements.define("actions-bar", ActionsBar);

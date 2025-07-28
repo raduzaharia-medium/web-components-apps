@@ -57,8 +57,8 @@ export class MusicResponsiveNav extends HTMLElement {
   }
 
   initPlayerChangeHandler() {
-    document.querySelector("audio-player").addEventListener("change", () => {
-      const selection = document.querySelector("audio-player").data;
+    document.querySelector("actions-bar").addEventListener("change", () => {
+      const selection = document.querySelector("actions-bar").data;
       if (selection) document.querySelector("songs-section custom-list").select(selection.item);
     });
   }

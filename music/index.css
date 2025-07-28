@@ -1,7 +1,7 @@
 @import url(../shared/styles/base.css);
 
 @import url(./components/music-responsive-nav.css);
-@import url(./components/audio-player.css);
+@import url(./components/actions-bar.css);
 
 @import url(./components/artist-browser.css);
 @import url(./components/genre-browser.css);
@@ -9,16 +9,16 @@
 @import url(./components/song-browser.css);
 
 main {
-    position: absolute;
-    left: 3em;
-    right: 3em;
-    top: 6em;
-    bottom: 6em;
+  position: absolute;
+  left: 3em;
+  right: 3em;
+  top: 6em;
+  bottom: 6em;
 
-    @media (max-width: 710px) {
-        left: 1em;
-        right: 1em;
-        top: 4em;
-        bottom: 0;
-    }
+  @media (max-width: 710px) {
+    left: 1em;
+    right: 1em;
+    top: 4em;
+    bottom: 0;
+  }
 }
