@@ -4,7 +4,7 @@ A suite of web applications built with web components. All applications are fron
 
 The project tries to highlight the advancements of HTML 5 Web Components and other HTML 5 APIs, which allow us to build fully featured applications without the need of a backend. Of course, some features will be missing (the Music application cannot save the scanned media library due to HTML file access considerations of privacy).
 
-All applications share the same interface inspired by Microsoft's Zune media player and function similarly, as explained below. They have been tested mostly on Chrome and Sfari, on both desktop and mobile, to make sure they work on multiple platforms, but they will have bugs and inconsistencies.
+All applications share the same interface inspired by Microsoft's Zune media player and function similarly, as explained below. They have been tested mostly on Chrome and Sfari, on both desktop and mobile, to make sure they work on multiple platforms, but they will have bugs and inconsistencies. The applications are available [here](https://raduzaharia-medium.github.io/web-components-apps/).
 
 ## Calendar
 

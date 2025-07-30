@@ -20,5 +20,9 @@ main {
     gap: 1em;
     color: var(--text-color);
     text-decoration: none;
+
+    img {
+      max-height: 5em;
+    }
   }
 }
