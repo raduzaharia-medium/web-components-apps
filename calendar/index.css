@@ -9,6 +9,38 @@
 @import url(./components/calendar-grid.css);
 @import url(./components/date-navigator.css);
 
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: 0.4s ease-in both move-out;
+}
+
+::view-transition-new(root) {
+  animation: 0.4s ease-in both move-in;
+}
+
+@keyframes move-out {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes move-in {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
 header {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
