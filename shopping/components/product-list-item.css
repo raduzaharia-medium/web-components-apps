@@ -1,0 +1,30 @@
+product-list-item {
+  display: block;
+
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+  }
+
+  img {
+    width: 1.4em;
+    height: 1.4em;
+    vertical-align: middle;
+    margin-right: 0.4em;
+  }
+
+  img.check {
+    display: none;
+  }
+
+  &.selected {
+    img.uncheck {
+      display: none;
+    }
+
+    img.check {
+      display: inline;
+    }
+  }
+}

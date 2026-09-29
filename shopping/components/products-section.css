@@ -1,0 +1,34 @@
+@import url(../../shared/components/custom-list.css);
+@import url(../../shared/components/custom-list-item.css);
+@import url(../../shared/components/custom-list-skeleton.css);
+
+@import url(./product-list-item.css);
+
+products-section {
+  position: relative;
+
+  custom-list {
+    position: absolute;
+    overflow-x: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-right: 0;
+    border-right: none;
+  }
+
+  custom-list-skeleton {
+    display: none;
+  }
+
+  &.loading {
+    custom-list {
+      display: none;
+    }
+
+    custom-list-skeleton {
+      display: block;
+    }
+  }
+}

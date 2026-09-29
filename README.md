@@ -26,6 +26,10 @@ The News application is an RSS reader which offers to load an `opml` file with R
 
 The Expenses application is a yearly expenses tracker, showing the paid amounts for each expense on a month by month grid, grouped by category, with monthly totals. Years are stored in HTML local storage. Since there is no backend to keep the data files, it allows importing and exporting the expenses of a year as `json` files.
 
+## Shopping
+
+The Shopping application is a shopping list planner. In the planning view it shows a catalog of products grouped by category and lets you pick the ones to buy, and in the shopping view it shows the resulting list, allowing you to add other items and check off the ones you have bought. The list is stored in HTML local storage.
+
 ## Roadmap and currently available applications
 
 - [x] Calendar
@@ -35,4 +39,4 @@ The Expenses application is a yearly expenses tracker, showing the paid amounts 
 - [ ] Photos
 - [ ] Mail
 - [x] Expenses tracker
-- [ ] Shopping list (currently in progress)
+- [x] Shopping list

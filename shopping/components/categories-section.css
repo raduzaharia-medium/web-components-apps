@@ -1,0 +1,36 @@
+@import url(../../shared/components/custom-list.css);
+@import url(../../shared/components/custom-list-item.css);
+@import url(../../shared/components/custom-list-skeleton.css);
+
+@import url(./category-list-item.css);
+
+categories-section {
+  position: relative;
+
+  custom-list {
+    position: absolute;
+    overflow-x: hidden;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  custom-list-skeleton {
+    display: none;
+  }
+
+  &.loading {
+    custom-list {
+      display: none;
+    }
+
+    custom-list-skeleton {
+      display: block;
+    }
+  }
+
+  @media (max-width: 710px) {
+    text-align: center;
+  }
+}

@@ -1,0 +1,34 @@
+category-list-item.custom-list-item {
+  display: inline-block;
+  margin-bottom: 2em;
+  margin-right: 1em;
+  text-align: center;
+  width: 5em;
+
+  img {
+    width: 50%;
+    margin-bottom: 0.6em;
+  }
+
+  legend {
+    color: var(--text-color-light);
+    text-align: center;
+    padding: 0;
+    margin-inline: auto;
+    width: max-content;
+    max-width: 100%;
+
+    span {
+      color: var(--text-color);
+      display: block;
+      font-weight: 400;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  @media (max-width: 710px) {
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+  }
+}
