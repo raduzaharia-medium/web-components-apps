@@ -1,0 +1,19 @@
+@import url(../../shared/components/custom-list.css);
+@import url(../../shared/components/custom-list-item.css);
+
+@import url(./expenses-list-item.css);
+
+expenses-category {
+  display: block;
+  margin-bottom: 2em;
+
+  input.category-title {
+    background-color: var(--table-category-heading-color);
+  }
+
+  custom-list {
+    display: block;
+    padding-right: 0;
+    border-right: none;
+  }
+}

@@ -1,0 +1,46 @@
+expenses-list-item.custom-list-item {
+  display: grid;
+  grid-template-columns: 9em repeat(12, minmax(6em, 1fr));
+  margin-bottom: 0;
+
+  input:nth-child(2n + 1) {
+    background-color: var(--table-dark);
+  }
+
+  input:nth-child(2n) {
+    background-color: var(--table-light);
+  }
+
+  input[type="tel"] {
+    text-align: right;
+  }
+
+  input[type="text"] {
+    background-color: var(--table-item-heading-color);
+  }
+
+  input.not-available:not([placeholder]) {
+    background-image: var(--table-stripes);
+  }
+
+  input.zero {
+    color: var(--table-not-available);
+  }
+
+  input::placeholder {
+    color: var(--table-placeholder);
+  }
+
+  @media (max-width: 710px) {
+    grid-template-columns: 9em 1fr;
+
+    input[type="tel"]:not(.active-month) {
+      display: none;
+    }
+
+    input:nth-child(2n + 1),
+    input:nth-child(2n) {
+      background-color: initial;
+    }
+  }
+}

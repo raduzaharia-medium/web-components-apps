@@ -1,0 +1,24 @@
+@import url(../../shared/components/responsive-nav.css);
+
+expenses-responsive-nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.4em;
+
+  responsive-nav {
+    width: auto;
+  }
+
+  responsive-nav#months {
+    display: none;
+  }
+
+  @media (max-width: 710px) {
+    justify-content: center;
+
+    responsive-nav#months {
+      display: block;
+    }
+  }
+}

@@ -22,6 +22,10 @@ The Music application offers to load a folder with `mp3` files and stores the me
 
 The News application is an RSS reader which offers to load an `opml` file with RSS feeds and store the articles in HTML local storage, showing them on a graphical list and details panel. It marks the read articles when they are opened and loads new articles when pressing the synchronization button. In order to load the articles for an RSS feed, the feed needs to have CORS access allowed. This is controlled by the feed provider, so in the absence of a backend we can only rely on feed URLS with CORS access.
 
+## Expenses
+
+The Expenses application is a yearly expenses tracker, showing the paid amounts for each expense on a month by month grid, grouped by category, with monthly totals. Years are stored in HTML local storage. Since there is no backend to keep the data files, it allows importing and exporting the expenses of a year as `json` files.
+
 ## Roadmap and currently available applications
 
 - [x] Calendar
@@ -30,5 +34,5 @@ The News application is an RSS reader which offers to load an `opml` file with R
 - [x] News
 - [ ] Photos
 - [ ] Mail
-- [ ] Expenses tracker
+- [x] Expenses tracker
 - [ ] Shopping list (currently in progress)

@@ -1,0 +1,58 @@
+@import url(../../shared/components/custom-list-skeleton.css);
+
+@import url(./expenses-category.css);
+
+expenses-grid {
+  display: block;
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+
+  header {
+    display: grid;
+    grid-template-columns: 9em repeat(12, minmax(6em, 1fr));
+    min-width: 81em;
+
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(3px);
+
+    @media (max-width: 710px) {
+      grid-template-columns: 1fr;
+      min-width: 0;
+
+      span:not(.active-month) {
+        display: none;
+      }
+    }
+  }
+
+  .categories {
+    min-width: 81em;
+
+    @media (max-width: 710px) {
+      min-width: 0;
+    }
+  }
+
+  input {
+    border: none;
+    background: transparent;
+    padding: var(--table-cell-padding);
+    outline: none;
+  }
+
+  span {
+    padding: var(--table-cell-padding);
+  }
+
+  span.month {
+    text-align: right;
+
+    p {
+      margin: 0;
+    }
+  }
+}
