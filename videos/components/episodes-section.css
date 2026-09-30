@@ -1,0 +1,8 @@
+@import url(../../shared/components/list-section.css);
+
+@import url(./episode-list-item.css);
+
+episodes-section custom-list {
+  padding-right: 0;
+  border-right: none;
+}

@@ -34,6 +34,10 @@ The Shopping application is a shopping list planner. In the planning view it sho
 
 The Photos application offers to load a folder with pictures and browses them by folder, by album (a folder with " - " in its name) and by month. It reads the date each picture was taken from its EXIF metadata, falling back to the file date, and builds the thumbnails in the browser. Like the Music application, it cannot keep the scanned library between sessions because of the privacy considerations of HTML file access.
 
+## Videos
+
+The Videos application offers to load a folder with videos, where each subfolder is a category (movies, shows, etc.), each folder inside a category is a title and any folders inside a title are seasons. It shows the titles and episodes on graphical lists, builds the thumbnails from a frame of each video and plays them in the page. Like the Music application, it cannot keep the scanned library between sessions because of the privacy considerations of HTML file access, and it can only play the formats and codecs the browser supports.
+
 ## Roadmap and currently available applications
 
 - [x] Calendar
@@ -41,6 +45,7 @@ The Photos application offers to load a folder with pictures and browses them by
 - [x] Music
 - [x] News
 - [x] Photos
+- [x] Videos
 - [ ] Mail
 - [x] Expenses tracker
 - [x] Shopping list

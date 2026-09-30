@@ -1,0 +1,28 @@
+@import url(../shared/styles/base.css);
+@import url(../shared/styles/layout.css);
+
+@import url(./components/videos-responsive-nav.css);
+@import url(./components/titles-section.css);
+@import url(./components/episodes-section.css);
+@import url(./components/actions-bar.css);
+
+main {
+  display: grid;
+  grid-column-gap: 1em;
+  grid-template-columns: 0.5fr 1fr;
+
+  @media (max-width: 710px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 710px) {
+  episodes-section,
+  body.title-selected titles-section {
+    display: none;
+  }
+
+  body.title-selected episodes-section {
+    display: block;
+  }
+}
