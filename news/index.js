@@ -63,7 +63,7 @@ async function handleFeedChange() {
   document.querySelector("section").innerHTML = "<articles-section></articles-section>";
 
   document.querySelector("articles-section").classList.add("loading");
-  const articles = await getArticles(selection);
+  const articles = await getArticles(selection).catch(() => []);
 
   document.querySelector("articles-section item-counter").value = articles.length;
   document.querySelector("articles-section custom-list").setItems(articles);

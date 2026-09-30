@@ -36,8 +36,6 @@ export class CustomList extends HTMLElement {
   constructor() {
     super();
 
-    this.appendChild(document.createElement("ul"));
-
     this.addEventListener("click", (e) => {
       const selection = e.target.closest(".custom-list-item");
 
@@ -50,6 +48,10 @@ export class CustomList extends HTMLElement {
         this.value = selection.dataset.item;
       }
     });
+  }
+
+  connectedCallback() {
+    if (!this.querySelector(":scope > ul")) this.appendChild(document.createElement("ul"));
   }
 
   setItems(items) {

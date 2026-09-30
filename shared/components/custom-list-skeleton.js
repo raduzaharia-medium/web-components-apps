@@ -1,7 +1,9 @@
 export class CustomListSkeleton extends HTMLElement {
   constructor() {
     super();
+  }
 
+  connectedCallback() {
     this.innerHTML = `
       <div class="loader-item">
         <div class="loader small-heading"></div>

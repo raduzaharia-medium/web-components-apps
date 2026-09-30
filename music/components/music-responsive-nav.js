@@ -9,6 +9,9 @@ import "../../shared/components/selected-item-nav.js";
 export class MusicResponsiveNav extends HTMLElement {
   constructor() {
     super();
+  }
+
+  connectedCallback() {
     this.classList.add("music-responsive-nav");
 
     this.innerHTML = `
@@ -17,7 +20,6 @@ export class MusicResponsiveNav extends HTMLElement {
 
     this.initChangeHandler();
     this.initBackHandler();
-    // this.initPlayerChangeHandler();
   }
 
   initChangeHandler() {
@@ -56,13 +58,6 @@ export class MusicResponsiveNav extends HTMLElement {
     });
   }
 
-  initPlayerChangeHandler() {
-    document.querySelector("actions-bar").addEventListener("change", () => {
-      const selection = document.querySelector("actions-bar").data;
-      if (selection) document.querySelector("songs-section custom-list").select(selection.item);
-    });
-  }
-
   initBackHandler() {
     window.onpopstate = (e) => {
       if (document.querySelector("artist-browser.artist-selected")) {
@@ -97,10 +92,6 @@ export class MusicResponsiveNav extends HTMLElement {
 
     document.querySelector("artists-section input").value = "";
 
-    document.querySelector("artists-section").classList.add("has-input");
-    document.querySelector("albums-section").classList.remove("has-input");
-    document.querySelector("songs-section").classList.remove("has-input");
-
     document.body.classList.remove("artist-selected");
     document.body.classList.remove("album-selected");
     document.body.classList.remove("song-first");
@@ -115,10 +106,6 @@ export class MusicResponsiveNav extends HTMLElement {
 
     document.querySelector("genres-section input").value = "";
 
-    document.querySelector("genres-section").classList.add("has-input");
-    document.querySelector("albums-section").classList.remove("has-input");
-    document.querySelector("songs-section").classList.remove("has-input");
-
     document.body.classList.remove("genre-selected");
     document.body.classList.remove("album-selected");
     document.body.classList.remove("song-first");
@@ -131,9 +118,6 @@ export class MusicResponsiveNav extends HTMLElement {
 
     document.querySelector("albums-section input").value = "";
 
-    document.querySelector("albums-section").classList.add("has-input");
-    document.querySelector("songs-section").classList.remove("has-input");
-
     document.body.classList.remove("album-selected");
     document.body.classList.remove("song-first");
     document.body.classList.add("album-first");
@@ -143,7 +127,6 @@ export class MusicResponsiveNav extends HTMLElement {
     document.querySelector("selected-item-nav").value = "";
 
     document.querySelector("songs-section input").value = "";
-    document.querySelector("songs-section").classList.add("has-input");
 
     document.body.classList.add("song-first");
   }

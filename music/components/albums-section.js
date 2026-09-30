@@ -7,11 +7,15 @@ import "./album-list-item.js";
 export class AlbumsSection extends HTMLElement {
   constructor() {
     super();
+  }
+
+  connectedCallback() {
+    this.classList.add("list-section");
 
     this.innerHTML = `
       <item-counter singular="album" plural="albums" order="date added"></item-counter>
       <input type="text" placeholder="search..." />
-      <custom-list class="full-screen">
+      <custom-list>
         <template slot="item">
           <album-list-item></album-list-item>
         </template>

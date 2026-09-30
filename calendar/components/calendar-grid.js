@@ -20,7 +20,7 @@ export class CalendarGrid extends HTMLElement {
           `<calendar-day class="valid" 
             data-year="${this.dataset.year ?? new Date().getFullYear()}" 
             data-month="${this.dataset.month ?? new Date().getMonth() + 1}" 
-            data-day="${index + 1}"></calendar-day>`
+            data-day="${index + 1}"></calendar-day>`,
       ).join("")}`;
   }
 
@@ -37,7 +37,7 @@ export class CalendarGrid extends HTMLElement {
       const dateStart = new Date(year, month - 1, day, 0, 0, 0, 0);
       const dateEnd = new Date(year, month - 1, day, 23, 59, 59, 999);
       const dayEvents = events.filter(
-        (e) => (e.startDate >= dateStart && e.startDate <= dateEnd) || (e.startDate <= dateStart && e.endDate >= dateStart && e.endTimeString !== "00:00:00")
+        (e) => (e.startDate >= dateStart && e.startDate <= dateEnd) || (e.startDate <= dateStart && e.endDate >= dateStart && e.endTimeString !== "00:00:00"),
       );
 
       if (dayEvents.length > 0) element.setEvents(dayEvents);

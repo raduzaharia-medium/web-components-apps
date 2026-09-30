@@ -1,54 +1,18 @@
 @import url(../../shared/components/selected-item-nav.css);
 @import url(../../shared/components/responsive-nav.css);
 
-selected-item-nav {
-    display: none;
-}
-
-body.album-selected {
-    music-responsive-nav {
-        responsive-nav {
-            @media (max-width: 710px) {
-                display: none;
-            }
-        }
-
-        selected-item-nav {
-            @media (max-width: 710px) {
-                display: block;
-            }
-        }
+body:is(.artist-selected, .album-selected, .genre-selected) {
+  music-responsive-nav {
+    responsive-nav {
+      @media (max-width: 710px) {
+        display: none;
+      }
     }
-}
 
-body.artist-selected {
-    music-responsive-nav {
-        responsive-nav {
-            @media (max-width: 710px) {
-                display: none;
-            }
-        }
-
-        selected-item-nav {
-            @media (max-width: 710px) {
-                display: block;
-            }
-        }
+    selected-item-nav {
+      @media (max-width: 710px) {
+        display: block;
+      }
     }
-}
-
-body.genre-selected {
-    music-responsive-nav {
-        responsive-nav {
-            @media (max-width: 710px) {
-                display: none;
-            }
-        }
-
-        selected-item-nav {
-            @media (max-width: 710px) {
-                display: block;
-            }
-        }
-    }
+  }
 }

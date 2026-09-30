@@ -1,32 +1,34 @@
 export class ActionTag extends HTMLSpanElement {
-  tag = null;
+  #tag = null;
 
   get text() {
     return this.querySelector("span").innerText;
   }
   get tag() {
-    return this.tag;
+    return this.#tag;
   }
 
   set text(newValue) {
     this.querySelector("span").innerText = newValue;
   }
   set tag(newValue) {
-    this.tag = newValue;
+    this.#tag = newValue;
   }
 
   constructor() {
     super();
 
+    this.addEventListener("click", (e) => {
+      if (e.target.closest("img") && this.getAttribute("behavior") === "delete") this.remove();
+    });
+  }
+
+  connectedCallback() {
     this.classList.add("action-tag");
     this.innerHTML = `
       <span></span>
-      <img src="/shared/images/light/cancel.svg">
+      <img src="../shared/images/light/cancel.svg">
     `;
-
-    this.querySelector("img").addEventListener("click", () => {
-      if (this.getAttribute("behavior") === "delete") this.remove();
-    });
   }
 }
 

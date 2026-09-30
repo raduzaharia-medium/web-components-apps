@@ -9,6 +9,8 @@ export class ShoppingSection extends HTMLElement {
   }
 
   connectedCallback() {
+    this.classList.add("list-section");
+
     this.innerHTML = `
       <input name="shoppingInsert" type="text" placeholder="add new..." />
       <custom-list multi-select="true">

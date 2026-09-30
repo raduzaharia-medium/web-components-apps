@@ -11,31 +11,6 @@ export class AlbumBrowser extends HTMLElement {
 
   constructor() {
     super();
-
-    history.pushState({ page: "albums" }, "Music - browse by album", ".");
-
-    this.innerHTML = `
-      <albums-section></albums-section>
-      <songs-section></songs-section>`;
-
-    this.querySelector("albums-section custom-list").addEventListener("change", async () => {
-      const selection = this.querySelector("albums-section custom-list").selectedData;
-
-      if (selection) {
-        await this.loadSongs(selection.artist, selection.item);
-      }
-    });
-
-    this.querySelector("songs-section").addEventListener("change", async () => {
-      const selection = this.querySelector("songs-section custom-list").selectedData;
-
-      if (selection) {
-        const songs = this.querySelector("songs-section custom-list").allData;
-
-        document.querySelector("actions-bar").setPlaylist(songs);
-        document.querySelector("actions-bar").src = await getFileUrl(selection.file);
-      }
-    });
   }
 
   loadAlbumArt(entries, observer) {
@@ -61,6 +36,31 @@ export class AlbumBrowser extends HTMLElement {
   }
 
   async connectedCallback() {
+    history.pushState({ page: "albums" }, "Music - browse by album", ".");
+
+    this.innerHTML = `
+      <albums-section></albums-section>
+      <songs-section></songs-section>`;
+
+    this.querySelector("albums-section custom-list").addEventListener("change", async () => {
+      const selection = this.querySelector("albums-section custom-list").selectedData;
+
+      if (selection) {
+        await this.loadSongs(selection.artist, selection.item);
+      }
+    });
+
+    this.querySelector("songs-section").addEventListener("change", async () => {
+      const selection = this.querySelector("songs-section custom-list").selectedData;
+
+      if (selection) {
+        const songs = this.querySelector("songs-section custom-list").allData;
+
+        document.querySelector("actions-bar").setPlaylist(songs);
+        document.querySelector("actions-bar").src = await getFileUrl(selection.file);
+      }
+    });
+
     await this.loadAlbums();
   }
 

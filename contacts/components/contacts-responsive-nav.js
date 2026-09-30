@@ -1,9 +1,11 @@
-import { getContacts } from "../scripts/services.js";
-
 import "../../shared/components/responsive-nav.js";
 import "../../shared/components/selected-item-nav.js";
 
 export class ContactsResponsiveNav extends HTMLElement {
+  get value() {
+    return this.querySelector("responsive-nav").value;
+  }
+
   constructor() {
     super();
   }

@@ -14,18 +14,24 @@ export class SelectedItemNav extends HTMLElement {
   constructor() {
     super();
 
-    const behavior = this.getAttribute("behavior");
+    this.addEventListener("click", () => {
+      if (this.getAttribute("behavior") === "back-button") history.back();
+    });
+  }
 
+  connectedCallback() {
     this.innerHTML = `
-        <img src="../shared/images/dark/left-arrow.svg">
-        <span>${this.value}</span>
+      <img src="../shared/images/dark/left-arrow.svg">
+      <span></span>
     `;
 
-    if (behavior === "back-button") this.addEventListener("click", () => history.back());
+    this.querySelector("span").textContent = this.value ?? "";
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === "value") this.querySelector("span").innerHTML = newValue;
+    const span = this.querySelector("span");
+
+    if (name === "value" && span) span.textContent = newValue ?? "";
   }
 }
 

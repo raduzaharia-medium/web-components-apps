@@ -10,10 +10,12 @@ export class FeedsSection extends HTMLElement {
   }
 
   connectedCallback() {
+    this.classList.add("list-section");
+
     this.innerHTML = `
       <item-counter singular="feed" plural="feeds" order="a-z"></item-counter>
       <input name="feedSearch" type="text" placeholder="search..." />
-      <custom-list class="full-screen">
+      <custom-list>
         <template slot="item">
           <feed-list-item></feed-list-item>
         </template>

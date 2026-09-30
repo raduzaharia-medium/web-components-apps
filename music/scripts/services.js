@@ -1,4 +1,4 @@
-import * as id3 from "//unpkg.com/id3js/lib/id3.js";
+import * as id3 from "https://unpkg.com/id3js/lib/id3.js";
 
 let data = [];
 
@@ -21,7 +21,7 @@ async function parseMusicFiles(directory) {
 
         files.push({ title: tags.title, artist: tags.artist, album: tags.album, genre: tags.genre, location: "", file: entry });
       }
-    } else if (entry.kind === "directory") files.push(...(await this.getAllFiles(entry)));
+    } else if (entry.kind === "directory") files.push(...(await parseMusicFiles(entry)));
   }
 
   return files;
@@ -67,7 +67,7 @@ export async function getAlbumArt(artistName, albumName) {
   if (!selection) return "images/musical-note.svg";
   if (selection.albumArtUrl) return selection.albumArtUrl;
 
-  const file = await selection.file.getFile();
+  const file = selection.file instanceof File ? selection.file : await selection.file.getFile();
 
   return new Promise((resolve) => {
     jsmediatags.read(file, {

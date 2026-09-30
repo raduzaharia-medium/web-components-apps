@@ -1,4 +1,6 @@
-export class ActionsBar extends HTMLElement {
+import { ActionsBar } from "../../shared/components/actions-bar.js";
+
+export class MusicActionsBar extends ActionsBar {
   static get observedAttributes() {
     return ["src"];
   }
@@ -6,19 +8,8 @@ export class ActionsBar extends HTMLElement {
   get src() {
     return this.getAttribute("src");
   }
-  get data() {
-    const currentIndex = this.playlist.findIndex((element) => element.selected === "true");
-    return this.playlist[currentIndex];
-  }
-
-  set src(newValue) {
-    this.setAttribute("src", newValue);
-  }
-
-  constructor() {
-    super();
-
-    this.innerHTML = `
+  get markup() {
+    return `
       <progress id="progress" class="progress-indicator" min="0" max="1" value="0"></progress>
       <div></div>
       <div></div>
@@ -34,13 +25,17 @@ export class ActionsBar extends HTMLElement {
       </div>
 
       <audio id="player" autoplay></audio>`;
+  }
+  get commandDetail() {
+    return { playlist: this.playlist };
+  }
 
-    this.querySelectorAll("img").forEach((img) =>
-      img.addEventListener("click", (event) => {
-        const command = event.target.dataset.command;
-        this.dispatchEvent(new CustomEvent(command, { bubbles: true, composed: true, detail: { playlist: this.playlist } }));
-      })
-    );
+  set src(newValue) {
+    this.setAttribute("src", newValue);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
 
     this.querySelector("#play").addEventListener("click", () => {
       if (!this.querySelector("#player").src) return;
@@ -72,13 +67,7 @@ export class ActionsBar extends HTMLElement {
     });
 
     this.querySelector("#player").addEventListener("ended", () => {
-      if (!this.playlist) return;
-
-      const currentLocation = this.src.replace("/stream?location=", "");
-      const currentIndex = this.playlist.findIndex((element) => element.location === currentLocation);
-      const nextIndex = (currentIndex + 1) % this.playlist.length;
-
-      this.src = `/stream?location=${this.playlist[nextIndex].location}`;
+      this.dispatchEvent(new CustomEvent("next", { bubbles: true, composed: true, detail: { playlist: this.playlist } }));
     });
   }
 
@@ -89,14 +78,6 @@ export class ActionsBar extends HTMLElement {
       this.querySelector("#play").classList.add("hidden");
       this.querySelector("#pause").classList.add("selected");
       this.querySelector("#pause").classList.remove("hidden");
-
-      const oldSelection = this.playlist.filter((element) => element.selected === "true")[0];
-      if (oldSelection) oldSelection.selected = false;
-
-      const newSelection = this.playlist.filter((element) => element.location === newValue.replace("/stream?location=", ""))[0];
-      if (newSelection) newSelection.selected = true;
-
-      this.dispatchEvent(new Event("change"));
     }
   }
 
@@ -105,4 +86,4 @@ export class ActionsBar extends HTMLElement {
   }
 }
 
-customElements.define("actions-bar", ActionsBar);
+customElements.define("actions-bar", MusicActionsBar);

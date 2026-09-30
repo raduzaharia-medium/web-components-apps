@@ -46,6 +46,8 @@ export class ExpensesListItem extends CustomListItem {
   }
 
   connectedCallback() {
+    super.connectedCallback();
+
     if (this.querySelector("input")) return;
 
     this.innerHTML = `

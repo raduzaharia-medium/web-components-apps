@@ -1,52 +1,15 @@
 @import url(../shared/styles/base.css);
+@import url(../shared/styles/layout.css);
 
 @import url(./components/news-responsive-nav.css);
 @import url(./components/feeds-section.css);
 @import url(./components/articles-section.css);
 @import url(./components/actions-bar.css);
 
-@view-transition {
-  navigation: auto;
-}
-
-::view-transition-old(root) {
-  animation: 0.4s ease-in both move-out;
-}
-
-::view-transition-new(root) {
-  animation: 0.4s ease-in both move-in;
-}
-
-@keyframes move-out {
-  from {
-    transform: translateX(0%);
-  }
-
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes move-in {
-  from {
-    transform: translateX(100%);
-  }
-
-  to {
-    transform: translateX(0%);
-  }
-}
-
 main {
   display: grid;
   grid-column-gap: 1em;
   grid-template-columns: 0.5fr 1fr;
-
-  position: absolute;
-  left: 3em;
-  right: 3em;
-  top: 6em;
-  bottom: 6em;
 
   section {
     position: relative;
@@ -54,11 +17,6 @@ main {
 
   @media (max-width: 710px) {
     grid-template-columns: 1fr;
-
-    left: 1em;
-    right: 1em;
-    top: 4em;
-    bottom: 0;
   }
 }
 

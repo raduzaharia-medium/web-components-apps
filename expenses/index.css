@@ -1,40 +1,9 @@
 @import url(../shared/styles/base.css);
+@import url(../shared/styles/layout.css);
 
 @import url(./components/expenses-responsive-nav.css);
 @import url(./components/expenses-grid.css);
 @import url(./components/actions-bar.css);
-
-@view-transition {
-  navigation: auto;
-}
-
-::view-transition-old(root) {
-  animation: 0.4s ease-in both move-out;
-}
-
-::view-transition-new(root) {
-  animation: 0.4s ease-in both move-in;
-}
-
-@keyframes move-out {
-  from {
-    transform: translateX(0%);
-  }
-
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes move-in {
-  from {
-    transform: translateX(100%);
-  }
-
-  to {
-    transform: translateX(0%);
-  }
-}
 
 :root {
   --table-light: #eeeeee77;
@@ -48,12 +17,6 @@
 }
 
 main {
-  position: absolute;
-  left: 3em;
-  right: 3em;
-  top: 6em;
-  bottom: 6em;
-
   custom-list-skeleton {
     display: none;
   }
@@ -66,12 +29,5 @@ main {
     custom-list-skeleton {
       display: block;
     }
-  }
-
-  @media (max-width: 710px) {
-    left: 1em;
-    right: 1em;
-    top: 4em;
-    bottom: 3em;
   }
 }

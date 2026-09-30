@@ -22,10 +22,10 @@ export async function loadContacts(files) {
       if (item[0] === "tel") contact.phone.push(item[3]);
       if (item[0] === "adr") contact.homeAddress = item[3].filter(Boolean).join(", ");
       if (item[0] === "title") contact.title = item[3];
-      if (item[0] === "org") contact.company = item[3][0];
-      if (item[0] === "uid") contact.uid = item[3][0];
-      if (item[0] === "gender") contact.gender = item[3][0];
-      if (item[0] === "categories") contact.category = item[3][0];
+      if (item[0] === "org") contact.company = first(item[3]);
+      if (item[0] === "uid") contact.uid = first(item[3]);
+      if (item[0] === "gender") contact.gender = first(item[3]);
+      if (item[0] === "categories") contact.category = first(item[3]);
     }
 
     if (!contact.uid) contact.uid = uuidv4();
@@ -33,7 +33,7 @@ export async function loadContacts(files) {
   }
 
   data.sort((a, b) => a.name.localeCompare(b.name));
-  localStorage.setItem("contacts", JSON.stringify(data));
+  saveContacts();
 }
 
 export function getContacts(category) {
@@ -58,26 +58,34 @@ export async function updateContactDetails(uid, contactDetails) {
   selection.category = contactDetails.category;
   selection.gender = contactDetails.gender;
 
-  // localStorage.setItem("contacts", JSON.stringify(data));
+  saveContacts();
   return "OK";
 }
 
 export function deleteContact(uid) {
   data = data.filter((contact) => contact.uid !== uid);
+
+  saveContacts();
   return "OK";
 }
 
 export async function createContact(contactDetails) {
-  const request = await fetch("/contact", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(contactDetails),
-  });
-  const response = await request.text();
+  const contact = { ...contactDetails, uid: uuidv4() };
 
-  return response;
+  data.push(contact);
+  data.sort((a, b) => a.name.localeCompare(b.name));
+
+  saveContacts();
+  return contact.uid;
+}
+
+// ical.js returns single values as strings and structured values as arrays
+function first(value) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function saveContacts() {
+  localStorage.setItem("contacts", JSON.stringify(data));
 }
 
 function uuidv4() {

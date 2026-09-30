@@ -41,7 +41,7 @@ export class CalendarEvent extends HTMLElement {
           bubbles: true,
           composed: true,
           detail: this.dataset,
-        })
+        }),
       );
     });
   }

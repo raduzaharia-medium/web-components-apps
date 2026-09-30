@@ -8,7 +8,6 @@
 @import url(./album-list-item.css);
 @import url(./song-list-item.css);
 
-
 genre-browser {
   display: grid;
   grid-column-gap: 1em;

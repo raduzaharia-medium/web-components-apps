@@ -5,11 +5,13 @@ import { getSongs, getFileUrl } from "../scripts/services.js";
 export class SongBrowser extends HTMLElement {
   constructor() {
     super();
+  }
 
+  async connectedCallback() {
     history.pushState({ page: "songs" }, "Music - browse by song", ".");
 
     this.innerHTML = `
-      <songs-section class="full-screen has-title has-input"></songs-section>`;
+      <songs-section></songs-section>`;
 
     this.querySelector("songs-section custom-list").addEventListener("change", async () => {
       const selection = this.querySelector("songs-section custom-list").selectedData;
@@ -21,9 +23,7 @@ export class SongBrowser extends HTMLElement {
         document.querySelector("actions-bar").src = await getFileUrl(selection.file);
       }
     });
-  }
 
-  async connectedCallback() {
     await this.loadSongs();
   }
 

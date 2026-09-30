@@ -1,4 +1,5 @@
 @import url(../shared/styles/base.css);
+@import url(../shared/styles/layout.css);
 
 @import url(./components/music-responsive-nav.css);
 @import url(./components/actions-bar.css);
@@ -7,50 +8,3 @@
 @import url(./components/genre-browser.css);
 @import url(./components/album-browser.css);
 @import url(./components/song-browser.css);
-
-@view-transition {
-  navigation: auto;
-}
-
-::view-transition-old(root) {
-  animation: 0.4s ease-in both move-out;
-}
-
-::view-transition-new(root) {
-  animation: 0.4s ease-in both move-in;
-}
-
-@keyframes move-out {
-  from {
-    transform: translateX(0%);
-  }
-
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes move-in {
-  from {
-    transform: translateX(100%);
-  }
-
-  to {
-    transform: translateX(0%);
-  }
-}
-
-main {
-  position: absolute;
-  left: 3em;
-  right: 3em;
-  top: 6em;
-  bottom: 6em;
-
-  @media (max-width: 710px) {
-    left: 1em;
-    right: 1em;
-    top: 4em;
-    bottom: 0;
-  }
-}

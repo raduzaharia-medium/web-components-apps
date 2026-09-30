@@ -30,7 +30,7 @@ export class CalendarDay extends HTMLElement {
           data-end-date="${e.endDateString}" data-start-time="${e.startTimeString}" data-calendar="${e.calendar}"
           data-end-time="${e.endTimeString}" data-summary="${e.summary}" data-location="${e.location}"
           data-calendar-year="${this.dataset.year}" data-calendar-month="${this.dataset.month}" 
-          data-calendar-day="${this.dataset.day}"></calendar-event>`
+          data-calendar-day="${this.dataset.day}"></calendar-event>`,
       )
       .join("");
 

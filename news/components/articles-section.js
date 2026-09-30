@@ -10,10 +10,12 @@ export class ArticlesSection extends HTMLElement {
   }
 
   connectedCallback() {
+    this.classList.add("list-section");
+
     this.innerHTML = `
       <item-counter singular="article" plural="articles" order="a-z"></item-counter>
       <input name="articleSearch" type="text" placeholder="search..." />
-      <custom-list class="full-screen">
+      <custom-list>
         <template slot="item">
           <article-list-item></article-list-item>
         </template>

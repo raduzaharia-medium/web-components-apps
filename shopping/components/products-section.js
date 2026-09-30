@@ -9,6 +9,8 @@ export class ProductsSection extends HTMLElement {
   }
 
   connectedCallback() {
+    this.classList.add("list-section");
+
     this.innerHTML = `
       <custom-list multi-select="true">
         <template slot="item">

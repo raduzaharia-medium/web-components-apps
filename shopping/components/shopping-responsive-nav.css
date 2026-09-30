@@ -1,10 +1,6 @@
 @import url(../../shared/components/selected-item-nav.css);
 @import url(../../shared/components/responsive-nav.css);
 
-selected-item-nav {
-  display: none;
-}
-
 body.category-selected {
   responsive-nav {
     @media (max-width: 710px) {

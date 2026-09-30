@@ -11,10 +11,12 @@ export class ContactsSection extends HTMLElement {
   }
 
   connectedCallback() {
+    this.classList.add("list-section");
+
     this.innerHTML = `
       <item-counter singular="contact" plural="contacts" order="a-z"></item-counter>
       <input type="text" placeholder="search..." />
-      <custom-list class="full-screen">
+      <custom-list>
         <template slot="item">
           <contact-list-item></contact-list-item>
         </template>

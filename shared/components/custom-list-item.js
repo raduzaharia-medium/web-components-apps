@@ -13,7 +13,9 @@ export class CustomListItem extends HTMLElement {
 
   constructor() {
     super();
+  }
 
+  connectedCallback() {
     this.classList.add("custom-list-item");
   }
 

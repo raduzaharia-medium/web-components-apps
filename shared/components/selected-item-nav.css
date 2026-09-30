@@ -1,4 +1,5 @@
 selected-item-nav {
+  display: none;
   cursor: pointer;
   width: max-content;
   margin: 0 auto;

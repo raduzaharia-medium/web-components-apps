@@ -21,23 +21,23 @@ div.rich-text-editor .toolbar select {
 }
 
 div.rich-text-editor .set-style {
-  background-image: url(/shared/images/style.svg);
+  background-image: url(../images/style.svg);
 }
 
 div.rich-text-editor .set-font {
-  background-image: url(/shared/images/font-family.svg);
+  background-image: url(../images/font-family.svg);
 }
 
 div.rich-text-editor .set-font-size {
-  background-image: url(/shared/images/font-size.svg);
+  background-image: url(../images/font-size.svg);
 }
 
 div.rich-text-editor .set-font-color {
-  background-image: url(/shared/images/font-color.svg);
+  background-image: url(../images/font-color.svg);
 }
 
 div.rich-text-editor .set-font-background {
-  background-image: url(/shared/images/font-background.svg);
+  background-image: url(../images/font-background.svg);
 }
 
 div.rich-text-editor .content {

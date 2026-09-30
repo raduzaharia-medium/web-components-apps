@@ -29,13 +29,13 @@ export async function loadEvents(files) {
       startDate: event.startDate.toJSDate(),
       startDateString: `${event.startDate.year}-${String(event.startDate.month).padStart(2, 0)}-${String(event.startDate.day).padStart(2, 0)}`,
       startTimeString: `${String(event.startDate.hour).padStart(2, 0)}:${String(event.startDate.minute).padStart(2, 0)}:${String(
-        event.startDate.second
+        event.startDate.second,
       ).padStart(2, 0)}`,
       endDate: event.endDate.toJSDate(),
       endDateString: `${event.endDate.year}-${String(event.endDate.month).padStart(2, 0)}-${String(event.endDate.day).padStart(2, 0)}`,
       endTimeString: `${String(event.endDate.hour).padStart(2, 0)}:${String(event.endDate.minute).padStart(2, 0)}:${String(event.endDate.second).padStart(
         2,
-        0
+        0,
       )}`,
       duration: { days: event.duration.days, hours: event.duration.hours, minutes: event.duration.minutes },
     };
@@ -86,7 +86,7 @@ export function getEvents(year, month, day) {
   const dateEnd = new Date(year, month - 1, day, 23, 59, 59, 999);
 
   return eventsForMonth.filter(
-    (e) => (e.startDate >= dateStart && e.startDate <= dateEnd) || (e.startDate <= dateStart && e.endDate >= dateStart && e.endTimeString !== "00:00:00")
+    (e) => (e.startDate >= dateStart && e.startDate <= dateEnd) || (e.startDate <= dateStart && e.endDate >= dateStart && e.endTimeString !== "00:00:00"),
   );
 }
 export function getCalendars() {
@@ -116,10 +116,13 @@ export async function saveEvent(event) {
   selection.startTimeString = event.startTime;
   selection.endDateString = event.endDate;
   selection.endTimeString = event.endTime;
+
+  const difference = selection.endDate - selection.startDate;
+
   selection.duration = {
-    days: Math.floor((event.endDate - event.startDate) / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((event.endDate - event.startDate) / (1000 * 60 * 60)) % 24,
-    minutes: Math.floor((event.endDate - event.startDate) / (1000 * 60)) % 60,
+    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+    hours: Math.floor(difference / (1000 * 60 * 60)) % 24,
+    minutes: Math.floor(difference / (1000 * 60)) % 60,
   };
 
   localStorage.setItem("calendarData", JSON.stringify(data));
@@ -156,7 +159,9 @@ export function isDateInPast(isoDateString) {
   const today = new Date();
   const [year, month, day] = parseIsoDate(isoDateString);
 
-  return day < today.getDate() || month < today.getMonth() + 1 || year < today.getFullYear();
+  today.setHours(0, 0, 0, 0);
+
+  return new Date(year, month - 1, day) < today;
 }
 
 export function parseIsoDate(isoDateString) {
@@ -178,7 +183,7 @@ export function generatePDF(year, month) {
   const adjustedFirstDay = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
   const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-  doc.addImage("../../shared/backgrounds/light-pink.png", "PNG", 0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight());
+  doc.addImage("../shared/backgrounds/light-pink.png", "PNG", 0, 0, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight());
 
   // Draw title, header, and calendar in sequence
   drawTitle(doc, monthName, year, settings);
@@ -226,7 +231,7 @@ function drawHeader(doc, daysOfWeek, settings) {
       day,
       settings.margin + i * (settings.cellWidth + settings.gap) + settings.cellWidth / 2,
       settings.margin + settings.titleHeight + settings.headerHeight / 2,
-      { align: "center" }
+      { align: "center" },
     );
   });
 }

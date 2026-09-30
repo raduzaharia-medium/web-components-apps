@@ -7,12 +7,16 @@ import "./song-list-item.js";
 export class SongsSection extends HTMLElement {
   constructor() {
     super();
+  }
+
+  connectedCallback() {
+    this.classList.add("list-section");
 
     this.innerHTML = `
         <item-counter singular="song" plural="songs" order="album"></item-counter>
         <span class="subtitle"></span>
         <input type="text" placeholder="search..." />
-        <custom-list class="full-screen">
+        <custom-list>
           <template slot="item">
             <song-list-item></song-list-item>
           </template>

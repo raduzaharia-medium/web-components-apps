@@ -15,7 +15,9 @@ export class RichTextEditor extends HTMLDivElement {
 
   constructor() {
     super();
+  }
 
+  connectedCallback() {
     this.classList.add("rich-text-editor");
 
     this.innerHTML = `
@@ -70,41 +72,41 @@ export class RichTextEditor extends HTMLDivElement {
             </select>
           </span>
           <span class="triple">
-            <img class="bold" title="Bold" src="/shared/images/bold.svg" />
-            <img class="italic" title="Italic" src="/shared/images/italic.svg" />
-            <img class="underline" title="Underline" src="/shared/images/underline.svg" />
+            <img class="bold" title="Bold" src="../shared/images/bold.svg" />
+            <img class="italic" title="Italic" src="../shared/images/italic.svg" />
+            <img class="underline" title="Underline" src="../shared/images/underline.svg" />
           </span>
           <span class="double">
-            <img class="undo" title="Undo" src="/shared/images/undo.svg" />
-            <img class="redo" title="Redo" src="/shared/images/redo.svg" />
+            <img class="undo" title="Undo" src="../shared/images/undo.svg" />
+            <img class="redo" title="Redo" src="../shared/images/redo.svg" />
           </span>
           <span class="double">
-            <img class="remove-formatting" title="Remove formatting" src="/shared/images/clear-formatting.svg" />
+            <img class="remove-formatting" title="Remove formatting" src="../shared/images/clear-formatting.svg" />
           </span>
         </div>
         <div class="toolbar">
           <span class="triple">
-            <img class="left-align" title="Left align" src="/shared/images/align-left.svg" />
-            <img class="center-align" title="Center align" src="/shared/images/align-center.svg" />
-            <img class="right-align" title="Right align" src="/shared/images/align-right.svg" />
+            <img class="left-align" title="Left align" src="../shared/images/align-left.svg" />
+            <img class="center-align" title="Center align" src="../shared/images/align-center.svg" />
+            <img class="right-align" title="Right align" src="../shared/images/align-right.svg" />
           </span>
           <span class="double">
-            <img class="numbered-list" title="Numbered list" src="/shared/images/bullet-numbers.svg" />
-            <img class="dotted-list" title="Dotted list" src="/shared/images/bullet-points.svg" />
+            <img class="numbered-list" title="Numbered list" src="../shared/images/bullet-numbers.svg" />
+            <img class="dotted-list" title="Dotted list" src="../shared/images/bullet-points.svg" />
           </span>
           <span class="triple">
-            <img class="cut" title="Cut" src="/shared/images/cut.svg" />
-            <img class="copy" title="Copy" src="/shared/images/copy.svg" />
-            <img class="paste" title="Paste" src="/shared/images/paste.svg" />
+            <img class="cut" title="Cut" src="../shared/images/cut.svg" />
+            <img class="copy" title="Copy" src="../shared/images/copy.svg" />
+            <img class="paste" title="Paste" src="../shared/images/paste.svg" />
           </span>
           <span class="double">
-            <img class="indent" title="Add indentation" src="/shared/images/indent.svg" />
-            <img class="outdent" title="Delete indentation" src="/shared/images/outdent.svg" />
+            <img class="indent" title="Add indentation" src="../shared/images/indent.svg" />
+            <img class="outdent" title="Delete indentation" src="../shared/images/outdent.svg" />
           </span>
           <span class="triple">
-            <img class="quote" title="Quote" src="/shared/images/quote.svg" />
-            <img class="add-hyperlink" title="Hyperlink" src="/shared/images/url.svg" />
-            <img class="toggle-code" title="View code" src="/shared/images/code.svg" />
+            <img class="quote" title="Quote" src="../shared/images/quote.svg" />
+            <img class="add-hyperlink" title="Hyperlink" src="../shared/images/url.svg" />
+            <img class="toggle-code" title="View code" src="../shared/images/code.svg" />
           </span>
         </div>
       </div>
@@ -146,9 +148,7 @@ export class RichTextEditor extends HTMLDivElement {
       e.target.selectedIndex = 0;
     });
 
-    this.querySelector(".toggle-code").addEventListener("click", (e) =>
-      this.setDocMode(e.target.classList.contains("checked"))
-    );
+    this.querySelector(".toggle-code").addEventListener("click", (e) => this.setDocMode(e.target.classList.contains("checked")));
     this.querySelector(".cut").addEventListener("click", () => this.formatDoc("cut"));
     this.querySelector(".copy").addEventListener("click", () => this.formatDoc("copy"));
     this.querySelector(".paste").addEventListener("click", () => this.formatDoc("paste"));

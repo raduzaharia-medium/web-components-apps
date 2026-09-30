@@ -1,5 +1,6 @@
-import { loadContacts, deleteContact, getContacts, updateContactDetails } from "./scripts/services.js";
+import { loadContacts, deleteContact, getContacts, createContact, updateContactDetails } from "./scripts/services.js";
 import "./components/details-section.js";
+import "./components/edit-section.js";
 
 history.pushState({ page: "all" }, "Contacts", "./");
 
@@ -21,14 +22,13 @@ function handlePopState(e) {
   }
 
   if (document.body.classList.contains("contact-selected")) {
-    this.refreshContacts();
+    document.body.classList.remove("contact-selected");
     return;
   }
 
   if (!e.state || !e.state.page) return;
 
   history.back();
-  this.refreshContacts();
 }
 
 function handleCategoryChange() {
@@ -122,11 +122,12 @@ function handleNewContact() {
   document.querySelector("edit-section").classList.remove("loading");
 }
 
-function handleCommitEdit() {
+async function handleCommitEdit() {
   const selection = document.querySelector("edit-section").data;
   if (!selection) return;
 
-  updateContactDetails(selection.uid, selection);
+  if (selection.uid) await updateContactDetails(selection.uid, selection);
+  else selection.uid = await createContact(selection);
 
   document.body.classList.remove("edit");
   document.querySelector("section").innerHTML = `<details-section></details-section>`;

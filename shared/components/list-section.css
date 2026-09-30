@@ -1,0 +1,49 @@
+@import url(./custom-list.css);
+@import url(./custom-list-item.css);
+@import url(./custom-list-skeleton.css);
+@import url(./item-counter.css);
+
+/* :where() keeps the specificity at zero, so any section can override these defaults */
+:where(.list-section) {
+  position: relative;
+
+  input {
+    display: block;
+    font-family: var(--font-family);
+    color: var(--text-color);
+    font-size: 1em;
+    font-weight: 100;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+  }
+
+  custom-list {
+    position: absolute;
+    overflow-x: hidden;
+    top: 4em;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    @media (max-width: 710px) {
+      top: 2em;
+    }
+  }
+
+  custom-list-skeleton {
+    display: none;
+  }
+
+  &.loading {
+    custom-list,
+    item-counter,
+    input {
+      display: none;
+    }
+
+    custom-list-skeleton {
+      display: block;
+    }
+  }
+}

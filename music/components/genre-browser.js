@@ -12,7 +12,31 @@ export class GenreBrowser extends HTMLElement {
 
   constructor() {
     super();
+  }
 
+  loadAlbumArt(entries, observer) {
+    let interactionEntries = [];
+    let timeout;
+
+    interactionEntries.push(...entries);
+    clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      interactionEntries
+        .filter((element) => element.isIntersecting)
+        .slice(-20)
+        .forEach(async (element) => {
+          const selection = element.target.parentElement.dataset;
+
+          element.target.src = await getAlbumArt(selection.artist, selection.item);
+          observer.unobserve(element.target);
+        });
+
+      interactionEntries = [];
+    }, 500);
+  }
+
+  async connectedCallback() {
     this.innerHTML = `
       <genres-section></genres-section>
       <albums-section></albums-section>
@@ -45,31 +69,7 @@ export class GenreBrowser extends HTMLElement {
         document.querySelector("actions-bar").src = await getFileUrl(selection.file);
       }
     });
-  }
 
-  loadAlbumArt(entries, observer) {
-    let interactionEntries = [];
-    let timeout;
-
-    interactionEntries.push(...entries);
-    clearTimeout(timeout);
-
-    timeout = setTimeout(() => {
-      interactionEntries
-        .filter((element) => element.isIntersecting)
-        .slice(-20)
-        .forEach(async (element) => {
-          const selection = element.target.parentElement.dataset;
-
-          element.target.src = await getAlbumArt(selection.artist, selection.item);
-          observer.unobserve(element.target);
-        });
-
-      interactionEntries = [];
-    }, 500);
-  }
-
-  async connectedCallback() {
     await this.loadGenres();
   }
 

@@ -9,7 +9,7 @@ export class DateNavigator extends HTMLElement {
         <select id="month">
             ${Array.from(
               { length: 12 },
-              (e, index) => `<option value="${index + 1}">${new Date(2000, index).toLocaleDateString("default", { month: "long" })}</option>`
+              (e, index) => `<option value="${index + 1}">${new Date(2000, index).toLocaleDateString("default", { month: "long" })}</option>`,
             ).join("")}
         </select>
         <select id="year">

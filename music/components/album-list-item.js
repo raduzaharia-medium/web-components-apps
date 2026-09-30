@@ -19,7 +19,11 @@ export class AlbumListItem extends CustomListItem {
   }
 
   connectedCallback() {
-    this.innerHTML = `<img loading="lazy" decoding="async" src="/music/images/musical-note.svg" />
+    super.connectedCallback();
+
+    if (this.querySelector("img")) return;
+
+    this.innerHTML = `<img loading="lazy" decoding="async" src="./images/musical-note.svg" />
       <legend>
         <strong></strong>
         <span></span>

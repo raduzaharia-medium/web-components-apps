@@ -1,20 +1,16 @@
 @import url(../../shared/components/selected-item-nav.css);
 @import url(../../shared/components/responsive-nav.css);
 
-selected-item-nav {
-    display: none;
-}
-
 body.contact-selected {
-    responsive-nav {
-        @media (max-width: 710px) {
-            display: none;
-        }
+  responsive-nav {
+    @media (max-width: 710px) {
+      display: none;
     }
+  }
 
-    selected-item-nav {
-        @media (max-width: 710px) {
-            display: block;
-        }
+  selected-item-nav {
+    @media (max-width: 710px) {
+      display: block;
     }
+  }
 }

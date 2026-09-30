@@ -16,8 +16,14 @@ export class SongListItem extends CustomListItem {
 
   constructor() {
     super();
+  }
 
-    this.innerHTML = `<img loading="lazy" decoding="async" src="../music/images/play.svg" />
+  connectedCallback() {
+    super.connectedCallback();
+
+    if (this.querySelector("img")) return;
+
+    this.innerHTML = `<img loading="lazy" decoding="async" src="./images/play.svg" />
       <span class="title"></span>
       <span class="artist"></span>`;
   }

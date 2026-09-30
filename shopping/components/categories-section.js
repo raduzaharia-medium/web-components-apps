@@ -9,6 +9,8 @@ export class CategoriesSection extends HTMLElement {
   }
 
   connectedCallback() {
+    this.classList.add("list-section");
+
     this.innerHTML = `
       <custom-list>
         <template slot="item">

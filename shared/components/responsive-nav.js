@@ -19,18 +19,25 @@ export class ResponsiveNav extends HTMLElement {
 
   constructor() {
     super();
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (!this.querySelector("ul")) return;
+
+    if (name === "options") this.render();
+    else this.select(newValue);
+  }
+
+  render() {
+    const options = this.options.split(",").map((element) => element.trim());
 
     this.innerHTML = `
-      <ul>${this.options
-        .split(",")
-        .map((element) => `<li class="${element.trim() === this.value ? "selected" : ""}" data-value="${element.trim().toLowerCase()}">${element.trim()}</li>`)
-        .join("")}
-      </ul>
-      <select name="responsive-nav-selection" class="mobile-only">${this.options
-        .split(",")
-        .map((element) => `<option value="${element.trim().toLowerCase()}">${element.trim()}</option>`)
-        .join("")}
-      </select>`;
+      <ul>${options.map((element) => `<li data-value="${element.toLowerCase()}">${element}</li>`).join("")}</ul>
+      <select name="responsive-nav-selection">${options.map((element) => `<option value="${element.toLowerCase()}">${element}</option>`).join("")}</select>`;
 
     this.querySelector("select").addEventListener("change", () => {
       this.value = this.querySelector("select").value;
@@ -44,23 +51,16 @@ export class ResponsiveNav extends HTMLElement {
       this.value = selection.dataset.value;
       this.dispatchEvent(new Event("change"));
     });
+
+    this.select(this.value);
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    newValue = newValue.toLowerCase();
+  select(value) {
+    const selected = (value ?? "").toLowerCase();
 
-    if (name === "options") {
-      this.querySelector("ul").items = newValue.split(",");
-      this.querySelector("select").items = newValue.split(",");
-    } else if (name === "value") {
-      this.querySelector("select").value = newValue.split(",");
-
-      if (oldValue) {
-        const selection = this.querySelector(`ul li[data-value='${oldValue}']`);
-        if (selection) selection.classList.remove("selected");
-      }
-      this.querySelector(`ul li[data-value='${newValue}']`).classList.add("selected");
-    }
+    this.querySelector("select").value = selected;
+    this.querySelectorAll("ul li.selected").forEach((element) => element.classList.remove("selected"));
+    this.querySelector(`ul li[data-value='${selected}']`)?.classList.add("selected");
   }
 }
 

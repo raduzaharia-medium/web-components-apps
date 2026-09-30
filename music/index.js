@@ -27,26 +27,14 @@ async function handleLoad() {
 function handlePrevious(e) {
   if (!e.detail.playlist) return;
 
-  const audioPlayer = document.querySelector("audio");
-  const currentLocation = audioPlayer.src.replace("/stream?location=", "");
-  const currentIndex = e.detail.playlist.findIndex((element) => element.location === currentLocation);
+  const songs = document.querySelector("songs-section custom-list");
 
-  let previousIndex = currentIndex - 1;
-  if (previousIndex < 0) previousIndex = e.detail.playlist.length - 1;
-
-  document.querySelector("songs-section custom-list").selectPrevious();
-
-  audioPlayer.src = `/stream?location=${e.detail.playlist[previousIndex].location}`;
+  if (songs.querySelector(".selected")) songs.selectPrevious();
 }
 function handleNext(e) {
   if (!e.detail.playlist) return;
 
-  const audioPlayer = document.querySelector("audio");
-  const currentLocation = audioPlayer.src.replace("/stream?location=", "");
-  const currentIndex = e.detail.playlist.findIndex((element) => element.location === currentLocation);
-  const nextIndex = (currentIndex + 1) % e.detail.playlist.length;
+  const songs = document.querySelector("songs-section custom-list");
 
-  document.querySelector("songs-section custom-list").selectNext();
-
-  audioPlayer.src = `/stream?location=${e.detail.playlist[nextIndex].location}`;
+  if (songs.querySelector(".selected")) songs.selectNext();
 }

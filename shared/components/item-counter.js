@@ -31,20 +31,26 @@ export class ItemCounter extends HTMLElement {
 
   constructor() {
     super();
-
-    this.innerHTML = `
-      <strong>0 ${this.plural}</strong>
-      <span>BY ${this.order}</span>
-    `;
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    const count = this.querySelector("strong");
-    const order = this.querySelector("span");
+  connectedCallback() {
+    this.innerHTML = `
+      <strong></strong>
+      <span></span>
+    `;
+
+    this.update();
+  }
+
+  attributeChangedCallback() {
+    if (this.querySelector("strong")) this.update();
+  }
+
+  update() {
     const intValue = parseInt(this.value);
 
-    count.innerText = `${this.value} ${intValue === 0 || intValue > 1 ? this.plural : this.singular}`;
-    order.innerText = `BY ${this.order}`;
+    this.querySelector("strong").innerText = `${this.value} ${intValue === 0 || intValue > 1 ? this.plural : this.singular}`;
+    this.querySelector("span").innerText = `BY ${this.order}`;
   }
 }
 
