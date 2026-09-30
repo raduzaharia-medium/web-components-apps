@@ -1,4 +1,4 @@
-export class RichTextEditor extends HTMLDivElement {
+export class RichTextEditor extends HTMLElement {
   get valueAsHTML() {
     return this.querySelector(".content").innerHTML;
   }
@@ -18,8 +18,6 @@ export class RichTextEditor extends HTMLDivElement {
   }
 
   connectedCallback() {
-    this.classList.add("rich-text-editor");
-
     this.innerHTML = `
       <div class="toolbars">
         <div class="toolbar">
@@ -205,4 +203,4 @@ export class RichTextEditor extends HTMLDivElement {
   }
 }
 
-customElements.define("rich-text-editor", RichTextEditor, { extends: "div" });
+customElements.define("rich-text-editor", RichTextEditor);

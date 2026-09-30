@@ -1,0 +1,32 @@
+folder-list-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding-left: calc(var(--depth, 0) * 1em);
+
+  .label {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .counter {
+    background: #ae1c1c;
+    color: #fff;
+    font-size: 0.6em;
+    border-radius: 3em;
+    padding: 0.2em 0.4em;
+    font-weight: bold;
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  &.empty-folder:not(.selected) {
+    display: none;
+  }
+}
+
+body.show-empty-folders folder-list-item.empty-folder {
+  display: grid;
+}

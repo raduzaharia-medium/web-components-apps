@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5e1e9" />
+
+    <title>Mail</title>
+
+    <link rel="stylesheet" href="./compose.css" />
+    <link rel="icon" href="./favicon.svg" />
+
+    <script type="module" src="../shared/components/selected-item-nav.js"></script>
+    <script type="module" src="../shared/components/rich-text-editor.js"></script>
+    <script type="module" src="../shared/components/action-tag.js"></script>
+    <script type="module" src="./components/compose-actions-bar.js"></script>
+
+    <script type="module" src="./compose.js"></script>
+  </head>
+
+  <body>
+    <selected-item-nav behavior="back-button" value="New message"></selected-item-nav>
+
+    <main>
+      <fieldset id="envelope">
+        <p>
+          <label for="emailFrom">From:</label>
+          <input id="emailFrom" type="email" />
+        </p>
+        <p>
+          <label for="emailTo">To:</label>
+          <input id="emailTo" type="email" multiple />
+        </p>
+        <p>
+          <label for="emailCc">Cc:</label>
+          <input id="emailCc" type="email" multiple />
+        </p>
+        <p>
+          <label for="emailBcc">Bcc:</label>
+          <input id="emailBcc" type="email" multiple />
+        </p>
+        <p>
+          <label for="emailSubject">Subject:</label>
+          <input id="emailSubject" type="text" />
+        </p>
+        <p id="fileAttachment">
+          <label for="newAttachment">Attach:</label>
+          <span id="attachments"></span>
+          <span>
+            <label id="newAttachmentLabel" for="newAttachment">📎</label>
+            <input id="newAttachment" type="file" />
+          </span>
+        </p>
+      </fieldset>
+
+      <rich-text-editor id="emailBody"></rich-text-editor>
+    </main>
+
+    <actions-bar></actions-bar>
+  </body>
+</html>

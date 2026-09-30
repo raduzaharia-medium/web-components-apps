@@ -1,0 +1,93 @@
+email-list-item {
+  display: block;
+
+  &.unread {
+    font-weight: 500;
+  }
+
+  .summary {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1em 0.5fr 1fr 5em;
+    grid-column-gap: 1em;
+  }
+
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+  }
+
+  img {
+    width: 1.4em;
+    height: 1.4em;
+    vertical-align: middle;
+    margin-right: 0.4em;
+
+    &.check {
+      display: none;
+    }
+  }
+
+  &.selected {
+    img.uncheck {
+      display: none;
+    }
+
+    img.check {
+      display: inline;
+    }
+  }
+
+  .message {
+    display: none;
+    text-shadow: none;
+    padding: 1em;
+    cursor: initial;
+    white-space: normal;
+    font-weight: initial;
+
+    custom-list-skeleton {
+      display: none;
+    }
+
+    &.loading custom-list-skeleton {
+      display: block;
+    }
+
+    .attachments:empty {
+      display: none;
+    }
+
+    a {
+      margin-right: 1em;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      font-family: inherit;
+      margin: 0;
+    }
+
+    iframe {
+      width: 100%;
+      border: none;
+      background: rgba(255, 255, 255, 0.6);
+    }
+  }
+
+  &.open .message {
+    display: block;
+  }
+
+  @media (max-width: 710px) {
+    .summary {
+      grid-template-columns: 1em 1fr 5em;
+
+      .subject {
+        grid-column: 2 / -1;
+        grid-row: 2;
+      }
+    }
+  }
+}

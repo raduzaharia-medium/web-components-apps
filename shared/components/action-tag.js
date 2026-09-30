@@ -1,4 +1,4 @@
-export class ActionTag extends HTMLSpanElement {
+export class ActionTag extends HTMLElement {
   #tag = null;
 
   get text() {
@@ -24,7 +24,6 @@ export class ActionTag extends HTMLSpanElement {
   }
 
   connectedCallback() {
-    this.classList.add("action-tag");
     this.innerHTML = `
       <span></span>
       <img src="../shared/images/light/cancel.svg">
@@ -32,4 +31,4 @@ export class ActionTag extends HTMLSpanElement {
   }
 }
 
-customElements.define("action-tag", ActionTag, { extends: "span" });
+customElements.define("action-tag", ActionTag);

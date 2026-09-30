@@ -38,6 +38,10 @@ The Photos application offers to load a folder with pictures and browses them by
 
 The Videos application offers to load a folder with videos, where each subfolder is a category (movies, shows, etc.), each folder inside a category is a title and any folders inside a title are seasons. It shows the titles and episodes on graphical lists, builds the thumbnails from a frame of each video and plays them in the page. Like the Music application, it cannot keep the scanned library between sessions because of the privacy considerations of HTML file access, and it can only play the formats and codecs the browser supports.
 
+## Mail
+
+The Mail application offers to load a folder with mail in the Maildir format, where each subfolder is an account, and shows its folders and emails, opening the messages in a safe frame and offering their attachments for download. Browsers cannot connect to IMAP or SMTP servers, so the mail has to be downloaded by another tool (like `mbsync` or `offlineimap`) into that folder. Where the browser allows writing to it (Chrome), it can also mark emails as read, move and delete them, and manage folders. New messages, replies and forwards can be handed to the mail application or saved as `.eml` files. Like the Music application, it cannot keep the loaded folder between sessions because of the privacy considerations of HTML file access.
+
 ## Roadmap and currently available applications
 
 - [x] Calendar
@@ -46,6 +50,6 @@ The Videos application offers to load a folder with videos, where each subfolder
 - [x] News
 - [x] Photos
 - [x] Videos
-- [ ] Mail
+- [x] Mail
 - [x] Expenses tracker
 - [x] Shopping list

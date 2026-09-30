@@ -1,0 +1,9 @@
+@import url(../../shared/components/list-section.css);
+
+@import url(./email-list-item.css);
+
+emails-section custom-list {
+  top: 2em;
+  padding-right: 0;
+  border-right: none;
+}

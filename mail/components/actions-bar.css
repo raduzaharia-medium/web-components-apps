@@ -1,0 +1,44 @@
+@import url(../../shared/components/actions-bar.css);
+
+actions-bar {
+  #addFolder,
+  #deleteFolder,
+  #markAsRead,
+  #archive,
+  #deleteEmails,
+  #reply,
+  #replyAll,
+  #forward,
+  #reload {
+    display: none;
+  }
+}
+
+/* Writing back to the mail folder is only possible where the browser allows it */
+body.can-write:not(.email-open) actions-bar {
+  #addFolder,
+  #markAsRead,
+  #archive,
+  #deleteEmails,
+  #reload {
+    display: inline;
+  }
+}
+
+body.can-write.folder-selected:not(.email-open) actions-bar #deleteFolder {
+  display: inline;
+}
+
+body.email-open actions-bar {
+  #reply,
+  #replyAll,
+  #forward {
+    display: inline;
+  }
+
+  #showEmptyFolders,
+  #load,
+  #newEmail {
+    display: none;
+  }
+}

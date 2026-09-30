@@ -1,4 +1,4 @@
-span.action-tag {
+action-tag {
   display: grid;
   grid-template-columns: max-content 1.6em;
   width: max-content;
@@ -6,10 +6,10 @@ span.action-tag {
   border-radius: 20px;
   margin-right: 0.6em;
 }
-span.action-tag span {
+action-tag span {
   padding: 0.2em 0.6em;
 }
 
-span.action-tag img {
+action-tag img {
   cursor: pointer;
 }
