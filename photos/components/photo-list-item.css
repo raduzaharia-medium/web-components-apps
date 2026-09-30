@@ -1,0 +1,48 @@
+photo-list-item {
+  display: inline-block;
+  vertical-align: top;
+  width: 12em;
+  margin-right: 1em;
+
+  img {
+    width: 100%;
+    padding: 1.4em 1em 0.4em 1em;
+    border-radius: 0.4em;
+    box-sizing: border-box;
+  }
+
+  img.thumbnail {
+    height: 6em;
+    object-fit: cover;
+
+    &.preview {
+      object-fit: contain;
+    }
+  }
+
+  .details {
+    display: none;
+    margin-top: 1em;
+    text-shadow: none;
+    white-space: normal;
+
+    span {
+      display: block;
+      color: var(--text-color-light);
+    }
+  }
+
+  &.open {
+    display: block;
+    width: 100%;
+    margin-bottom: 4em;
+
+    img.thumbnail {
+      display: none;
+    }
+
+    .details {
+      display: block;
+    }
+  }
+}

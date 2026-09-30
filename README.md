@@ -30,13 +30,17 @@ The Expenses application is a yearly expenses tracker, showing the paid amounts 
 
 The Shopping application is a shopping list planner. In the planning view it shows a catalog of products grouped by category and lets you pick the ones to buy, and in the shopping view it shows the resulting list, allowing you to add other items and check off the ones you have bought. The list is stored in HTML local storage.
 
+## Photos
+
+The Photos application offers to load a folder with pictures and browses them by folder, by album (a folder with " - " in its name) and by month. It reads the date each picture was taken from its EXIF metadata, falling back to the file date, and builds the thumbnails in the browser. Like the Music application, it cannot keep the scanned library between sessions because of the privacy considerations of HTML file access.
+
 ## Roadmap and currently available applications
 
 - [x] Calendar
 - [x] Contacts
 - [x] Music
 - [x] News
-- [ ] Photos
+- [x] Photos
 - [ ] Mail
 - [x] Expenses tracker
 - [x] Shopping list

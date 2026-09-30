@@ -1,0 +1,5 @@
+@import url(../../shared/components/actions-bar.css);
+
+actions-bar {
+  justify-content: flex-end;
+}

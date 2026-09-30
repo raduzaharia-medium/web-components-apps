@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5e1e9" />
+
+    <title>Photos</title>
+
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="icon" href="./favicon.svg" />
+
+    <script type="module" src="./components/photos-responsive-nav.js"></script>
+    <script type="module" src="./components/folders-section.js"></script>
+    <script type="module" src="./components/groups-section.js"></script>
+    <script type="module" src="./components/photos-section.js"></script>
+    <script type="module" src="./components/actions-bar.js"></script>
+
+    <script type="module" src="./index.js"></script>
+  </head>
+
+  <body class="browse-folders">
+    <photos-responsive-nav></photos-responsive-nav>
+    <main>
+      <folders-section id="folders"></folders-section>
+      <groups-section id="albums" singular="album" plural="albums" order="a-z"></groups-section>
+      <groups-section id="timeline" singular="month" plural="months" order="date"></groups-section>
+      <photos-section></photos-section>
+    </main>
+    <actions-bar></actions-bar>
+  </body>
+</html>

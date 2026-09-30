@@ -1,0 +1,4 @@
+folder-list-item {
+  display: block;
+  padding-left: calc(var(--depth, 0) * 1em);
+}

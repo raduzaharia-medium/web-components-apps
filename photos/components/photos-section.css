@@ -1,0 +1,9 @@
+@import url(../../shared/components/list-section.css);
+
+@import url(./photo-list-item.css);
+
+photos-section custom-list {
+  top: 2em;
+  padding-right: 0;
+  border-right: none;
+}

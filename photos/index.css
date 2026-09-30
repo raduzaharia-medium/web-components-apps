@@ -1,0 +1,35 @@
+@import url(../shared/styles/base.css);
+@import url(../shared/styles/layout.css);
+
+@import url(./components/photos-responsive-nav.css);
+@import url(./components/folders-section.css);
+@import url(./components/groups-section.css);
+@import url(./components/photos-section.css);
+@import url(./components/actions-bar.css);
+
+main {
+  display: grid;
+  grid-column-gap: 1em;
+  grid-template-columns: 0.5fr 1fr;
+
+  @media (max-width: 710px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+body.browse-folders :is(#albums, #timeline),
+body.browse-albums :is(#folders, #timeline),
+body.browse-timeline :is(#folders, #albums) {
+  display: none;
+}
+
+@media (max-width: 710px) {
+  photos-section,
+  body.group-selected :is(#folders, #albums, #timeline) {
+    display: none;
+  }
+
+  body.group-selected photos-section {
+    display: block;
+  }
+}

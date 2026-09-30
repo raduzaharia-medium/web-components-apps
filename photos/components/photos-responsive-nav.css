@@ -1,0 +1,16 @@
+@import url(../../shared/components/selected-item-nav.css);
+@import url(../../shared/components/responsive-nav.css);
+
+body.group-selected {
+  responsive-nav {
+    @media (max-width: 710px) {
+      display: none;
+    }
+  }
+
+  selected-item-nav {
+    @media (max-width: 710px) {
+      display: block;
+    }
+  }
+}
